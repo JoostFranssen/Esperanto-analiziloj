@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: demons2.xml,v 1.17 2019/01/20 18:10:15 revo Exp $">
+<kap>
+<ofc>2</ofc>
+<rad>demonstrativ</rad>/o
+</kap>
+<drv mrk="demons2.0o">
+  <kap><tld/>o</kap>
+  <uzo tip="fak">GRA</uzo>
+  <snc>
+    <dif>
+      Montra pronomo a&ubreve; adjektivo:
+      <ekz>
+        &leftquot;<nac>esta</nac>&rightquot; kaj &leftquot;<nac>&eacute;sta</nac>&rightquot; prononci&gcirc;as same, 
+        do &scirc;ajne la korno de la dua vorto superfluas,
+        tamen &gcirc;i montras ke la dua vorto rolas kiel pronomo (la unua estas <tld/>a
+        adjektivo)
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url ref="https://eo.wikipedia.org/?curid=1586"
+              >Hispana lingvo</url></lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        la <tld/>a adjektivo estas &leftquot;<nac>lu</nac>&rightquot; (tiu, tia) kaj
+        la demonstraj pronomoj estas &leftquot;<nac>el</nac>&rightquot; a&ubreve;
+        &leftquot;<nac>lo</nac>&rightquot; (tio, tiu viro), &leftquot;<nac>ella</nac>&rightquot;
+        a&ubreve; &leftquot;<nac>la</nac>&rightquot; (tio, tiu virino)
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url ref="https://eo.wikipedia.org/?curid=37892"
+              >Spokil</url></lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_u;&c_k;&c_a;&c_z;&c_a;&c_l;&c_mol;&c_n;&c_y;
+&c_z;&c_a;&c_j;&c_m;&c_je;&c_n;&c_mol;&c_n;&c_ib;&c_k;</trd>
+  <trdgrp lng="cs">
+    <trd>demonstrativum</trd>,
+    <trd>p&rcaron;&iacute;slovce</trd>,
+    <trd>ukazovac&iacute; z&aacute;jmeno</trd>,
+    <trd>&ccaron;&iacute;slovka</trd>
+  </trdgrp>
+  <trdgrp lng="de">
+    <trd>Demonstrativum</trd>,
+    <trd>Demonstrativpronomen</trd>,
+    <trd>hinweisendes F&uuml;rwort</trd>
+  </trdgrp>
+  <trd lng="en">demonstrative</trd>
+  <trd lng="es">demostrativo</trd>
+  <trdgrp lng="fa">
+    <trd>&a_D;&a_m;&f_y;&a_r; &a_A;&a_sh;&a_A;&a_r;&a_h;</trd>,
+    <trd>&a_S;&a_f;&a_t; &a_A;&a_sh;&a_A;&a_r;&a_h;</trd>
+  </trdgrp>
+  <trd lng="fr">d&eacute;monstratif<klr tip="ind"> (grammaire)</klr></trd>
+  <trd lng="hu">mutat&oacute; <ind>n&eacute;vm&aacute;s</ind></trd>
+  <trd lng="pl">zaimek lub przymiotnik wskazuj&aogonek;cy</trd>
+  <trd lng="pt">demonstrativo</trd>
+  <trd
+lng="ru">&c_u;&c_k;&c_a;&c_z;&c_a;&c_t;&c_je;&c_l;&c_mol;&c_n;&c_o;&c_je;
+&c_m;&c_je;&c_s;&c_t;&c_o;&c_i;&c_m;&c_je;&c_n;&c_i;&c_je;</trd>
+  <trd lng="sk">ukazovacie z&aacute;meno</trd>
+</drv>
+</art>
+<!--
+$Log: demons2.xml,v $
+Revision 1.17  2019/01/20 18:10:15  revo
+Wolfram Diestel: +ekz-oj
+
+Revision 1.16  2015/07/04 08:37:32  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.15  2015/06/29 16:29:36  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.14  2010/04/26 16:30:23  revo
+Behnam Tabatabai: +trd fa
+
+Revision 1.13  2009/09/10 16:31:56  revo
+Russ Williams: +trd en
+
+Revision 1.12  2007/07/19 16:31:56  revo
+Tulio Flores: +tr pt
+
+Revision 1.11  2006/05/10 16:31:10  revo
+Sebastian Cyprych: +trd pl
+
+Revision 1.10  2004/10/11 16:33:53  revo
+-->
+</vortaro>

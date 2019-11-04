@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: hospit.xml,v 1.21 2019/10/04 17:10:16 revo Exp $">
+<kap>
+  <ofc>1</ofc>
+  <rad>hospital</rad>/o <fnt><bib>PV</bib></fnt>
+</kap>
+<drv mrk="hospit.0o">
+  <kap><tld/>o</kap>
+  <uzo tip="fak">MED</uzo>
+  <snc mrk="hospit.0o.MED">
+    <ref tip="dif" cel="san.mal0ulejo">malsanulejo</ref>
+    <ekz>
+      la naski&gcirc;o okazis en alia <tld/>o
+      <fnt>
+        <aut>Is</aut>,
+        <vrk>Vegetanta homo naskas mem</vrk>,
+        <bib>Monato</bib>
+        <lok>jaro 1996a, numero 5a, p. 26a</lok>
+      </fnt>;
+    </ekz>
+    <ekz>
+      pli logas komforta <tld/>o a&ubreve; konsultejo en urbocentro, kie
+      klientoj de la alta a&ubreve; meza klasoj kapablas pagi la kostojn de
+      privata sansistemo
+      <fnt>
+        <aut>Jozefo Lej&ccirc;</aut>
+        <vrk><url ref="https://www.monato.be/2014/011188.php">Pliaj
+        medicinistoj - pliaj plendoj</url></vrk>,
+        <bib>Monato</bib>
+        <lok>2004-01</lok>
+      </fnt>;
+    </ekz>
+    <ekz>
+      la kuracistoj de la publikaj <tld/>oj sendas al ni multajn
+      pacientojn
+      <fnt>
+        <aut>J.-P. S&eacute;r&eacute;ni, trad. J.-M. Cash</aut>,
+        <vrk><url ref="https://eo.mondediplo.com/article2058.html">En
+        Al&gcirc;erio nenio &scirc;an&gcirc;i&gcirc;as... krom la socio</url></vrk>,
+        <lok>Le Monde diplomatique, 2014-04</lok>
+      </fnt>;
+    </ekz>
+    <ekz>
+      Keti venis de la <tld/>o
+      <fnt>
+        <aut>J. Modest</aut>
+        <vrk>La bebo</vrk>
+        <lok>Beletra Almanako, 2016-10 (27), p. 37a</lok>
+      </fnt>.
+    </ekz>
+  </snc>
+  <trdgrp lng="be">
+    <trd>&c_sh;&c_p;&c_ib;&c_t;&c_a;&c_l;&c_mol;</trd>,
+    <trd>&c_l;&c_ja;&c_k;&c_a;&c_r;&c_n;&c_ja;</trd>,
+    <trd>&c_b;&c_a;&c_l;&c_mol;&c_n;&c_ib;&c_c;&c_a;</trd>
+  </trdgrp>
+  <trd lng="bg">&c_b;&c_o;&c_l;&c_n;&c_i;&c_c;&c_a;</trd>
+  <trdgrp lng="cs">
+    <trd>marodka</trd>,
+    <trd>nemocnice</trd>
+  </trdgrp>
+  <trdgrp lng="de">
+    <trd>Krankenhaus</trd>,
+    <trd>Hospital</trd>
+  </trdgrp>
+  <trd lng="en">hospital</trd>
+  <trd lng="fr">h&ocirc;pital</trd>
+  <trd lng="fy">sikeh&ucirc;s</trd>
+  <trd lng="he">&bet;&yod;&tav; &het;&vav;&lamed;&yod;&fmem;</trd>
+  <trd lng="hu">k&oacute;rh&aacute;z</trd>
+  <trd lng="id"><ind>rumah</ind> sakit</trd>
+  <trd lng="io">hospitalo</trd>
+  <trd lng="it">ospedale</trd>
+  <trd lng="nl">ziekenhuis</trd>
+  <trd lng="pl">szpital</trd>
+  <trd lng="pt">hospital</trd>
+  <trd lng="ru">&c_b;&c_o;&c_l;&c_mol;&c_n;&c_i;&c_c;&c_a;</trd>
+  <trd lng="sk">nemocnica</trd>
+  <trd lng="tr">hastahane</trd>
+</drv>
+
+<drv mrk="hospit.en0igi">
+  <kap>en<tld/>igi</kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc mrk="hospit.en0igi.MED">
+    <uzo tip="fak">MED</uzo>
+    <dif>
+      Akceptigi en <tld/>on por restado:
+      <ekz>
+        unu el la enketistoj <klr>...</klr> petis disponigi al li la 
+        liston de &ccirc;iuj personoj en<tld/>igitaj dum la lastaj tri tagoj
+        <fnt>
+          <bib>MkM</bib>,
+          <lok>&ccirc;apitro 27a</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="de">hospitalisieren</trd>
+  <trdgrp lng="en">
+    <trd>hospitalize</trd>,
+    <trd>hospitalise</trd>
+  </trdgrp>
+  <trd lng="fr">hospitaliser</trd>
+  <trd lng="nl">hospitaliseren</trd>
+</drv>
+
+<drv mrk="hospit.el0igi">
+  <kap>el<tld/>igi</kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc mrk="hospit.el0igi.MED">
+    <uzo tip="fak">MED</uzo>
+    <dif>
+      Forigi sanigitan personon de <tld/>o:
+      <ekz>
+        bonvolu el<tld/>igi civitanon Senhejmulo kaj transportigu lin en
+        la urbon
+        <fnt>
+          <bib>MkM</bib>,
+          <lok>&ccirc;apitro 8a</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+</drv>
+</art>
+<!--
+$Log: hospit.xml,v $
+Revision 1.21  2019/10/04 17:10:16  revo
+Robin van der Vliet: konfirma al la praktika uzado; vidu ankaux BA18, 2013-10, p. 65-71
+
+Revision 1.20  2015/07/04 08:37:35  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.19  2010/05/21 16:30:35  revo
+Jeromo Vasxe: + en~igi
+
+Revision 1.18  2010/01/19 17:30:41  revo
+Russ Williams: +trd en
+
+Revision 1.17  2009/09/19 16:30:43  revo
+Antonio Codazzi: +trd it
+
+Revision 1.16  2004/11/10 17:31:24  revo
+Dmitri Gabinski: +trd be
+
+Revision 1.15  2004/01/05 17:30:52  revo
+Jozefo Horvath: +trd hu
+
+Revision 1.14  2003/01/21 17:31:53  revo
+-->
+</vortaro>

@@ -1,0 +1,674 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: herb.xml,v 1.51 2019/09/02 07:10:15 revo Exp $">
+<kap>
+  <ofc>*</ofc>
+  <rad>herb</rad>/o 
+</kap>
+<drv mrk="herb.0o">
+  <kap><ofc>*</ofc><tld/>o</kap>
+  <snc mrk="herb.0o.KOMUNE">
+    <dif>
+      Nealta natura vegetalaro, kiel tiu kovranta la grundon en
+      <refgrp tip="malprt">
+        <ref cel="step.0o">stepo</ref>,
+        <ref cel="pasxt.0ejo">pa&scirc;tejo</ref>
+      </refgrp>
+      a&ubreve; <ref tip="malprt" cel="gazon.0o">gazono</ref>,
+      konsistanta el unujaraj a&ubreve; plurjaraj radikhavaj vegetaloj
+      kun maldika trunko neligna:
+      <ekz>
+        vojon batitan <tld/>o ne kovras
+        <fnt><bib>PrV</bib></fnt>;
+      </ekz>
+      <ekz>
+        depost tiu tempo la remparo fortiki&gcirc;is kaj balda&ubreve;
+        kovri&gcirc;is per abunda <tld/>o
+        <fnt><bib>Fab2</bib>, <lok>El fenestro en
+        Vartou</lok></fnt>;
+      </ekz>
+      <ekz>
+        per <tld/>o oni vin nutros kiel bovojn
+        <fnt><bib>MT</bib>, <lok>&Dan; 4:25</lok></fnt>;
+      </ekz>
+      <ekz>
+        kiel <tld/>o, matene &gcirc;i floras kaj &gcirc;ermas, vespere
+        &gcirc;i dehaki&gcirc;as kaj seki&gcirc;as
+        <fnt><bib>MT</bib>, <lok>&Psa; 90:5</lok></fnt>;
+      </ekz>
+      <ekz>
+        venis akridoj kaj skaraboj sennombraj kaj forman&gcirc;is
+        la tutan <tld/>on en ilia lando
+        <fnt><bib>MT</bib>, <lok>&Psa; 105:34</lok></fnt>,
+      </ekz>
+      <ekz>
+        li ordonis al la homamasoj sidi&gcirc;i sur la <tld/>o
+        <fnt>
+          <bib>NT</bib>
+          <lok>Mateo 14:19</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+    <rim>
+      La&ubreve; PIV2 tiusenca <tld/>o konsistas el
+      <ref tip="vid" cel="poac.0oj">poacoj</ref>; kvankam iuj el
+      ili (ekz-e festuko, elimo ktp) efektive estas tipaj
+      herbospecoj,
+      tamen reale temas pri multe pli vasta nocio. La koncepto
+      ne estas bazita sur botanika klasifiko, &gcirc;i estas ekologia
+      kaj
+      mastrumada: <tld/>o<sncref ref="herb.0o.KOMUNE"/> estas
+      <ref tip="super" cel="form.vivo0o">vivoformo</ref> (anka&ubreve;
+      <ref tip="sub" cel="foli.tri0o">trifolio</ref> kaj
+      <ref tip="sub" cel="luzern.0o">luzerno</ref> estas <tld/>oj,
+      sen esti
+      poacoj); kaj en la mastrumado <tld/>o estas nocio, kontrasta
+      al
+      <ref tip="ant" cel="gren.0o.planto">greno</ref>: seka <tld/>o
+      estas <ref tip="vid" cel="fojn.0o">fojno</ref>, seka greno
+      estas pajlo. Tritiko estas poaco, sed komunlingve &gcirc;i ne
+      estas <tld/>o.
+      Jen a&ubreve;toritataj ekzemploj pri nepoaca <tld/>o:
+      <ekz>
+        &ccirc;ar kiel floro de <tld/>o li forpasos
+        <fnt><bib>NT</bib>, <lok>&Jak; 1:10</lok></fnt>;
+      </ekz>
+      <ekz>
+        la verda <tld/>o kun la malgrandaj ru&gcirc;aj kaj blankaj
+        floroj estis la subpieda tapi&scirc;o
+        <fnt><bib>Fab1</bib>, <lok>Vojkamarado</lok></fnt>.
+      </ekz>
+      <aut>S. Pokrovskij</aut>
+    </rim>
+    <trdgrp lng="de">
+      <trd>Kraut</trd>,
+      <trd><ofc>*</ofc>Gras</trd>
+    </trdgrp>
+  </snc>
+  <snc mrk="herb.0o.KUI">
+    <uzo tip="fak">KUI</uzo><uzo tip="fak">MED</uzo>
+    <dif>
+      Iu el tiaj <ref tip="super" cel="veget.0ajxo">vegeta&jcirc;o</ref>j
+      man&gcirc;ebla kaj uzata kiel spica&jcirc;o a&ubreve; uzata por kuraci:
+      <ekz>
+        legomoj: radikaj, foliaj, trunketaj, floraj kaj fruktaj, &dash; fungoj, salatoj kaj supaj <tld/>oj
+        <fnt>
+          <bib>FK</bib>
+        </fnt>;
+      </ekz>
+      <ekz>
+        apud la fre&scirc;a <tld/>obedo ku&scirc;is la bastono de la patro
+        <fnt>
+          <bib>Fab2</bib>
+          <lok>Sambuka virineto</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        macojn kun maldol&ccirc;aj <tld/>oj ili man&gcirc;u
+        <fnt>
+          <bib>MT</bib>
+          <lok>Eliro 12:8</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        unu el la pastroj preparis rimedojn el <tld/>oj, mielo, oleo
+        <fnt>
+          <bib>Far2</bib>
+          <lok>&Ccirc;apitro I</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        vino, saturita per muskato kaj bonodoraj <tld/>oj
+        <fnt>
+          <bib>Far3</bib>
+          <lok>&Ccirc;apitro V</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        tiu <tld/>o mirinda kaj benita de <nom>Allah</nom>, <klr>[&#8230;]</klr> la tabako estas la
+        plezuro de la had&jcirc;ioj, kiuj voja&gcirc;as al Mekko
+        <fnt>
+          <bib>FK</bib>
+        </fnt>;
+      </ekz>
+      <ekz>
+        paradiz-&gcirc;ardeneto mona&hcirc;a kun <tld/>oj, floroj kaj fruktarboj
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Evgeni Georgiev</aut>
+          <vrk><url ref="http://steloj.de/esperanto/monato2/007113.html">Ser&ccirc;i la perditan paradizon</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        en graflando Flandrio, kiu estis sub la regado de franca re&gcirc;o, la bierfaristoj
+        estis devigitaj uzi aliajn <tld/>ojn ol lupolo
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Lode van de Velde</aut>
+          <vrk><url ref="http://steloj.de/esperanto/monato2/007144.html">Bierlando Belgio</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        kuracaj <tld/>oj
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Franz-Georg R&ouml;ssler</aut>
+          <vrk><url ref="https://www.monato.be/2010/010141.php">Homo universala, homo moderna: Johann Joachim Becher naski&gcirc;is anta&ubreve; 375 jaroj</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        kolektantoj de fungoj kaj spic<tld/>oj
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Isikawa Takasi</aut>
+          <vrk><url ref="https://www.monato.be/2014/011198.php">Ursoj mortigataj</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+    <trd lng="de">Kraut <klr>(K&uuml;che, Pharmazie)</klr></trd>
+  </snc>
+<!-- la ekz-o ne pruvas, ke temas pri unuopa planto, aliokaze oni
+   skribus ekz-e &ccirc;iujn herbojn... kp. ni perdis &leftquot;&ccirc;iun grenon&rightquot; de la &ccirc;i-jara rikolto!
+   - ja ne temas pri greneroj, sed greno kiel nenombrebla, sed mezurebla afero
+  <snc mrk="herb.0o.ero">
+    <uzo tip="stl">RAR</uzo>
+    <dif>
+      <ref tip="dif" cel="herb.0ero"><tld lit="H"/>ero</ref>:
+      <ekz>
+        homojn kaj brutojn kaj &ccirc;iun <tld/>on de la kampo
+        batdifektis la hajlo kaj &ccirc;iujn arbojn de la kampo
+        &gcirc;i rompis
+        <fnt><bib>MT</bib>, <lok>&Eli; 9:25</lok></fnt>.
+      </ekz>
+    </dif>
+  </snc>
+-->
+  <snc mrk="herb.0o.BOT">
+    <uzo tip="fak">BOT</uzo>
+    <dif>
+      <ref tip="dif" cel="plant.nedauxra0o">Neda&ubreve;ra planto</ref>:
+      <ekz>
+        unujara <klr>(vivas nur unu jaron)</klr>,
+        somera <klr>(&gcirc;ermas printempe kaj fruktas somere
+        a&ubreve; a&ubreve;tune)</klr>,
+        vintra <klr>(&gcirc;ermas a&ubreve;tune kaj fruktas
+        sekvajare printempe)</klr>,
+        dujara <klr>(&gcirc;ermas en unu jaro kaj floras kaj
+        fruktas en sekva jaro)</klr>, plurjara <tld/>o.
+      </ekz>
+    </dif>
+    <trd lng="de">Kraut</trd>
+  </snc>
+  <rim>
+    Atentu, ke <tld/>o <sncref ref="herb.0o.KOMUNE"/> estas uzata 
+    singulare kiel nenombrebla afero (same kiel greno, faruno), dum <tld/>o <sncref ref="herb.0o.KUI"/> kaj
+    <sncref ref="herb.0o.BOT"/> estas uzata kiel nombrebla afero &dash; t.e. unuopa 
+    vegeta&jcirc;o a&ubreve; speco, tial aperanta plurale.
+  </rim>
+  <trd lng="be">&c_t;&c_r;&c_a;&c_v;&c_a;</trd>
+  <trd lng="bg">&c_t;&c_r;&c_je;&c_v;&c_a;</trd>
+  <trd lng="br">geotenn</trd>
+  <trdgrp lng="cs">
+    <trd>bylina</trd>,
+    <trd>tr&aacute;va</trd>
+  </trdgrp>
+  <trd lng="en"><ofc>*</ofc>grass</trd>
+  <trd lng="es">hierba</trd>
+  <trd lng="fr"><ofc>*</ofc>herbe</trd>
+  <trd lng="hu">f&udblac;</trd>
+  <trd lng="it">erba</trd>
+  <trd lng="mk">&c_t;&c_r;&c_je;&c_v;&c_a;</trd>
+  <trd lng="nl">gras</trd>
+  <trd lng="pl"><ofc>*</ofc>trawa</trd>
+  <trd lng="pt">erva</trd>
+  <trd lng="ru"><ofc>*</ofc>&c_t;&c_r;&c_a;&c_v;&c_a;</trd>
+  <trdgrp lng="sk">
+    <trd>bylina</trd>,
+    <trd>tr&aacute;va</trd>
+  </trdgrp>
+  <trd lng="sv">gr&auml;s</trd>
+  <trd lng="tp">kasi</trd>
+</drv>
+
+<drv mrk="herb.0ero">
+  <kap><tld/>ero</kap>
+  <snc>
+    <dif>
+      Unuopa individua vegetalo el tiaj, kiuj konsistigas
+      <ref tip="malprt" cel="herb.0o.KOMUNE"><tld/>on<sncref/></ref>:
+      <ekz>
+        floro falis ankora&ubreve;! seki&gcirc;is <tld/>ero kaj mortis,
+        velkis pro vintra la frosto &gcirc;ia verdanta folio
+        <fnt>
+        <aut>V. Langlet</aut>,
+        <vrk>Al la memoro de Jozef Wasniewski</vrk>
+        <bib>FK</bib>
+        </fnt>!
+      </ekz>
+      <ekz>
+        marta mateno, / mateno suna, /
+        lastaj nebuloj, unuaj <tld/>eroj
+        <fnt>
+        <aut>C. Guglielminetti</aut>, <vrk>Marto 1945</vrk>.
+        <lok>Nica Literatura Revuo, 4:2, p. 53</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        la re&gcirc;idinoj rigardis unu la alian, rigardis sur la teron
+        kaj inter la <tld/>eroj ili ekvidis grandajn nuksojn
+        <fnt>
+        <vrk><url ref="http://kastoraklubo.w.interia.pl/tri/index.html">Tri
+        re&gcirc;idinoj</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="bg">&c_s;&c_t;&c_r;&c_malmol;&c_k;&c_ch;&c_je; <ind>&c_t;&c_r;&c_je;&c_v;&c_a;</ind></trd>
+  <trd lng="cs">stonek tr&aacute;vy</trd>
+  <trd lng="fr">brin d'herbe</trd>
+  <trd lng="it">filo d'<ind>erba</ind></trd>
+  <trd lng="nl">grasspriet</trd>
+  <trd lng="ru">&c_t;&c_r;&c_a;&c_v;&c_i;&c_n;&c_k;&c_a;</trd>
+  <trd lng="sk">by&lcaron;</trd>
+</drv>
+
+<drv mrk="herb.0acxo">
+  <kap><tld/>a&ccirc;o,
+  <var><kap>trud<tld/>o</kap></var>,
+  <var><kap>mis<tld/>o</kap></var></kap>
+  <snc mrk="herb.0acxo.AGR">
+    <uzo tip="fak">AGR</uzo>
+    <dif>
+      <tld lit="H"/>o malutila por kultivo:
+      <ekz>
+        inter <tld/>a&ccirc;oj kaj urtikoj &gcirc;i ku&scirc;is tie en
+        angulo
+        <fnt><bib>Fab2</bib> <lok>Abio</lok></fnt>;
+      </ekz>
+      <ekz>
+        planto, elfosita inter <tld/>a&ccirc;oj kaj arbetoj
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Saliko</aut>
+          <vrk><url ref="https://www.monato.be/2008/009355.php">Nordiaj rozoj</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        kampa cirsio estas konsiderata kiel &gcirc;ena trud<tld/>o, &ccirc;ar en kultivejoj &gcirc;i
+        disvasti&gcirc;as krom semoj de radikpecoj
+        <fnt>
+          <vrk><url ref="https://nordanaturo.wordpress.com/2010/08/28/planto-de-la-semajno-35-cirsio-kampa/">Planto de la semajno 35: cirsio kampa</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        nun sur la kampoj kreskas nur mis<tld/>oj,
+        kaj homoj devas &ccirc;irka&ubreve;veturadi, migri
+        al Moskvo kaj Leningrado por trovi laboron
+        <fnt>
+          <aut>K. Kniivil&auml;</aut>
+          <vrk>Homoj de Putin</vrk>
+          <lok>2016</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_p;&c_u;&c_s;&c_t;&c_a;&c_z;&c_je;&c_l;&c_mol;&c_l;&c_je;</trd>
+  <trd lng="bg">&c_p;&c_l;&c_je;&c_v;&c_je;&c_l;</trd>
+  <trd lng="br">louzaouenn fall</trd>
+  <trd lng="de">Unkraut</trd>
+  <trd lng="en">weed</trd>
+  <trd lng="es"><ind>hierba</ind> mala</trd>
+  <trd lng="fr">mauvaise herbe</trd>
+  <trdgrp lng="hu">
+    <trd>gaz</trd>,
+    <trd>dudva</trd>
+  </trdgrp>
+  <trdgrp lng="it">
+    <trd>erbaccia</trd>,
+    <trd>pianta<klr> infestante</klr></trd>,
+    <trd>malerba</trd>
+  </trdgrp>
+  <trd lng="nl">onkruid</trd>
+  <trdgrp lng="pl">
+    <trd>zielsko</trd>,
+    <trd>chwast</trd>
+  </trdgrp>
+  <trd lng="pt">erva daninha</trd>
+  <trd lng="ru">&c_s;&c_o;&c_r;&c_n;&c_ja;&c_k;</trd>
+</drv>
+
+<drv mrk="herb.0ejo">
+  <kap><ofc>*</ofc><tld/>ejo <fnt><bib>F</bib>, <lok>Universala Vortaro,
+  <url ref="http://www.akademio-de-esperanto.org/fundamento/universala_vortaro.html#av-5263">herb'ej'</url></lok></fnt></kap>
+  <snc mrk="herb.0ejo.AGR">
+    <uzo tip="fak">AGR</uzo>
+    <dif>
+      Loko, kie kreskas sova&gcirc;a a&ubreve; kulturata <tld/>o:
+      <ekz>
+        la <tld/>ejoj kovri&gcirc;as per brutaroj kaj la kampoj vesti&gcirc;as per greno
+        <fnt>
+          <bib>MT</bib>
+          <lok>Psalmaro 65:13</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        fajro ekstermis la <tld/>ejojn de la stepo
+        <fnt>
+          <bib>MT</bib>
+          <lok>Joel 1:19</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        la fojno sur la verdaj <tld/>ejoj staris en fojnamasoj, kaj la cikonio
+        promenadis sur siaj longaj ru&gcirc;aj piedoj
+        <fnt>
+          <bib>Fab2</bib>
+          <lok>Malbela anasido</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        mar&ccirc;ejo, &ccirc;irka&ubreve;ita &ccirc;iuflanke de malsekaj <tld/>ejoj
+        <fnt>
+          <bib>Fab4</bib>
+          <lok>Filino de la mar&ccirc;a re&gcirc;o</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        &scirc;afoj kaj bovoj pa&scirc;ti&gcirc;adis sur la <tld/>ejo
+        <fnt>
+          <bib>BdV</bib>
+        </fnt>;
+      </ekz>
+      <ekz>
+        &ccirc;irka&ubreve;e verdis bela <tld/>ejo, kovrita de primoloj, sova&gcirc;aj timianoj kaj miloj
+        da aliaj floroj, meze murmuris klara rivereto
+        <fnt>
+          <bib>ElektFab</bib>
+          <lok>Pa&scirc;tistino de anseroj apud puto</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_l;&c_u;&c_g;</trd>
+  <trd lng="bg">&c_l;&c_i;&c_v;&c_a;&c_d;&c_a;</trd>
+  <trdgrp lng="br">
+    <trd>foeneg</trd>,
+    <trd>geoteg</trd>,
+    <trd>prad</trd>
+  </trdgrp>
+  <trdgrp lng="cs">
+    <trd>louka</trd>,
+    <trd>lu&ccaron;ina</trd>,
+    <trd>palouk</trd>,
+    <trd>tr&aacute;vn&iacute;k</trd>
+  </trdgrp>
+  <trd lng="de">Wiese</trd>
+  <trdgrp lng="en">
+    <trd>meadow</trd>,
+    <trd>lawn</trd>,
+    <trd>green</trd>,
+    <trd>grassland</trd>
+  </trdgrp>
+  <trdgrp lng="fr">
+    <trd>pelouse</trd>,
+    <trd>prairie</trd>,
+    <trd>pr&eacute;</trd>
+  </trdgrp>
+  <trd lng="hu">r&eacute;t</trd>
+  <trd lng="it">prato</trd>
+  <trd lng="mk">&c_l;&c_i;&c_v;&c_a;&c_d;&c_a;</trd>
+  <trd lng="nl">weide</trd>
+  <trd lng="pl">&lstroke;&aogonek;ka</trd>
+  <trd lng="pt">prado</trd>
+  <trd lng="ru">&c_l;&c_u;&c_g;</trd>
+  <trdgrp lng="sk">
+    <trd>l&uacute;ka</trd>,
+    <trd>tr&aacute;vnik</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="herb.0oricxa">
+  <kap><ofc>*</ofc><tld/>ori&ccirc;a</kap>
+  <snc>
+    <dif>
+      Plena da herbo:
+      <ekz>
+        sur tiuj &ccirc;i vastaj kaj <tld/>ori&ccirc;aj kampoj pa&scirc;tas sin grandaj
+        brutaroj, precipe aroj da bellanaj &scirc;afoj
+        <fnt><bib>F</bib>, <lok>&FE; 34</lok></fnt>;
+      </ekz>
+      <ekz>
+        ka&ubreve;ze de plurjara sekego, la <tld/>ori&ccirc;a savano pli kaj pli dezerti&gcirc;as
+        <fnt>
+          <vrk><url ref="https://esperokatolika.org/ek19811985/ek1984_04.htm">Espero Katolika - 1984_04</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+
+  <trdgrp lng="de">
+    <trd>saftig <klr>(Wiese)</klr></trd>,
+    <trd>grasig</trd>
+  </trdgrp>
+  <trd lng="fr">gras <klr> (riche en herbe)</klr></trd>
+</drv>
+
+<drv mrk="herb.birdo0o">
+  <kap>birdo<tld/>o</kap>
+  <uzo tip="stl">KOMUNE</uzo>
+  <snc mrk="herb.birdo0o.BOT">
+    <uzo tip="fak">BOT</uzo>
+    <dif>
+      <ref tip="dif" cel="stelari.meza0o.BOT">Meza stelario</ref>:
+      <ekz>
+        malgranda pendanta &gcirc;ardeno kun framboj kaj birdo<tld/>o
+        <fnt>
+          <bib>Fab3</bib>
+        </fnt>;
+      </ekz>
+      <ekz>
+        la sturno fajfis <klr>[&#8230;]</klr> kaj la avino pendigis
+        birdo<tld/>on super la ka&gcirc;o
+        <fnt><bib>Fab3</bib>, <lok>&ccirc;e la plej ekstrema
+        maro</lok></fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="bg">&c_v;&c_r;&c_a;&c_b;&c_ch;&c_o;&c_v;&c_i; <ind>&c_ch;&c_r;&c_je;&c_v;&c_c;&c_a;</ind></trd>
+  <trdgrp lng="br">
+    <trd>brignen-logod</trd>,
+    <trd>glered</trd>
+  </trdgrp>
+  <trd lng="de">Vogelmiere</trd>
+  <trd lng="en">chickweed</trd>
+  <trd lng="fr">mouron blanc</trd>
+  <trd lng="hu">ty&uacute;kh&uacute;r</trd>
+  <trd lng="it">centocchio</trd>
+  <trd lng="la">Stellaria media</trd>
+  <trdgrp lng="nl">
+    <trd>muur<klr tip="ind"> (vogelkruid)</klr></trd>,
+    <trd>vogelkruid</trd>
+  </trdgrp>
+  <trd lng="pt">erva-de-passarinho</trd>
+</drv>
+
+<drv mrk="herb.hund0o">
+  <kap>hund<tld/>o</kap>
+  <uzo tip="stl">KOMUNE</uzo>
+  <snc mrk="herb.hund0o.BOT">
+    <uzo tip="fak">BOT</uzo>
+    <dif>
+      <ref tip="dif" cel="elim.hunda0o">Hunda elimo</ref> a&ubreve;
+      <ref tip="dif" cel="agropi.0o">agropiro</ref>:
+      <ekz>
+        elimo a&ubreve; hund<tld/>o estas genro de plantoj <klr>[&#8230;]</klr>,
+        parenca al elitrigio
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url ref="https://eo.wikipedia.org/?curid=476377">Elymus</url></lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_p;&c_y;&c_r;&c_n;&c_ib;&c_k;</trd>
+  <trd lng="br">treuzgeotenn</trd>
+  <trd lng="de">Quecke</trd>
+  <trd lng="es">grama</trd>
+  <trd lng="fr">chiendent</trd>
+  <trd lng="hu">b&uacute;zaf&udblac;</trd>
+  <trd lng="nl">kweek</trd>
+  <trd lng="pl">perz</trd>
+  <trd lng="pt">grama</trd>
+  <trd lng="ru">&c_p;&c_y;&c_r;&c_je;&c_j;</trd>
+</drv>
+
+<drv mrk="herb.kurac0o">
+  <kap>kurac<tld/>o</kap>
+  <snc mrk="herb.kurac0o.MED">
+    <uzo tip="fak">MED</uzo>
+    <dif>
+      <tld lit="H"/>ospeco uzata por kuracado:
+      <ekz>
+        dozoj da kurac<tld/>aj medikamentoj
+        <fnt>
+          <aut>Chun-Chan Yeh, trad. W. Auld</aut>,
+          <vrk>Montara Vila&gcirc;o</vrk>,
+          <lok>1984</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        neniu kurac<tld/>o, neniu sor&ccirc;drogo kaj neniu sekreto de la naturo ekzistas,
+        kiun li ne konas
+        <fnt>
+          <aut>Michael Ende, trad. Wolfram Diestel</aut>
+          <vrk>La Sen&ccirc;esa Rakonto</vrk>
+          <lok>La Destino de Atrejo</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        unu el miaj preferataj kaj &scirc;atataj kurac<tld/>oj estas topinamburo
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Julius Hauser</aut>
+          <vrk><url ref="https://www.monato.be/2012/010553.php"
+              >Topinamburo &ccirc;u herba&ccirc;o?</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="bg">&c_b;&c_i;&c_l;&c_k;&c_a;</trd>
+  <trdgrp lng="cs">
+    <trd>l&eacute;&ccaron;ivka</trd>,
+    <trd>l&eacute;&ccaron;iv&aacute; bylina</trd>,
+    <trd>l&eacute;&ccaron;iv&aacute; rostlina</trd>
+  </trdgrp>
+  <trd lng="de">Heilkraut</trd>
+  <trdgrp lng="fr">
+    <trd>plante m&eacute;dicinale</trd>,
+    <trd>simple<klr> (plante m&eacute;dicinale)</klr></trd>
+  </trdgrp>
+  <trd lng="sk">lie&ccaron;iv&aacute; rastlina</trd>
+</drv>
+
+<drv mrk="herb.pan0o">
+  <kap>pan<tld/>o</kap>
+  <uzo tip="stl">KOMUNE</uzo>
+  <snc mrk="herb.pan0o.AGR">
+    <uzo tip="fak">AGR</uzo>
+    <ref tip="dif" cel="cereal.0o">cerealo</ref>
+  </snc>
+  <trdgrp lng="be">
+    <trd>&c_z;&c_b;&c_o;&c_zh;&c_zh;&c_a;</trd>,
+    <trd>&c_z;&c_b;&c_a;&c_zh;&c_y;&c_n;&c_a;</trd>,
+    <trd>&c_z;&c_l;&c_a;&c_k;</trd>
+  </trdgrp>
+  <trd lng="de">Getreide</trd>
+  <trd lng="el">&delta;&eta;&my;&eta;&tau;&rho;&jota;&alfa;&kappa;&omikron_ton;&sigma_fina;</trd>
+  <trd lng="en">cereal</trd>
+  <trd lng="es">cereal</trd>
+  <trd lng="fr">c&eacute;r&eacute;ale</trd>
+  <trdgrp lng="hu">
+    <trd>gabonan&ouml;v&eacute;ny</trd>,
+    <trd>gabonaf&eacute;le</trd>
+    <trd>keny&eacute;rgabona</trd>
+  </trdgrp>
+  <trd lng="it">cereale</trd>
+  <trd lng="nl">koren</trd>
+  <trd lng="pl">zbo&zdot;e</trd>
+  <trd lng="pt">cereal</trd>
+  <trd lng="ru">&c_z;&c_l;&c_a;&c_k;</trd>
+  <trd lng="sk">obilie</trd>
+</drv>
+
+<drv mrk="herb.veruk0o">
+  <kap>veruk<tld/>o</kap>
+  <uzo tip="stl">KOMUNE</uzo>
+  <snc mrk="herb.veruk0o.BOT">
+    <uzo tip="fak">BOT</uzo>
+    <dif>
+      <ref tip="dif" cel="kelido.0o">Kelidonio</ref>:
+      <ekz>
+        kelidonio a&ubreve; veruk<tld/>o estas palearktisa genro de papavacoj
+        kun nur unu specio
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url ref="https://eo.wikipedia.org/?curid=22018">Kelidonio</url></lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_p;&c_a;&c_d;&c_t;&c_y;&c_n;&c_mol;&c_n;&c_ib;&c_k;</trd>
+  <trd lng="br">louzaouenn-ar-plac'h-koant</trd>
+  <trd lng="cs">vla&scaron;tovi&ccaron;n&iacute;k v&ecaron;t&scaron;&iacute;</trd>
+  <trdgrp lng="de">
+    <trd>Warzenkraut</trd>,
+    <trd>Sch&ouml;llkraut</trd>
+  </trdgrp>
+  <trd lng="fr">ch&eacute;lidoine</trd>
+  <trd lng="hu">fecskef&udblac;</trd>
+  <trd lng="it">celidonia</trd>
+  <trd lng="la">Chelidonium majus</trd>
+  <trd lng="nl">stinkende <ind>gouwe</ind></trd>
+  <trdgrp lng="pl">
+    <trd>glistnik</trd>,
+    <trd>jask&oacute;&lstroke;cze <ind>ziele</ind></trd>
+  </trdgrp>
+  <trdgrp lng="pt">
+    <trd>celid&ocirc;nia</trd>,
+    <trd>ceruda</trd>,
+    <trd>erva-das-verrugas</trd>,
+    <trd>erva-andorinha</trd>
+  </trdgrp>
+  <trd lng="ru">&c_ch;&c_i;&c_s;&c_t;&c_o;&c_t;&c_je;&c_l;</trd>
+  <trd lng="sk">lastovi&ccaron;n&iacute;k v&auml;&ccaron;&scaron;&iacute;</trd>
+</drv>
+
+</art>
+<!--
+$Log: herb.xml,v $
+Revision 1.51  2019/09/02 07:10:15  revo
+Wolfram Diestel: kor. mrk, kelkaj pliaj ekz-oj
+
+Revision 1.50  2019/09/01 20:10:14  revo
+Wolfram Diestel: ~o, ~ejo: ekz-oj, +snc ~o KUI, +rim
+
+Revision 1.49  2019/07/28 22:10:25  revo
+Jeromo Vasxe: + var trud/mis~o
+
+Revision 1.48  2017/12/20 16:10:19  revo
+Michel Cantigneaux: "herb/ej/o" (kunmetajxo fundamentaj el la U.V.) kaj aldono "herboricxa" (ekz #34
+
+Revision 1.47  2017/07/03 19:10:14  revo
+Wolfram Diestel: +germ trd
+
+Revision 1.46  2017/07/02 19:10:19  revo
+Wolfram Diestel: dif chirkau dif-ref; +ekz-oj
+
+Revision 1.45  2015/07/04 08:37:35  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.44  2015/06/29 16:33:15  revo
+-->
+</vortaro>
