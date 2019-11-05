@@ -7,6 +7,7 @@ public enum VorterSpeco {
 	KORELATIVO,
 	PREFIKSO,
 	PREPOZICIO,
+	PRONOMO,
 	RADIKO,
 	SUFIKSO
 }

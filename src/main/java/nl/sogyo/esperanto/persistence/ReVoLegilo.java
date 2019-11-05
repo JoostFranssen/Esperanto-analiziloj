@@ -88,8 +88,23 @@ public class ReVoLegilo extends DefaultHandler {
 			}
 		}
 		
+		if(enigo.getVortero().equalsIgnoreCase("la")) {
+			enigo.setVorterSpeco(VorterSpeco.ARTIKOLO);
+			return;
+		}
+		
 		if(estasKorelativo(enigo.getVortero())) {
 			enigo.setVorterSpeco(VorterSpeco.KORELATIVO);
+			return;
+		}
+		
+		if(testiDifinonJeTeksto(ĉefElemento, "finaĵo")) {
+			enigo.setVorterSpeco(VorterSpeco.FINAĴO);
+			return;
+		}
+		
+		if(testiDifinonJeTeksto(ĉefElemento, "pronomo")) {
+			enigo.setVorterSpeco(VorterSpeco.PRONOMO);
 			return;
 		}
 		
