@@ -18,8 +18,10 @@ class ReVoLegiloTest {
 	private static final String KREDI = LOKA_PADO + "kred.xml";
 	private static final String PER = LOKA_PADO + "per.xml";
 	private static final String ĈIA = LOKA_PADO + "cxia.xml";
+	private static final String KAJ = LOKA_PADO + "kaj.xml";
+	private static final String KE = LOKA_PADO + "ke.xml";
 	
-	private static ReVoLegilo aŭtoLegilo, sciiLegilo, fumoLegilo, homoLegilo, krediLegilo, perLegilo, ĉiaLegilo;
+	private static ReVoLegilo aŭtoLegilo, sciiLegilo, fumoLegilo, homoLegilo, krediLegilo, perLegilo, ĉiaLegilo, kajLegilo, keLegilo;
 	
 	@BeforeAll
 	public static void iniciato() {
@@ -30,6 +32,8 @@ class ReVoLegiloTest {
 		krediLegilo = new ReVoLegilo(KREDI);
 		perLegilo = new ReVoLegilo(PER);
 		ĉiaLegilo = new ReVoLegilo(ĈIA);
+		kajLegilo = new ReVoLegilo(KAJ);
+		keLegilo = new ReVoLegilo(KE);
 	}
 	
 	@Test
@@ -85,8 +89,6 @@ class ReVoLegiloTest {
 	public void perEstasPrepozicio() {
 		ReVoEnigo enigo = perLegilo.getEnigo();
 		
-		System.out.println(enigo);
-		
 		assertEquals(VorterSpeco.PREPOZICIO, enigo.getVorterSpeco());
 	}
 	
@@ -95,5 +97,19 @@ class ReVoLegiloTest {
 		ReVoEnigo enigo = ĉiaLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.KORELATIVO, enigo.getVorterSpeco());
+	}
+	
+	@Test
+	public void kajEstasKonjunkcio() {
+		ReVoEnigo enigo = kajLegilo.getEnigo();
+		
+		assertEquals(VorterSpeco.KONJUNKCIO, enigo.getVorterSpeco());
+	}
+	
+	@Test
+	public void keEstasKonjunkcio() {
+		ReVoEnigo enigo = keLegilo.getEnigo();
+		
+		assertEquals(VorterSpeco.KONJUNKCIO, enigo.getVorterSpeco());
 	}
 }

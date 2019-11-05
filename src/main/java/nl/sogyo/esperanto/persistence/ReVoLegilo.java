@@ -97,6 +97,11 @@ public class ReVoLegilo extends DefaultHandler {
 			enigo.setVorterSpeco(VorterSpeco.PREPOZICIO);
 			return;
 		}
+		
+		if(testiDifinonJeTeksto(ĉefElemento, "konjunkcio")) {
+			enigo.setVorterSpeco(VorterSpeco.KONJUNKCIO);
+			return;
+		}
 	}
 
 	private boolean testiDifinonJeTeksto(Element ĉefElemento, String teksto) {
