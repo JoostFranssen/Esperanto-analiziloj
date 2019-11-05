@@ -1,7 +1,6 @@
 package nl.sogyo.esperanto.persistence;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,6 +25,7 @@ public class ReVoLegilo extends DefaultHandler {
 	public static final String ETIKEDO_TILDO = "tld"; //por ripeto de la vortero
 	public static final String ETIKEDO_VORTSPECO = "vspec";
 	public static final String ETIKEDO_DERIVAĴO = "drv";
+	public static final String ETIKEDO_DIFINO = "dif";
 	
 	public static final String ESPERANTO_LITERO_REGEX = "[[a-zA-ZĉĈĝĜĥĤĵĴŝŜŭŬ]&&[^qQw-yW-Y]]";
 	
@@ -84,8 +84,44 @@ public class ReVoLegilo extends DefaultHandler {
 			String finaĵo = ekstraktiFinaĵonPostRadiko((Element)kapvortNodoj.item(0));
 			if(!finaĵo.isEmpty()) {
 				enigo.setVorterSpeco(VorterSpeco.RADIKO);
+				return;
 			}
 		}
+		
+		if(estasKorelativo(enigo.getVortero())) {
+			enigo.setVorterSpeco(VorterSpeco.KORELATIVO);
+			return;
+		}
+		
+		if(testiDifinonJeTeksto(ĉefElemento, "prepozicio")) {
+			enigo.setVorterSpeco(VorterSpeco.PREPOZICIO);
+			return;
+		}
+	}
+
+	private boolean testiDifinonJeTeksto(Element ĉefElemento, String teksto) {
+		NodeList vortSpecNodoj = ĉefElemento.getElementsByTagName(ETIKEDO_VORTSPECO);
+		if(vortSpecNodoj.getLength() > 0) {
+			if(vortSpecNodoj.item(0).getTextContent().equalsIgnoreCase(teksto)) {
+				return true;
+			}
+		}
+		
+		NodeList difinNodoj = ĉefElemento.getElementsByTagName(ETIKEDO_DIFINO);
+		if(difinNodoj.getLength() > 0) {
+			String difino = difinNodoj.item(0).getTextContent();
+			Pattern ŝablono = Pattern.compile(teksto, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+			Matcher kongruilo = ŝablono.matcher(difino);
+			if(kongruilo.find()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean estasKorelativo(String vorto) {
+		
+		return vorto.matches("^(k|t|ĉ|nen|)i(aj?n?|en?|on?|uj?n?|al|am|es|om)$");
 	}
 	
 	private String ekstraktiVorteron(Element ĉefElemento) {
