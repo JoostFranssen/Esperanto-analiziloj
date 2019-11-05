@@ -27,6 +27,8 @@ public class ReVoLegilo extends DefaultHandler {
 	public static final String ETIKEDO_VORTSPECO = "vspec";
 	public static final String ETIKEDO_DERIVAĴO = "drv";
 	
+	public static final String ESPERANTO_LITERO_REGEX = "[[a-zA-ZĉĈĝĜĥĤĵĴŝŜŭŬ]&&[^qQw-yW-Y]]";
+	
 	private String dosierPado;
 	private ReVoEnigo enigo;
 	
@@ -54,27 +56,35 @@ public class ReVoLegilo extends DefaultHandler {
 			
 			enigo.setVortero(ekstraktiVorteron(ĉefElemento));
 			
-			NodeList kapvortNodoj = ĉefElemento.getElementsByTagName(ETIKEDO_KAPVORTO);
+			determiniVorterSpecon(ĉefElemento);
 			
-			if(kapvortNodoj.getLength() > 0) {
-				String finaĵo = ekstraktiFinaĵonPostRadiko((Element)kapvortNodoj.item(0));
-				if(!finaĵo.isEmpty()) {
-					enigo.setVorterSpeco(VorterSpeco.RADIKO);
-				}
-			}
-			
-			NodeList derivaĵoNodoj = ĉefElemento.getElementsByTagName(ETIKEDO_DERIVAĴO);
-			for(int i = 1; i < derivaĵoNodoj.getLength(); i++) {
-				Element nodo = (Element)derivaĵoNodoj.item(i);
-				String[] partoj = disigiVortonĈirkaŭRadiko(nodo);
-				if(partoj[0].isEmpty() && partoj[2].equalsIgnoreCase(Finaĵo.VERBO_INFINITIVO.getValoro())) {
-					enigo.setTransitiveco(ekstraktiTransitivecon(nodo));
-					break;
-				}
-			}
+			determiniTransitivecon(ĉefElemento);
 		} catch(ParserConfigurationException | SAXException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+
+	private void determiniTransitivecon(Element ĉefElemento) {
+		NodeList derivaĵoNodoj = ĉefElemento.getElementsByTagName(ETIKEDO_DERIVAĴO);
+		for(int i = 0; i < derivaĵoNodoj.getLength(); i++) {
+			Element nodo = (Element)derivaĵoNodoj.item(i);
+			String[] partoj = disigiVortonĈirkaŭRadiko(nodo);
+			if(partoj[0].isEmpty() && partoj[2].equalsIgnoreCase(Finaĵo.VERBO_INFINITIVO.getValoro())) {
+				enigo.setTransitiveco(ekstraktiTransitivecon(nodo));
+				break;
+			}
+		}
+	}
+
+	private void determiniVorterSpecon(Element ĉefElemento) {
+		NodeList kapvortNodoj = ĉefElemento.getElementsByTagName(ETIKEDO_KAPVORTO);
+		
+		if(kapvortNodoj.getLength() > 0) {
+			String finaĵo = ekstraktiFinaĵonPostRadiko((Element)kapvortNodoj.item(0));
+			if(!finaĵo.isEmpty()) {
+				enigo.setVorterSpeco(VorterSpeco.RADIKO);
+			}
 		}
 	}
 	
@@ -105,30 +115,59 @@ public class ReVoLegilo extends DefaultHandler {
 		if(nodoj.getLength() > 0) {
 			Node radikNodo = nodoj.item(0);
 			if(radikNodo.getPreviousSibling() != null) {
-				partoj[0] = radikNodo.getPreviousSibling().getTextContent();
+				String antaŭEnhavo = radikNodo.getPreviousSibling().getTextContent().trim();
+				Pattern ŝablono = Pattern.compile("\\b" + ESPERANTO_LITERO_REGEX + "*$");
+				Matcher kongruilo = ŝablono.matcher(antaŭEnhavo);
+				if(kongruilo.lookingAt()) {
+					partoj[0] = kongruilo.group();
+				}
 			}
 			if(radikNodo.getNextSibling() != null) {
-				partoj[2] = radikNodo.getNextSibling().getTextContent();
+				String postEnhavo = radikNodo.getNextSibling().getTextContent().trim();
+				Pattern ŝablono = Pattern.compile("^" + ESPERANTO_LITERO_REGEX + "*\\b");
+				Matcher kongruilo = ŝablono.matcher(postEnhavo);
+				if(kongruilo.lookingAt()) {
+					partoj[2] = kongruilo.group();
+				}
 			}
 			partoj[1] = enigo.getVortero();
 		}
-		
 		return partoj;
 	}
 	
 	private Transitiveco ekstraktiTransitivecon(Element derivaĵNodo) {
 		NodeList nodoj = derivaĵNodo.getElementsByTagName(ETIKEDO_VORTSPECO);
-		if(nodoj.getLength() > 0) {
-			String enhavo = nodoj.item(0).getTextContent();
+		boolean transitiva = false;
+		boolean netransitiva = false;
+		
+		for(int i = 0; i < nodoj.getLength(); i++) {
+			String enhavo = nodoj.item(i).getTextContent();
 			switch(enhavo) {
 				case "tr":
-					return Transitiveco.TRANSITIVA;
+					transitiva = true;
+					break;
 				case "ntr":
-					return Transitiveco.NETRANSITIVA;
+					netransitiva = true;
+					break;
 				case "x":
-					return Transitiveco.AMBAŬ;
+					transitiva = true;
+					netransitiva = true;
+					break;
 			}
 		}
-		return Transitiveco.NEDIFINITA;
+		
+		if(transitiva) {
+			if(netransitiva) {
+				return Transitiveco.AMBAŬ;
+			} else {
+				return Transitiveco.TRANSITIVA;
+			}
+		} else {
+			if(netransitiva) {
+				return Transitiveco.NETRANSITIVA;
+			} else {
+				return Transitiveco.NEDIFINITA;
+			}
+		}
 	}
 }
