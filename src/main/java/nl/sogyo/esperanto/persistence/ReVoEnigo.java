@@ -8,6 +8,12 @@ public class ReVoEnigo {
 	private VorterSpeco vorterSpeco;
 	private Transitiveco transitiveco;
 	
+	public ReVoEnigo() {
+		this("", null);
+	}
+	public ReVoEnigo(String vortero) {
+		this(vortero, null);
+	}
 	public ReVoEnigo(String vortero, VorterSpeco vorterSpeco) {
 		this(vortero, vorterSpeco, Transitiveco.NEDIFINITA);
 	}
@@ -40,6 +46,6 @@ public class ReVoEnigo {
 	
 	@Override
 	public String toString() {
-		return vortero + " " + "vorterSpeco" + (transitiveco != null ? " " + transitiveco : "");
+		return vortero + (vorterSpeco != null ? " " + vorterSpeco : "") + (transitiveco != null ? " " + transitiveco : "");
 	}
 }
