@@ -102,6 +102,11 @@ public class ReVoLegilo extends DefaultHandler {
 			enigo.setVorterSpeco(VorterSpeco.KONJUNKCIO);
 			return;
 		}
+		
+		if(testiDifinonJeTeksto(ĉefElemento, "sufikso")) {
+			enigo.setVorterSpeco(VorterSpeco.SUFIKSO);
+			return;
+		}
 	}
 
 	private boolean testiDifinonJeTeksto(Element ĉefElemento, String teksto) {
