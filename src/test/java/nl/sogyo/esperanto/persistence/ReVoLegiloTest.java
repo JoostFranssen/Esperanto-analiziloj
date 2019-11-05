@@ -15,8 +15,9 @@ class ReVoLegiloTest {
 	private static final String SCII = LOKA_PADO + "sci.xml";
 	private static final String FUMO = LOKA_PADO + "fum.xml";
 	private static final String HOMO = LOKA_PADO + "hom.xml";
+	private static final String KREDI = LOKA_PADO + "kred.xml";
 	
-	private static ReVoLegilo aŭtoLegilo, sciiLegilo, fumoLegilo, homoLegilo;
+	private static ReVoLegilo aŭtoLegilo, sciiLegilo, fumoLegilo, homoLegilo, krediLegilo;
 	
 	@BeforeAll
 	public static void iniciato() {
@@ -24,6 +25,7 @@ class ReVoLegiloTest {
 		sciiLegilo = new ReVoLegilo(SCII);
 		fumoLegilo = new ReVoLegilo(FUMO);
 		homoLegilo = new ReVoLegilo(HOMO);
+		krediLegilo = new ReVoLegilo(KREDI);
 	}
 	
 	@Test
@@ -54,7 +56,7 @@ class ReVoLegiloTest {
 		assertEquals(Transitiveco.TRANSITIVA, enigo.getTransitiveco());
 	}
 	
-	@Test
+	@Test //testas, ĉu trovi kaj [tr] kaj [ntr] donas ĝustan transitivecon
 	public void fumiEstasKajTransitivaKajNetransitiva() {
 		ReVoEnigo enigo = fumoLegilo.getEnigo();
 		
@@ -66,5 +68,12 @@ class ReVoLegiloTest {
 		ReVoEnigo enigo = homoLegilo.getEnigo();
 		
 		assertEquals(Transitiveco.NEDIFINITA, enigo.getTransitiveco());
+	}
+	
+	@Test //testas, ĉu la indikilo [x] donas ĝustan transitivecon
+	public void krediEstasKajTransitivaKajNeTransitiva() {
+		ReVoEnigo enigo = krediLegilo.getEnigo();
+		
+		assertEquals(Transitiveco.AMBAŬ, enigo.getTransitiveco());
 	}
 }
