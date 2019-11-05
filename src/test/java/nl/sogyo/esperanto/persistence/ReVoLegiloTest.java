@@ -21,8 +21,9 @@ class ReVoLegiloTest {
 	private static final String KAJ = LOKA_PADO + "kaj.xml";
 	private static final String KE = LOKA_PADO + "ke.xml";
 	private static final String AĈ = LOKA_PADO + "acx.xml";
+	private static final String EK = LOKA_PADO + "ek.xml";
 	
-	private static ReVoLegilo aŭtoLegilo, sciiLegilo, fumoLegilo, homoLegilo, krediLegilo, perLegilo, ĉiaLegilo, kajLegilo, keLegilo, aĉLegilo;
+	private static ReVoLegilo aŭtoLegilo, sciiLegilo, fumoLegilo, homoLegilo, krediLegilo, perLegilo, ĉiaLegilo, kajLegilo, keLegilo, aĉLegilo, ekLegilo;
 	
 	@BeforeAll
 	public static void iniciato() {
@@ -36,6 +37,7 @@ class ReVoLegiloTest {
 		kajLegilo = new ReVoLegilo(KAJ);
 		keLegilo = new ReVoLegilo(KE);
 		aĉLegilo = new ReVoLegilo(AĈ);
+		ekLegilo = new ReVoLegilo(EK);
 	}
 	
 	@Test
@@ -120,5 +122,12 @@ class ReVoLegiloTest {
 		ReVoEnigo enigo = aĉLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.SUFIKSO, enigo.getVorterSpeco());
+	}
+	
+	@Test
+	public void ekEstasPreikso() {
+		ReVoEnigo enigo = ekLegilo.getEnigo();
+		
+		assertEquals(VorterSpeco.PREFIKSO, enigo.getVorterSpeco());
 	}
 }
