@@ -36,7 +36,7 @@ public class Datumbazo {
 					try {
 						enigiEnTabelon(enigo.getVortero(), enigo.getVorterSpeco().toString(), enigo.getTransitiveco().toString());
 					} catch(NullPointerException e) {
-						System.out.println("<<<<<NEDEFINITA VORTERO: " + enigo.getVortero() + ">>>>>");
+						//transsalti kelkajn vortojn, kiuj ne estas determineblaj
 					}
 				}
 			}
@@ -46,7 +46,7 @@ public class Datumbazo {
 		}
 	}
 	
-	public void enigiEnTabelon(String... valoroj) {
+	private void enigiEnTabelon(String... valoroj) {
 		try {
 			PreparedStatement ordono = konekto.prepareStatement(String.format("INSERT INTO %s (%s) VALUES (?, ?, ?);", TABELTITOLO, KOLUMNOJ_ĈENO));
 			for(int i = 0; i < valoroj.length; i++) {

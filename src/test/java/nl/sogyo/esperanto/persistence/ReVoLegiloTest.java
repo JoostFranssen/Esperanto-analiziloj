@@ -23,7 +23,7 @@ class ReVoLegiloTest {
 	private static final String KAJ = LOKA_PADO + "kaj.xml";
 	private static final String KE = LOKA_PADO + "ke.xml";
 	private static final String AĈ = LOKA_PADO + "acx.xml";
-	private static final String EK = LOKA_PADO + "ek.xml";
+	private static final String RE = LOKA_PADO + "re.xml";
 	private static final String LA = LOKA_PADO + "la.xml";
 	private static final String A = LOKA_PADO + "a.xml";
 	private static final String LI = LOKA_PADO + "li.xml";
@@ -35,7 +35,7 @@ class ReVoLegiloTest {
 	private static final String HOLA = LOKA_PADO + "hola.xml";
 	private static final String ZZZ = LOKA_PADO + "zzz.xml";
 	
-	private static ReVoLegilo aŭtoLegilo, sciiLegilo, fumoLegilo, homoLegilo, krediLegilo, perLegilo, ĉiaLegilo, kajLegilo, keLegilo, aĉLegilo, ekLegilo, laLegilo, aLegilo, liLegilo, a1Legilo, aŭLegilo, ahaLegilo, hodiaŭLegilo, eĉLegilo, holaLegilo, zzzLegilo;
+	private static ReVoLegilo aŭtoLegilo, sciiLegilo, fumoLegilo, homoLegilo, krediLegilo, perLegilo, ĉiaLegilo, kajLegilo, keLegilo, aĉLegilo, reLegilo, laLegilo, aLegilo, liLegilo, a1Legilo, aŭLegilo, ahaLegilo, hodiaŭLegilo, eĉLegilo, holaLegilo, zzzLegilo;
 	
 	@BeforeAll
 	public static void iniciato() {
@@ -49,7 +49,7 @@ class ReVoLegiloTest {
 		kajLegilo = new ReVoLegilo(KAJ);
 		keLegilo = new ReVoLegilo(KE);
 		aĉLegilo = new ReVoLegilo(AĈ);
-		ekLegilo = new ReVoLegilo(EK);
+		reLegilo = new ReVoLegilo(RE);
 		laLegilo = new ReVoLegilo(LA);
 		aLegilo = new ReVoLegilo(A);
 		liLegilo = new ReVoLegilo(LI);
@@ -155,8 +155,8 @@ class ReVoLegiloTest {
 	}
 	
 	@Test
-	public void ekEstasPreikso() {
-		ReVoEnigo enigo = ekLegilo.getEnigo();
+	public void reEstasPrefikso() {
+		ReVoEnigo enigo = reLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.PREFIKSO, enigo.getVorterSpeco());
 	}

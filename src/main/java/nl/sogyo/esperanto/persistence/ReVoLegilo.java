@@ -2,6 +2,7 @@ package nl.sogyo.esperanto.persistence;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -91,9 +92,28 @@ public class ReVoLegilo extends DefaultHandler {
 			}
 		}
 		
+		//specifaj kazoj
+		String vortero = enigo.getVortero().toLowerCase(Locale.ROOT);
+		switch(vortero) {
+			case "la":
+				enigo.setVorterSpeco(VorterSpeco.ARTIKOLO);
+				return;
+			case "ajn":
+			case "ĉi":
+			case "ne":
+			case "tuj":
+				enigo.setVorterSpeco(VorterSpeco.ADVERBO);
+				return;
+			case "amen":
+				enigo.setVorterSpeco(VorterSpeco.INTERJEKCIO);
+				return;
+			case "ekzorc":
+				enigo.setVorterSpeco(VorterSpeco.RADIKO);
+				return;
+				
+		}
 		if(enigo.getVortero().equalsIgnoreCase("la")) {
-			enigo.setVorterSpeco(VorterSpeco.ARTIKOLO);
-			return;
+			
 		}
 		
 		if(estasKorelativo(enigo.getVortero())) {
@@ -106,80 +126,72 @@ public class ReVoLegilo extends DefaultHandler {
 			return;
 		}
 		
-		if(testiDifinonJeTeksto(ĉefElemento, "finaĵo")) {
-			enigo.setVorterSpeco(VorterSpeco.FINAĴO);
-			return;
+		String kongruaĵo = testiDifinonJeTeksto(ĉefElemento,
+				"finaĵo",
+				"pronomo",
+				"prepozicio", "prep\\.",
+				"konjunkcio", "konj\\.",
+				"sufikso",
+				"prefikso",
+				"litero",
+				"ekkrio", "interjekcio", "interj\\.",
+				"adverbo",
+				"sonimito");
+		
+		if(kongruaĵo != null) {
+			kongruaĵo = kongruaĵo.toLowerCase(Locale.ROOT);
+			switch(kongruaĵo) {
+				case "prep.":
+					kongruaĵo = "prepozicio";
+					break;
+				case "konj.":
+					kongruaĵo = "konjunkcio";
+					break;
+				case "ekkrio":
+				case "interj.":
+					kongruaĵo = "interjekcio";
+					break;
+			}
+			
+			kongruaĵo = kongruaĵo.toUpperCase(Locale.ROOT);
+			try {
+				enigo.setVorterSpeco(VorterSpeco.valueOf(kongruaĵo));
+				return;
+			} catch(IllegalArgumentException e) {
+				e.printStackTrace();
+			}
 		}
 		
-		if(testiDifinonJeTeksto(ĉefElemento, "pronomo")) {
-			enigo.setVorterSpeco(VorterSpeco.PRONOMO);
-			return;
-		}
-		
-		if(testiDifinonJeTeksto(ĉefElemento, "prepozicio") || testiDifinonJeTeksto(ĉefElemento, "prep.")) {
-			enigo.setVorterSpeco(VorterSpeco.PREPOZICIO);
-			return;
-		}
-		
-		if(testiDifinonJeTeksto(ĉefElemento, "konjunkcio") || testiDifinonJeTeksto(ĉefElemento, "konj.")) {
-			enigo.setVorterSpeco(VorterSpeco.KONJUNKCIO);
-			return;
-		}
-		
-		if(testiDifinonJeTeksto(ĉefElemento, "sufikso")) {
-			enigo.setVorterSpeco(VorterSpeco.SUFIKSO);
-			return;
-		}
-		
-		if(testiDifinonJeTeksto(ĉefElemento, "prefikso")) {
-			enigo.setVorterSpeco(VorterSpeco.PREFIKSO);
-			return;
-		}
-		
-		if(testiDifinonJeTeksto(ĉefElemento, "litero")) {
-			enigo.setVorterSpeco(VorterSpeco.LITERO);
-			return;
-		}
-		
-		if(testiDifinonJeTeksto(ĉefElemento, "ekkrio") || testiDifinonJeTeksto(ĉefElemento, "interjekcio") || testiDifinonJeTeksto(ĉefElemento, "interj.")) {
-			enigo.setVorterSpeco(VorterSpeco.INTERJEKCIO);
-			return;
-		}
-		
-		if(testiDifinonJeTeksto(ĉefElemento, "adverbo")) {
+		if(enigo.getVortero().endsWith("aŭ")) { //restantaj aŭvortoj
 			enigo.setVorterSpeco(VorterSpeco.ADVERBO);
-			return;
-		}
-		
-		if(testiDifinonJeTeksto(ĉefElemento, "sonimito")) {
-			enigo.setVorterSpeco(VorterSpeco.SONIMITO);
-			return;
-		}
-		
-		if(enigo.getVortero().endsWith("aŭ")) {
-			enigo.setVorterSpeco(VorterSpeco.AŬ_VORTO);
 			return;
 		}
 	}
 
-	private boolean testiDifinonJeTeksto(Element ĉefElemento, String teksto) {
+	private String testiDifinonJeTeksto(Element ĉefElemento, String... teksto) {
+		String regexŜablonoElTeksto = String.format("(%s)", "|%s".repeat(teksto.length).substring(1));
+		String regexElTeksto = String.format(regexŜablonoElTeksto, (Object[])teksto);
+		
+		Pattern ŝablono = Pattern.compile(regexElTeksto, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+		
 		NodeList vortSpecNodoj = ĉefElemento.getElementsByTagName(ETIKEDO_VORTSPECO);
 		if(vortSpecNodoj.getLength() > 0) {
-			if(vortSpecNodoj.item(0).getTextContent().equalsIgnoreCase(teksto)) {
-				return true;
+			Matcher kongruilo = ŝablono.matcher(vortSpecNodoj.item(0).getTextContent());
+			
+			if(kongruilo.matches()) {
+				return kongruilo.group();
 			}
 		}
 		
 		NodeList difinNodoj = ĉefElemento.getElementsByTagName(ETIKEDO_DIFINO);
 		if(difinNodoj.getLength() > 0) {
 			String difino = difinNodoj.item(0).getTextContent();
-			Pattern ŝablono = Pattern.compile(teksto, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 			Matcher kongruilo = ŝablono.matcher(difino);
 			if(kongruilo.find()) {
-				return true;
+				return kongruilo.group();
 			}
 		}
-		return false;
+		return null;
 	}
 	
 	private boolean estasKorelativo(String vorto) {
