@@ -1,5 +1,6 @@
 package nl.sogyo.esperanto.persistence;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,6 +33,9 @@ public class ReVoLegilo extends DefaultHandler {
 	private String dosierPado;
 	private ReVoEnigo enigo;
 	
+	public ReVoLegilo(File dosiero) {
+		this(dosiero.getPath());
+	}
 	public ReVoLegilo(String dosierPado) {
 		this.dosierPado = dosierPado;
 	}
@@ -60,7 +64,6 @@ public class ReVoLegilo extends DefaultHandler {
 			
 			determiniTransitivecon(ĉefElemento);
 		} catch(ParserConfigurationException | SAXException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -98,6 +101,11 @@ public class ReVoLegilo extends DefaultHandler {
 			return;
 		}
 		
+		if(estasNumeralo(enigo.getVortero())) {
+			enigo.setVorterSpeco(VorterSpeco.NUMERALO);
+			return;
+		}
+		
 		if(testiDifinonJeTeksto(ĉefElemento, "finaĵo")) {
 			enigo.setVorterSpeco(VorterSpeco.FINAĴO);
 			return;
@@ -108,12 +116,12 @@ public class ReVoLegilo extends DefaultHandler {
 			return;
 		}
 		
-		if(testiDifinonJeTeksto(ĉefElemento, "prepozicio")) {
+		if(testiDifinonJeTeksto(ĉefElemento, "prepozicio") || testiDifinonJeTeksto(ĉefElemento, "prep.")) {
 			enigo.setVorterSpeco(VorterSpeco.PREPOZICIO);
 			return;
 		}
 		
-		if(testiDifinonJeTeksto(ĉefElemento, "konjunkcio")) {
+		if(testiDifinonJeTeksto(ĉefElemento, "konjunkcio") || testiDifinonJeTeksto(ĉefElemento, "konj.")) {
 			enigo.setVorterSpeco(VorterSpeco.KONJUNKCIO);
 			return;
 		}
@@ -125,6 +133,31 @@ public class ReVoLegilo extends DefaultHandler {
 		
 		if(testiDifinonJeTeksto(ĉefElemento, "prefikso")) {
 			enigo.setVorterSpeco(VorterSpeco.PREFIKSO);
+			return;
+		}
+		
+		if(testiDifinonJeTeksto(ĉefElemento, "litero")) {
+			enigo.setVorterSpeco(VorterSpeco.LITERO);
+			return;
+		}
+		
+		if(testiDifinonJeTeksto(ĉefElemento, "ekkrio") || testiDifinonJeTeksto(ĉefElemento, "interjekcio") || testiDifinonJeTeksto(ĉefElemento, "interj.")) {
+			enigo.setVorterSpeco(VorterSpeco.INTERJEKCIO);
+			return;
+		}
+		
+		if(testiDifinonJeTeksto(ĉefElemento, "adverbo")) {
+			enigo.setVorterSpeco(VorterSpeco.ADVERBO);
+			return;
+		}
+		
+		if(testiDifinonJeTeksto(ĉefElemento, "sonimito")) {
+			enigo.setVorterSpeco(VorterSpeco.SONIMITO);
+			return;
+		}
+		
+		if(enigo.getVortero().endsWith("aŭ")) {
+			enigo.setVorterSpeco(VorterSpeco.AŬ_VORTO);
 			return;
 		}
 	}
@@ -150,8 +183,11 @@ public class ReVoLegilo extends DefaultHandler {
 	}
 	
 	private boolean estasKorelativo(String vorto) {
-		
-		return vorto.matches("^(k|t|ĉ|nen|)i(aj?n?|en?|on?|uj?n?|al|am|es|om)$");
+		return vorto.matches("^(k|t|ĉ|nen|)i(aj?n?|en?|on?|uj?n?|al|am|el|es|om)$");
+	}
+	
+	private boolean estasNumeralo(String vorto) {
+		return vorto.matches("^(unu|du|tri|kvar|kvin|ses|sep|ok|naŭ|dek|cent|mil)$");
 	}
 	
 	private String ekstraktiVorteron(Element ĉefElemento) {

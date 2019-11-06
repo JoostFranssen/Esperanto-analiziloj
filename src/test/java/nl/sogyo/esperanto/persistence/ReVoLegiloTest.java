@@ -1,6 +1,8 @@
 package nl.sogyo.esperanto.persistence;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.File;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -25,8 +27,15 @@ class ReVoLegiloTest {
 	private static final String LA = LOKA_PADO + "la.xml";
 	private static final String A = LOKA_PADO + "a.xml";
 	private static final String LI = LOKA_PADO + "li.xml";
+	private static final String A1 = LOKA_PADO + "a1.xml";
+	private static final String AŬ = LOKA_PADO + "au.xml";
+	private static final String AHA = LOKA_PADO + "aha.xml";
+	private static final String HODIAŬ = LOKA_PADO + "hodiau.xml";
+	private static final String EĈ = LOKA_PADO + "ecx.xml";
+	private static final String HOLA = LOKA_PADO + "hola.xml";
+	private static final String ZZZ = LOKA_PADO + "zzz.xml";
 	
-	private static ReVoLegilo aŭtoLegilo, sciiLegilo, fumoLegilo, homoLegilo, krediLegilo, perLegilo, ĉiaLegilo, kajLegilo, keLegilo, aĉLegilo, ekLegilo, laLegilo, aLegilo, liLegilo;
+	private static ReVoLegilo aŭtoLegilo, sciiLegilo, fumoLegilo, homoLegilo, krediLegilo, perLegilo, ĉiaLegilo, kajLegilo, keLegilo, aĉLegilo, ekLegilo, laLegilo, aLegilo, liLegilo, a1Legilo, aŭLegilo, ahaLegilo, hodiaŭLegilo, eĉLegilo, holaLegilo, zzzLegilo;
 	
 	@BeforeAll
 	public static void iniciato() {
@@ -44,6 +53,13 @@ class ReVoLegiloTest {
 		laLegilo = new ReVoLegilo(LA);
 		aLegilo = new ReVoLegilo(A);
 		liLegilo = new ReVoLegilo(LI);
+		a1Legilo = new ReVoLegilo(A1);
+		aŭLegilo = new ReVoLegilo(AŬ);
+		ahaLegilo = new ReVoLegilo(AHA);
+		hodiaŭLegilo = new ReVoLegilo(HODIAŬ);
+		eĉLegilo = new ReVoLegilo(EĈ);
+		holaLegilo = new ReVoLegilo(HOLA);
+		zzzLegilo = new ReVoLegilo(ZZZ);
 	}
 	
 	@Test
@@ -65,6 +81,14 @@ class ReVoLegiloTest {
 		ReVoEnigo enigo = aŭtoLegilo.getEnigo();
 		
 		assertEquals(Transitiveco.NETRANSITIVA, enigo.getTransitiveco());
+	}
+	
+	@Test
+	public void legiloFunkciasPerDosiero() {
+		ReVoLegilo legilo = new ReVoLegilo(new File(AŬTO));
+		ReVoEnigo enigo = legilo.getEnigo();
+		
+		assertEquals(aŭtoLegilo.getEnigo(), enigo);
 	}
 	
 	@Test
@@ -156,5 +180,54 @@ class ReVoLegiloTest {
 		ReVoEnigo enigo = liLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.PRONOMO, enigo.getVorterSpeco());
+	}
+	
+	@Test
+	public void a1EstasLitero() {
+		ReVoEnigo enigo = a1Legilo.getEnigo();
+		
+		assertEquals(VorterSpeco.LITERO, enigo.getVorterSpeco());
+	}
+	
+	@Test
+	public void aŭEstasKonjunkcioNeAŭVorto() {
+		ReVoEnigo enigo = aŭLegilo.getEnigo();
+		
+		assertEquals(VorterSpeco.KONJUNKCIO, enigo.getVorterSpeco());
+	}
+	
+	@Test
+	public void ahaEstasInterjekcio() {
+		ReVoEnigo enigo = ahaLegilo.getEnigo();
+		
+		assertEquals(VorterSpeco.INTERJEKCIO, enigo.getVorterSpeco());
+	}
+	
+	@Test
+	public void hodiaŭEstasAdverbo() {
+		ReVoEnigo enigo = hodiaŭLegilo.getEnigo();
+		
+		assertEquals(VorterSpeco.ADVERBO, enigo.getVorterSpeco());
+	}
+	
+	@Test
+	public void eĉEstasAdverbo() {
+		ReVoEnigo enigo = eĉLegilo.getEnigo();
+		
+		assertEquals(VorterSpeco.ADVERBO, enigo.getVorterSpeco());
+	}
+	
+	@Test
+	public void holaEstasInterjekcio() {
+		ReVoEnigo enigo = holaLegilo.getEnigo();
+		
+		assertEquals(VorterSpeco.INTERJEKCIO, enigo.getVorterSpeco());
+	}
+	
+	@Test
+	public void zzzEstasSonimito() {
+		ReVoEnigo enigo = zzzLegilo.getEnigo();
+		
+		assertEquals(VorterSpeco.SONIMITO, enigo.getVorterSpeco());
 	}
 }

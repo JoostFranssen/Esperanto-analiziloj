@@ -48,4 +48,42 @@ public class ReVoEnigo {
 	public String toString() {
 		return vortero + (vorterSpeco != null ? " " + vorterSpeco : "") + (transitiveco != null ? " " + transitiveco : "");
 	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((transitiveco == null) ? 0 : transitiveco.hashCode());
+		result = prime * result + ((vorterSpeco == null) ? 0 : vorterSpeco.hashCode());
+		result = prime * result + ((vortero == null) ? 0 : vortero.hashCode());
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true;
+		}
+		if(obj == null) {
+			return false;
+		}
+		if(getClass() != obj.getClass()) {
+			return false;
+		}
+		ReVoEnigo other = (ReVoEnigo)obj;
+		if(transitiveco != other.transitiveco) {
+			return false;
+		}
+		if(vorterSpeco != other.vorterSpeco) {
+			return false;
+		}
+		if(vortero == null) {
+			if(other.vortero != null) {
+				return false;
+			}
+		} else if(!vortero.equals(other.vortero)) {
+			return false;
+		}
+		return true;
+	}
 }
