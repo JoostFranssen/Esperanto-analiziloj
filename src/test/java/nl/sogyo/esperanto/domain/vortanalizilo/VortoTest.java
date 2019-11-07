@@ -9,10 +9,18 @@ import nl.sogyo.esperanto.API.Trajto;
 class VortoTest {
 
 	@Test
-	public void laEstasArtikolo() {
+	public void laHavasUnuAnalizaĵon() {
 		Vorto la = new Vorto("la");
-		la.analiziĝi();
-
 		
+		assertEquals(1, la.getEblajAnalizaĵoj().size());
+	}
+	
+	@Test
+	public void bulojnHavasUnuAnalizaĵon() {
+		Vorto belojn = new Vorto("belojn");
+		
+		belojn.getEblajAnalizaĵoj().forEach(a -> System.out.println(a.getVorteroj()));
+		
+		assertEquals(2, belojn.getEblajAnalizaĵoj().size());
 	}
 }

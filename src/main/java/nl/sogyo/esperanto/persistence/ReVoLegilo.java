@@ -207,7 +207,7 @@ public class ReVoLegilo extends DefaultHandler {
 	}
 	
 	private boolean estasKorelativo(String vorto) {
-		return vorto.matches("^(k|t|ĉ|nen|)i(aj?n?|en?|on?|uj?n?|al|am|el|es|om)$");
+		return vorto.matches("^(k|t|ĉ|nen|)i(a|e|o|u|al|am|el|es|om)$") || vorto.matches("^ali(u|al|am|el|es|om)$");
 	}
 	
 	private boolean estasNumeralo(String vorto) {

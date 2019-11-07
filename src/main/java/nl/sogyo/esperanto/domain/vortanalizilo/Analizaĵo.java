@@ -4,12 +4,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.sogyo.esperanto.API.Trajto;
+import nl.sogyo.esperanto.API.VorterSpeco;
 
 public class Analizaĵo {
 	private List<Vortero> vorteroj;
 	
 	public Analizaĵo() {
-		vorteroj = new ArrayList<>();
+		this(new ArrayList<>());
+	}
+	public Analizaĵo(List<Vortero> vorteroj) {
+		this.vorteroj = vorteroj;
+	}
+	public Analizaĵo(Analizaĵo analizaĵo) {
+		vorteroj = new ArrayList<>(analizaĵo.vorteroj);
+	}
+	
+	public boolean estasValida() {
+		if(!interjekcioAperasNurSola()) {
+			return false;
+		}
+		
+		return true;
+	}
+	
+	private boolean interjekcioAperasNurSola() {
+		if(vorteroj.size() > 1) {
+			for(Vortero vortero : vorteroj) {
+				if(vortero.getVorterSpeco() == VorterSpeco.INTERJEKCIO) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	public List<Vortero> getVorteroj() {
+		return new ArrayList<>(vorteroj);
 	}
 	
 	protected void aldoniVorteron(Vortero vortero) {
