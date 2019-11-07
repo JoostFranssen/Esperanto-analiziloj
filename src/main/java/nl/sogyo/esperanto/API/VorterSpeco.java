@@ -3,7 +3,6 @@ package nl.sogyo.esperanto.API;
 public enum VorterSpeco {
 	ADVERBO,
 	ARTIKOLO,
-	AŬ_VORTO,
 	INTERJEKCIO,
 	FINAĴO,
 	KONJUNKCIO,

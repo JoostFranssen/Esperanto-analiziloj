@@ -1,48 +1,33 @@
-package nl.sogyo.esperanto.persistence;
+package nl.sogyo.esperanto.domain.vortanalizilo;
 
 import nl.sogyo.esperanto.API.IVortero;
 import nl.sogyo.esperanto.API.Transitiveco;
 import nl.sogyo.esperanto.API.VorterSpeco;
 
-public class ReVoEnigo implements IVortero {
+public class Vortero implements IVortero {
 	private String vortero;
 	private VorterSpeco vorterSpeco;
 	private Transitiveco transitiveco;
 	
-	public ReVoEnigo() {
-		this("", null);
+	public Vortero(IVortero enigo) {
+		this(enigo.getVortero(), enigo.getVorterSpeco(), enigo.getTransitiveco());
 	}
-	public ReVoEnigo(String vortero) {
-		this(vortero, null);
-	}
-	public ReVoEnigo(String vortero, VorterSpeco vorterSpeco) {
-		this(vortero, vorterSpeco, Transitiveco.NEDIFINITA);
-	}
-	public ReVoEnigo(String vortero, VorterSpeco vorterSpeco, Transitiveco transitiveco) {
+	public Vortero(String vortero, VorterSpeco vorterSpeco, Transitiveco transitiveco) {
 		this.vortero = vortero;
 		this.vorterSpeco = vorterSpeco;
-		this.transitiveco = transitiveco;
-	}
-	
-	public VorterSpeco getVorterSpeco() {
-		return vorterSpeco;
-	}
-	void setVorterSpeco(VorterSpeco vorterSpeco) {
-		this.vorterSpeco = vorterSpeco;
-	}
-	
-	public Transitiveco getTransitiveco() {
-		return transitiveco;
-	}
-	void setTransitiveco(Transitiveco transitiveco) {
 		this.transitiveco = transitiveco;
 	}
 	
 	public String getVortero() {
 		return vortero;
 	}
-	void setVortero(String vortero) {
-		this.vortero = vortero;
+	
+	public VorterSpeco getVorterSpeco() {
+		return vorterSpeco;
+	}
+	
+	public Transitiveco getTransitiveco() {
+		return transitiveco;
 	}
 	
 	@Override
@@ -59,7 +44,6 @@ public class ReVoEnigo implements IVortero {
 		result = prime * result + ((vortero == null) ? 0 : vortero.hashCode());
 		return result;
 	}
-	
 	@Override
 	public boolean equals(Object obj) {
 		if(this == obj) {
@@ -71,7 +55,7 @@ public class ReVoEnigo implements IVortero {
 		if(getClass() != obj.getClass()) {
 			return false;
 		}
-		ReVoEnigo other = (ReVoEnigo)obj;
+		Vortero other = (Vortero)obj;
 		if(transitiveco != other.transitiveco) {
 			return false;
 		}
@@ -87,4 +71,6 @@ public class ReVoEnigo implements IVortero {
 		}
 		return true;
 	}
+	
+	
 }

@@ -84,12 +84,22 @@ public class ReVoLegilo extends DefaultHandler {
 	private void determiniVorterSpecon(Element ĉefElemento) {
 		NodeList kapvortNodoj = ĉefElemento.getElementsByTagName(ETIKEDO_KAPVORTO);
 		
+		boolean streketoAntaŭRadiko = false; //por determini ĉu estas finaĵo aŭ sufikso
+		
 		if(kapvortNodoj.getLength() > 0) {
-			String finaĵo = ekstraktiFinaĵonPostRadiko((Element)kapvortNodoj.item(0));
+			Element kapvortNodo = (Element)kapvortNodoj.item(0);
+			String finaĵo = ekstraktiFinaĵonPostRadiko(kapvortNodo);
 			if(!finaĵo.isEmpty()) {
 				enigo.setVorterSpeco(VorterSpeco.RADIKO);
 				return;
 			}
+			
+			if(estasStreketoPostRadiko(kapvortNodo)) {
+				enigo.setVorterSpeco(VorterSpeco.PREFIKSO);
+				return;
+			}
+			
+			streketoAntaŭRadiko = estasStreketoAntaŭRadiko(kapvortNodo);
 		}
 		
 		//specifaj kazoj
@@ -112,9 +122,6 @@ public class ReVoLegilo extends DefaultHandler {
 				return;
 				
 		}
-		if(enigo.getVortero().equalsIgnoreCase("la")) {
-			
-		}
 		
 		if(estasKorelativo(enigo.getVortero())) {
 			enigo.setVorterSpeco(VorterSpeco.KORELATIVO);
@@ -126,17 +133,22 @@ public class ReVoLegilo extends DefaultHandler {
 			return;
 		}
 		
-		String kongruaĵo = testiDifinonJeTeksto(ĉefElemento,
-				"finaĵo",
-				"pronomo",
-				"prepozicio", "prep\\.",
-				"konjunkcio", "konj\\.",
-				"sufikso",
-				"prefikso",
-				"litero",
-				"ekkrio", "interjekcio", "interj\\.",
-				"adverbo",
-				"sonimito");
+		String kongruaĵo;
+		if(streketoAntaŭRadiko) {
+			kongruaĵo = testiDifinonJeTeksto(ĉefElemento, "finaĵo", "sufikso");
+		} else {
+    		kongruaĵo = testiDifinonJeTeksto(ĉefElemento,
+    				"finaĵo",
+    				"pronomo",
+    				"prepozicio", "prep\\.",
+    				"konjunkcio", "konj\\.",
+    				"sufikso",
+    				"prefikso",
+    				"litero",
+    				"ekkrio", "interjekcio", "interj\\.",
+    				"adverbo",
+    				"sonimito");
+		}
 		
 		if(kongruaĵo != null) {
 			kongruaĵo = kongruaĵo.toLowerCase(Locale.ROOT);
@@ -220,6 +232,20 @@ public class ReVoLegilo extends DefaultHandler {
 		} else {
 			return "";
 		}
+	}
+	
+	private boolean estasStreketoAntaŭRadiko(Element kapvortNodo) {
+		String enhavo = kapvortNodo.getTextContent();
+		Pattern ŝablono = Pattern.compile(String.format("-(%s)", enigo.getVortero()));
+		Matcher kongruilo = ŝablono.matcher(enhavo);
+		return kongruilo.find();
+	}
+	
+	private boolean estasStreketoPostRadiko(Element kapvortNodo) {
+		String enhavo = kapvortNodo.getTextContent();
+		Pattern ŝablono = Pattern.compile(String.format("(%s)-", enigo.getVortero()));
+		Matcher kongruilo = ŝablono.matcher(enhavo);
+		return kongruilo.find();
 	}
 
 	private String[] disigiVortonĈirkaŭRadiko(Element kapvortNodo) {
