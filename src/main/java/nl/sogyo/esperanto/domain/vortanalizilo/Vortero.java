@@ -4,6 +4,11 @@ import nl.sogyo.esperanto.API.IVortero;
 import nl.sogyo.esperanto.API.Transitiveco;
 import nl.sogyo.esperanto.API.VorterSpeco;
 
+/**
+ * Vortero de {@code Analizaĵo}.
+ * @author jfranssen
+ *
+ */
 public class Vortero implements IVortero {
 	private String vortero;
 	private VorterSpeco vorterSpeco;

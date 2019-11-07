@@ -1,5 +1,10 @@
 package nl.sogyo.esperanto.API;
 
+/**
+ * Speco de vortero.
+ * @author jfranssen
+ *
+ */
 public enum VorterSpeco {
 	ADVERBO,
 	ARTIKOLO,

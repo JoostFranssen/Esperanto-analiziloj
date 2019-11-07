@@ -1,5 +1,10 @@
 package nl.sogyo.esperanto.API;
 
+/**
+ * Ĉiuj eblaj trajtoj de vorto
+ * @author jfranssen
+ *
+ */
 public enum Trajto {
 	ADJEKTIVO,
 	ADVERBO,

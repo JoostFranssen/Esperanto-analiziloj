@@ -4,6 +4,11 @@ import nl.sogyo.esperanto.API.IVortero;
 import nl.sogyo.esperanto.API.Transitiveco;
 import nl.sogyo.esperanto.API.VorterSpeco;
 
+/**
+ * Reprezentas iom de la informoj eltiritaj el XML-dosiero de ReVo.
+ * @author jfranssen
+ *
+ */
 public class ReVoEnigo implements IVortero {
 	private String vortero;
 	private VorterSpeco vorterSpeco;

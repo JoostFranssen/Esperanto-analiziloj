@@ -15,6 +15,11 @@ import nl.sogyo.esperanto.API.IVortero;
 import nl.sogyo.esperanto.API.Transitiveco;
 import nl.sogyo.esperanto.API.VorterSpeco;
 
+/**
+ * La datumbazo de ReVo-vorteroj.
+ * @author jfranssen
+ *
+ */
 public class Datumbazo {
 	public static final String NOMO = "ReVo";
 	private static final String DATUMBAZO_DOSIERUJO_PADO = "src/main/resources/datumbazo/";
@@ -42,10 +47,17 @@ public class Datumbazo {
 		}));
 	}
 	
+	/**
+	 * Testa metodo por havi aliron al la datumbazo post ĝia iniciatiĝo
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		org.hsqldb.util.DatabaseManagerSwing.main(new String[] {"--url",  String.format("jdbc:hsqldb:%s:%s", tipo, tipo.equals("mem") ? NOMO : DATUMBAZEJO)});
 	}
 	
+	/**
+	 * Iniciatas la datumbazon el la persistigita dosiero en DATUMBAZEJO aŭ, se tiu dosiero ne ekzistas, kreas la datumbazon el la dosieroj de ReVo (ĉi tio estas malrapida)
+	 */
 	private Datumbazo() {
 		try {
 			if(DATUMBAZO_DOSIERUJO.exists()) {
@@ -61,10 +73,19 @@ public class Datumbazo {
 		}
 	}
 	
+	/**
+	 * Donas la ununura ekzemplero de la datumbazo
+	 * @return la datumbazon
+	 */
 	public static Datumbazo getReVoDatumbazo() {
 		return REVO_DATUMBAZO;
 	}
 	
+	/**
+	 * Por serĉi la datumbazon laŭ vortero
+	 * @param vortero literĉeno, kiu reprezentas vorteron
+	 * @return liston da {@code IVortero}-ekzempleroj (fake {@code ReVoEnigo}) kiuj havas vorteron kongruantan kun {@code vortero}
+	 */
 	public List<IVortero> preniElDatumbazo(String vortero) {
 		List<IVortero> vorteroj = new ArrayList<>();
 		ResultSet rezulto = null;
@@ -86,7 +107,10 @@ public class Datumbazo {
 		}
 		return vorteroj;
 	}
-
+	
+	/**
+	 * Kreas la datumbazon el la ReVo-dosieroj
+	 */
 	private void kreiDatumbazonElReVoDosieroj() {
 		try {
 			Statement ordono = konekto.createStatement();
@@ -96,7 +120,7 @@ public class Datumbazo {
 				if(dosiero.isFile()) {
 					ReVoEnigo enigo = (new ReVoLegilo(dosiero)).getEnigo();
 					if(!enigo.getVortero().isEmpty() && enigo.getVorterSpeco() != null && enigo.getTransitiveco() != null) {
-						enigiEnTabelon(enigo.getVortero(), enigo.getVorterSpeco().toString(), enigo.getTransitiveco().toString());
+						enigiEnTabelon(enigo);
 					}
 				}
 			}
@@ -106,18 +130,25 @@ public class Datumbazo {
 		}
 	}
 	
-	private void enigiEnTabelon(String... valoroj) {
+	/**
+	 * Enmetas novan enigon en la tabelon
+	 * @param enigo konkreta objekto de {@code IVortero}
+	 */
+	void enigiEnTabelon(IVortero enigo) {
 		try {
 			PreparedStatement ordono = konekto.prepareStatement(String.format("INSERT INTO %s (%s) VALUES (?, ?, ?);", TABELTITOLO, KOLUMNOJ_ĈENO));
-			for(int i = 0; i < valoroj.length; i++) {
-				ordono.setString(i + 1, valoroj[i]);
-			}
+			ordono.setString(1, enigo.getVortero());
+			ordono.setString(2, enigo.getVorterSpeco().toString());
+			ordono.setString(3, enigo.getTransitiveco().toString());
 			ordono.execute();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * Fermas la konekton al la datumbazo kaj, se necesas, persistigas ĝin al dosiero
+	 */
 	public void fermiKonekton() {
 		try {
 			if(!DATUMBAZO_DOSIERUJO.exists()) {

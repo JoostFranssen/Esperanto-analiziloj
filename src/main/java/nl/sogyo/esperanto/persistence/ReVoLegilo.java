@@ -15,20 +15,27 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
 
 import nl.sogyo.esperanto.API.Finaĵo;
 import nl.sogyo.esperanto.API.Transitiveco;
 import nl.sogyo.esperanto.API.VorterSpeco;
 
-public class ReVoLegilo extends DefaultHandler {
+/**
+ * Legilo, kiu interpretas XML-dosieron de ReVo kaj kapablas produkti objekton de {@code ReVoEnigo} kun la akiritaj informoj.
+ * @author jfranssen
+ *
+ */
+public class ReVoLegilo {
 	public static final String ETIKEDO_RADIKO = "rad";
 	public static final String ETIKEDO_KAPVORTO = "kap";
-	public static final String ETIKEDO_TILDO = "tld"; //por ripeto de la vortero
+	public static final String ETIKEDO_TILDO = "tld"; //~, por ripeto de la vortero
 	public static final String ETIKEDO_VORTSPECO = "vspec";
 	public static final String ETIKEDO_DERIVAĴO = "drv";
 	public static final String ETIKEDO_DIFINO = "dif";
 	
+	/**
+	 * Regula esprimo, kiu reprezentas unu minusklan aŭ majusklan Esperanto-literon.
+	 */
 	public static final String ESPERANTO_LITERO_REGEX = "[[a-zA-ZĉĈĝĜĥĤĵĴŝŜŭŬ]&&[^qQw-yW-Y]]";
 	
 	private String dosierPado;
@@ -41,6 +48,10 @@ public class ReVoLegilo extends DefaultHandler {
 		this.dosierPado = dosierPado;
 	}
 	
+	/**
+	 * Kreas aŭ redonas objekton de {@code ReVoEnigo} kun informoj eltiritaj el ReVo-dosiero. Ne garantias, ke kelkaj propraĵoj ne estas {@code null}.
+	 * @return {@code ReVoEnigo}n kun informoj laŭeble akireblaj
+	 */
 	public ReVoEnigo getEnigo() {
 		if(enigo == null) {
 			enigo = new ReVoEnigo();
@@ -50,6 +61,9 @@ public class ReVoLegilo extends DefaultHandler {
 		return enigo;
 	}
 	
+	/**
+	 * Legas ReVo-dosieron.
+	 */
 	private void legiDosieron() {
 		DocumentBuilderFactory fabriko = DocumentBuilderFactory.newInstance();
 		
@@ -68,7 +82,11 @@ public class ReVoLegilo extends DefaultHandler {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Determinas la transitivecon el la ReVo-dosiero.
+	 * @param ĉefElemento la ĉefa elemento de la dosiero
+	 */
 	private void determiniTransitivecon(Element ĉefElemento) {
 		NodeList derivaĵoNodoj = ĉefElemento.getElementsByTagName(ETIKEDO_DERIVAĴO);
 		for(int i = 0; i < derivaĵoNodoj.getLength(); i++) {
@@ -80,7 +98,11 @@ public class ReVoLegilo extends DefaultHandler {
 			}
 		}
 	}
-
+	
+	/**
+	 * Determinas la specon de la vortero el la ReVo-dosiero.
+	 * @param ĉefElemento la ĉefa elemento de la dosiero
+	 */
 	private void determiniVorterSpecon(Element ĉefElemento) {
 		NodeList kapvortNodoj = ĉefElemento.getElementsByTagName(ETIKEDO_KAPVORTO);
 		
@@ -179,7 +201,13 @@ public class ReVoLegilo extends DefaultHandler {
 			return;
 		}
 	}
-
+	
+	/**
+	 * Testas la vortero de {@code enigo} je ĉiuj provizitaj tekstoj en la difino de la ReVo-dosiero.
+	 * @param ĉefElemento la ĉefa elemento de la ReVo-dosiero
+	 * @param teksto teksto, kun kiu {@code enigo.getVortero()} devas kongrui
+	 * @return la kongruintan altiraĵon el la difino en la ReVo-dosiero
+	 */
 	private String testiDifinonJeTeksto(Element ĉefElemento, String... teksto) {
 		String regexŜablonoElTeksto = String.format("(%s)", "|%s".repeat(teksto.length).substring(1));
 		String regexElTeksto = String.format(regexŜablonoElTeksto, (Object[])teksto);
@@ -206,14 +234,29 @@ public class ReVoLegilo extends DefaultHandler {
 		return null;
 	}
 	
+	/**
+	 * Kontrolas, ĉu vorto estas korelativo. Inkluzivas kelkaj ali-vortoj, kiuj ne konfliktas kun ali/.
+	 * @param vorto
+	 * @return ĉu vorto estas korelativo aŭ ne
+	 */
 	private boolean estasKorelativo(String vorto) {
 		return vorto.matches("^(k|t|ĉ|nen|)i(a|e|o|u|al|am|el|es|om)$") || vorto.matches("^ali(u|al|am|el|es|om)$");
 	}
 	
+	/**
+	 * Kontrolas, ĉu vorta estas numeralo.
+	 * @param vorto
+	 * @return ĉu vorto estas numeralo
+	 */
 	private boolean estasNumeralo(String vorto) {
 		return vorto.matches("^(unu|du|tri|kvar|kvin|ses|sep|ok|naŭ|dek|cent|mil)$");
 	}
 	
+	/**
+	 * Eltiras la vorteron el la ReVo-dosiero.
+	 * @param ĉefElemento la ĉefa elemento de la ReVo-dosiero
+	 * @return la vorteron trovitan
+	 */
 	private String ekstraktiVorteron(Element ĉefElemento) {
 		NodeList nodoj = ĉefElemento.getElementsByTagName(ETIKEDO_RADIKO);
 		if(nodoj.getLength() > 0) {
@@ -222,6 +265,11 @@ public class ReVoLegilo extends DefaultHandler {
 		return "";
 	}
 	
+	/**
+	 * Eltiras la finaĵon skribitan post la radiko en la ReVo-dosiero.
+	 * @param kapvortNodo la kapvortnodo, en kiu staras la radiko
+	 * @return la finaĵon
+	 */
 	private String ekstraktiFinaĵonPostRadiko(Element kapvortNodo) {
 		String enhavo = kapvortNodo.getTextContent();
 		
@@ -234,6 +282,11 @@ public class ReVoLegilo extends DefaultHandler {
 		}
 	}
 	
+	/**
+	 * Kontrolas, ĉu estas streketo (-) antaŭ la radiko. Utile por determini, ĉu vortero estas sufikso aŭ finaĵo.
+	 * @param kapvortNodo la kapvortnodo, kiu entenas la radikon
+	 * @return ĉu estas streketo antaŭ la radiko
+	 */
 	private boolean estasStreketoAntaŭRadiko(Element kapvortNodo) {
 		String enhavo = kapvortNodo.getTextContent();
 		Pattern ŝablono = Pattern.compile(String.format("-(%s)", enigo.getVortero()));
@@ -241,6 +294,11 @@ public class ReVoLegilo extends DefaultHandler {
 		return kongruilo.find();
 	}
 	
+	/**
+	 * Kontrolas, ĉu estas streketo (-) post la radiko. Utile port determini, ĉu vortero estas prefikso.
+	 * @param kapvortNodo la kapvortnodo, kiu entenas la radikon
+	 * @return ĉu estas streketo post la radiko
+	 */
 	private boolean estasStreketoPostRadiko(Element kapvortNodo) {
 		String enhavo = kapvortNodo.getTextContent();
 		Pattern ŝablono = Pattern.compile(String.format("(%s)-", enigo.getVortero()));
@@ -248,6 +306,11 @@ public class ReVoLegilo extends DefaultHandler {
 		return kongruilo.find();
 	}
 
+	/**
+	 * Disigas vorton ĉirkaŭ la radiko por determini la derivaĵon. Ekzemple sub 'sci/i' povas esti enigo 'multescia'. Ĉi tio disigas ĝin al ["multe", "sci", "a"].
+	 * @param kapvortNodo la kapvortnodo, kiu entenas la radikon
+	 * @return disigon de la partoj rekte antaŭ kaj post la radiko, kaj en la mezo la radikon
+	 */
 	private String[] disigiVortonĈirkaŭRadiko(Element kapvortNodo) {
 		String[] partoj = {"", "", ""};
 		
@@ -275,6 +338,11 @@ public class ReVoLegilo extends DefaultHandler {
 		return partoj;
 	}
 	
+	/**
+	 * Eltiras la transitivecon de derivaĵnodo. Ekzemple, por la substantiva radiko 'aŭt/o' ĝi eltiras la transitivecon de la derivaĵo 'aŭt/i'.
+	 * @param derivaĵNodo la nodo, kiu entenas la derivaĵon en la ReVo-dosiero
+	 * @return la Transitivecon
+	 */
 	private Transitiveco ekstraktiTransitivecon(Element derivaĵNodo) {
 		NodeList nodoj = derivaĵNodo.getElementsByTagName(ETIKEDO_VORTSPECO);
 		boolean transitiva = false;

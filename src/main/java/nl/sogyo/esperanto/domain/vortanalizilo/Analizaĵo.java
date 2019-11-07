@@ -6,6 +6,12 @@ import java.util.List;
 import nl.sogyo.esperanto.API.Trajto;
 import nl.sogyo.esperanto.API.VorterSpeco;
 
+/**
+ * Unu el la eblaj rezultoj de analizado de vorto. Ĉi tio reprezentas eblan disigon de vorto en siaj plej etaj partoj (krom literoj). Ekzemple, {@code Analizaĵo} de 'scii' entenas vorteroj 'sci' kaj 'i'.
+ * Analizaĵo mem povas determini diversajn {@code Trajto}jn pri si mem.
+ * @author jfranssen
+ *
+ */
 public class Analizaĵo {
 	private List<Vortero> vorteroj;
 	
@@ -15,10 +21,19 @@ public class Analizaĵo {
 	public Analizaĵo(List<Vortero> vorteroj) {
 		this.vorteroj = vorteroj;
 	}
+	/**
+	 * Kreas profundan kopion de la donita {@code Analizaĵo}-objekto.
+	 * @param analizaĵo
+	 */
 	public Analizaĵo(Analizaĵo analizaĵo) {
 		vorteroj = new ArrayList<>(analizaĵo.vorteroj);
+		vorteroj.replaceAll(v -> new Vortero(v));
 	}
 	
+	/**
+	 * Kontrolas, ĉu la analizaĵo estas valida aŭ senchava. Malplena analizaĵo estas valida.
+	 * @return ĉu la analizaĵo estas valida aŭ ne.
+	 */
 	public boolean estasValida() {
 		if(!interjekcioAperasNurSola()) {
 			return false;
@@ -27,6 +42,10 @@ public class Analizaĵo {
 		return true;
 	}
 	
+	/**
+	 * Kontrolas, ĉu interjekcio aperas sola. Tio estas, interjekcio ne estu parto de pli granda vorto.
+	 * @return ĉu, se unu el la vorteroj estas interjekcio, tiam ĝi estu solas.
+	 */
 	private boolean interjekcioAperasNurSola() {
 		if(vorteroj.size() > 1) {
 			for(Vortero vortero : vorteroj) {
@@ -60,6 +79,11 @@ public class Analizaĵo {
 		vorteroj.remove(vortero);
 	}
 	
+	/**
+	 * Tuj kontralas, ĉu la {@code Analizaĵo} havas la {@code Trajto}n.
+	 * @param trajto
+	 * @return ĉu ĝi havas la {@code Trajto}n.
+	 */
 	public boolean kontroliTrajton(Trajto trajto) {
 		//TODO realigi trajtokontroladon laŭ la konsistigaj vorteroj
 		return false;

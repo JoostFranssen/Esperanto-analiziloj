@@ -6,11 +6,20 @@ import java.util.Set;
 
 import nl.sogyo.esperanto.API.VorterSpeco;
 
+/**
+ * Analizita vorto.
+ * @author jfranssen
+ *
+ */
 public class Vorto {
 	private String vorto;
 	private Set<Analizaĵo> eblajAnalizaĵoj;
 	private Analizaĵo ĉefAnalizaĵo;
 	
+	/**
+	 * Iniciatas novan vorton, analizas ĝin por trovi {@code Analizaĵo}jn, kiuj poste estas filtritaj laŭ ĝia valideco.
+	 * @param vorto
+	 */
 	public Vorto(String vorto) {
 		this.vorto = vorto;
 		eblajAnalizaĵoj = new HashSet<>();
@@ -19,6 +28,9 @@ public class Vorto {
 		filtriNevalidajnAnalizaĵojn();
 	}
 	
+	/**
+	 * Iniciatas la aron da {@code Analizaĵo}j.
+	 */
 	private void analiziĝi() {
 		if(vorto.isEmpty()) {
 			eblajAnalizaĵoj.add(new Analizaĵo());
@@ -41,6 +53,9 @@ public class Vorto {
 		}
 	}
 	
+	/**
+	 * Filtras la {@code Analizaĵo}jn laŭ valideco.
+	 */
 	private void filtriNevalidajnAnalizaĵojn() {
 		eblajAnalizaĵoj.removeIf(a -> !a.estasValida());
 	}
