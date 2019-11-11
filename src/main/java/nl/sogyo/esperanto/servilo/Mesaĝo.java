@@ -7,12 +7,16 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.eclipse.jetty.http.HttpStatus;
+import org.json.JSONObject;
 
 @Path("msg")
 public class Mesaĝo {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getMesaĝo() {
-		return Response.status(HttpStatus.OK_200).entity("Testmesaĝo").build();
+		JSONObject json = new JSONObject();
+		json.put("s", "testmesaĝo");
+		
+		return Response.status(HttpStatus.OK_200).entity(json.toString()).build();
 	}
 }
