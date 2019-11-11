@@ -88,6 +88,19 @@ public class Analizaĵo {
 		//TODO realigi trajtokontroladon laŭ la konsistigaj vorteroj
 		return false;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder ĉenilo = new StringBuilder();
+		for(Vortero vortero : vorteroj) {
+			ĉenilo.append("|" + vortero.getVortero());
+		}
+		if(ĉenilo.length() == 0) {
+			return "";
+		} else {
+			return ĉenilo.substring(1);
+		}
+	}
 
 	@Override
 	public int hashCode() {

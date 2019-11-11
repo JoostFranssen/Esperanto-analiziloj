@@ -1,14 +1,15 @@
 class VortAnalizilo extends React.Component {
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={(event) => this.handleSubmit(event, document.getElementById("text-input").value)}>
                 <div id="input-container">
                     <label>
                         Analizota vorto:
                     </label>
                     <input
                         type="text"
-                        id="word-input"
+                        name="vorto"
+                        id="text-input"
                         pattern="^((?=[a-zA-ZĉĈĝĜĥĤĵĴŝŜŭŬ])[^qQw-yW-Y])+$"
                         required
                     />
@@ -18,11 +19,14 @@ class VortAnalizilo extends React.Component {
         );
     }
 
-    async handleSubmit(event) {
+    async handleSubmit(event, value) {
         event.preventDefault();
-        let response = await fetch("api/msg");
-        let message = await response.json();
-        console.log(message.s);
+        let response = await fetch(`api/vortanalizo?vorto=${value}`);
+        let result = await response.json();
+        console.log(`Analizo de ${value}:`)
+        for(const analizaĵo of result.analizaĵoj) {
+            console.log(`- ${analizaĵo}`);
+        }
     }
 }
 

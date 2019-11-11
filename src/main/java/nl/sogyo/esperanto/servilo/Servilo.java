@@ -6,6 +6,11 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.servlet.ServletContainer;
 
+/**
+ * La servilo, per kiu oni povas konekti al la aplikaĵo je konektinterfaco 8090
+ * @author jfranssen
+ *
+ */
 public class Servilo {
 
 	public static void main(String[] args) {
