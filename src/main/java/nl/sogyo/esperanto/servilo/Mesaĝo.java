@@ -13,6 +13,6 @@ public class Mesaĝo {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getMesaĝo() {
-		return Response.status(HttpStatus.OK_200).encoding("utf-8").entity("Testmesaĝo").build();
+		return Response.status(HttpStatus.OK_200).entity("Testmesaĝo").build();
 	}
 }
