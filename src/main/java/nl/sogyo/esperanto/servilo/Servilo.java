@@ -23,10 +23,6 @@ public class Servilo {
 		ServletHolder statikaTenilo = kunteksto.addServlet(DefaultServlet.class, "/*");
 		statikaTenilo.setInitParameter("resourceBase", "./src/main/resources/retejo/");
 		
-//		ServletHolder statikaTenilo = new ServletHolder("default", DefaultServlet.class);
-//		statikaTenilo.setInitParameter("resourceBase", "./src/main/resources/retejo/");
-//		kunteksto.addServlet(statikaTenilo, "/*");
-		
 		try {
 			servilo.start();
 			servilo.join();
