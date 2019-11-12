@@ -71,4 +71,18 @@ public class Vorto {
 	public Analizaĵo getĈefAnalizaĵo() {
 		return ĉefAnalizaĵo;
 	}
+	
+	/**
+	 * Prenas unu el la eblaj {@code Analizaĵo}j laŭ la donita ŝablono.
+	 * @param dividaĈeno {@code String}-objekto, kiu reprezentas la vort-dividon de la dezirata {@code Analizaĵo}. Vertikala streko funkciu por la divido; ekzemple: "esper|ant|o"
+	 * @return unu el la eblaj {@code Analizaĵo}j, kiu kongruas kun {@code dividaĈeno}
+	 */
+	public Analizaĵo preniAnalizaĵonLaŭDividaĈeno(String dividaĈeno) {
+		for(Analizaĵo analizaĵo : eblajAnalizaĵoj) {
+			if(analizaĵo.toString().equals(dividaĈeno)) {
+				return analizaĵo;
+			}
+		}
+		return null;
+	}
 }

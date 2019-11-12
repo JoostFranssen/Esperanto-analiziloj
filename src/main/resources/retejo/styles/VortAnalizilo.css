@@ -34,9 +34,26 @@
     display: grid;
     grid-template-columns: 1fr;
     width: 80%;
-    margin: 0 10% 10%;
+    margin: 0 10%;
+    text-align: left;
 }
 
-.vort-analizaĵero:hover {
-    color:red;
+.vort-analizaĵeringo {
+    margin: 0 5px;
+}
+
+.vort-analizaĵingo {
+    padding: 10px 0;
+}
+
+.elektita.vort-analizaĵingo {
+    font-size: 200%;
+}
+
+.vort-analizaĵingo:not(.elektita) {
+    cursor: pointer;
+}
+
+.elektita > .vort-analizaĵeringo:hover {
+    text-decoration: underline;
 }

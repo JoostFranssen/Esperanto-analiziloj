@@ -10,6 +10,9 @@ import nl.sogyo.esperanto.API.VorterSpeco;
  *
  */
 public class Vortero implements IVortero {
+	public static final Vortero O_FINAĴO = new Vortero("o", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
+	public static final Vortero A_FINAĴO = new Vortero("a", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
+	
 	private String vortero;
 	private VorterSpeco vorterSpeco;
 	private Transitiveco transitiveco;
@@ -76,6 +79,4 @@ public class Vortero implements IVortero {
 		}
 		return true;
 	}
-	
-	
 }

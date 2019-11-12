@@ -4,6 +4,6 @@ class Analizaĵero extends React.Component {
     }
 
     render() {
-        return <span className="vort-analizaĵero">{this.props.vortero}</span>;
+        return <span className="vort-analizaĵeringo">{this.props.analizaĵero}</span>;
     }
 }

@@ -2,7 +2,7 @@ class VortAnalizilo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            vortoj: null,
+            analizaĵoj: null,
         }
     }
 
@@ -23,8 +23,11 @@ class VortAnalizilo extends React.Component {
                         name="vorto"
                         id="vort-enmeto"
                         autocomplete="off"
+                        autoCapitalize="off"
+                        spellcheck="false"
                         pattern="^((?=[a-zA-ZĉĈĝĜĥĤĵĴŝŜŭŬ])[^qQw-yW-Y])+$"
                         required
+                        autoFocus
                     />
                     <input
                         type="submit"
@@ -41,13 +44,13 @@ class VortAnalizilo extends React.Component {
         event.preventDefault();
         let response = await fetch(`api/vortanalizo?vorto=${value}`);
         let result = await response.json();
-        
+
         this.setState({
-            vortoj: result.analizaĵoj,
+            analizaĵoj: result.analizaĵoj,
         });
     }
 
     bildigiAnalizaĵojn() {
-        return <Analizaĵoj vortoj={this.state.vortoj}/>;
+        return <Analizaĵoj analizaĵoj={this.state.analizaĵoj}/>;
     }
 }

@@ -1,7 +1,9 @@
 package nl.sogyo.esperanto.domain.vortanalizilo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import nl.sogyo.esperanto.API.Trajto;
 import nl.sogyo.esperanto.API.VorterSpeco;
@@ -38,13 +40,16 @@ public class Analizaĵo {
 		if(!interjekcioAperasNurSola()) {
 			return false;
 		}
+		if(sufiksoAperasPostFinaĵo()) {
+			return false;
+		}
 		
 		return true;
 	}
 	
 	/**
 	 * Kontrolas, ĉu interjekcio aperas sola. Tio estas, interjekcio ne estu parto de pli granda vorto.
-	 * @return ĉu, se unu el la vorteroj estas interjekcio, tiam ĝi estu solas.
+	 * @return ĉu, se unu el la vorteroj estas interjekcio, tiam ĝi estu sola
 	 */
 	private boolean interjekcioAperasNurSola() {
 		if(vorteroj.size() > 1) {
@@ -55,6 +60,26 @@ public class Analizaĵo {
 			}
 		}
 		return true;
+	}
+	
+	/**
+	 * Kontrolas, ĉu iu sufikso aperas tuj pas iu finaĵo.
+	 * @return ĉu iu ajn el la sufiksoj el la vorteroj aperas tuj post finaĵo
+	 */
+	private boolean sufiksoAperasPostFinaĵo() {
+		if(vorteroj.size() > 1) {
+			Vortero antaŭaVortero = null;
+			for(Vortero vortero : vorteroj) {
+				if(antaŭaVortero != null && antaŭaVortero.getVorterSpeco() == VorterSpeco.FINAĴO) {
+					if(vortero.getVorterSpeco() == VorterSpeco.SUFIKSO) {
+    					return true;
+    				}
+				}
+				
+				antaŭaVortero = vortero;
+			}
+		}
+		return false;
 	}
 	
 	public List<Vortero> getVorteroj() {
@@ -85,8 +110,44 @@ public class Analizaĵo {
 	 * @return ĉu ĝi havas la {@code Trajto}n.
 	 */
 	public boolean kontroliTrajton(Trajto trajto) {
-		//TODO realigi trajtokontroladon laŭ la konsistigaj vorteroj
-		return false;
+		switch(trajto) {
+			case ADJEKTIVO:
+				return estasAdjektivo();
+			case SUBSTANTIVO:
+				return estasSubstantivo();
+			default:
+				return false;
+		}
+	}
+	
+	/**
+	 * Testas, ĉu {@code Analizaĵo} estas adjektivo
+	 * @return ĉu ĝi estas adjektivo
+	 */
+	public boolean estasAdjektivo() {
+		return aroDeLastajFinaĵoj().contains(Vortero.A_FINAĴO);
+	}
+	
+	/**
+	 * Testas, ĉu {@code Analizaĵo} estas substantivo
+	 * @return ĉu ĝi estas substantivo
+	 */
+	public boolean estasSubstantivo() {
+		return aroDeLastajFinaĵoj().contains(Vortero.O_FINAĴO);
+	}
+	
+	public Set<Vortero> aroDeLastajFinaĵoj() {
+		Set<Vortero> finaĵoj = new HashSet<Vortero>();
+		for(int i = vorteroj.size() - 1; i >= 0; i--) {
+			if(vorteroj.get(i).getVorterSpeco() == VorterSpeco.FINAĴO) {
+				if(!finaĵoj.add(vorteroj.get(i))) { //preventi duoblajn finaĵojn
+					break;
+				}
+			} else {
+				break;
+			}
+		}
+		return finaĵoj;
 	}
 	
 	@Override
