@@ -1,0 +1,42 @@
+#vort-analizilo {
+    text-align: center;
+}
+
+#vort-analizilo-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 80%;
+    margin: 2em 10%;
+}
+
+#vorto-etikedo {
+    text-align: left;
+    font-size: 150%;
+    font-weight: bold;
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+#vort-enmeto {
+    font-size: 150%;
+    grid-area: 2 / 1 / 3 / 2;
+    min-width: 0px;
+}
+
+#konfirm-butono {
+    font-size: 150%;
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.vort-analizaĵujo {
+    font-size: 150%;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 80%;
+    margin: 0 10% 10%;
+}
+
+.vort-analizaĵero:hover {
+    color:red;
+}

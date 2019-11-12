@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="eo">
     <head>
+        <!-- favicon -->
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -11,14 +12,22 @@
 
         <meta charset="UTF-8">
         <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="styles/VortAnalizilo.css">
+
+        <!-- React -->
         <script type="application/javascript" src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
         <script type="application/javascript" src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js"></script>
         <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
         <title>Esperanto-Analiziloj</title>
     </head>
     <body>
         <div id="radiko"></div>
 
+        <script type="text/babel" src="components/Analizaĵero.jsx"></script>
+        <script type="text/babel" src="components/Analizaĵo.jsx"></script>
+        <script type="text/babel" src="components/Analizaĵoj.jsx"></script>
+        <script type="text/babel" src="components/VortAnalizilo.jsx"></script>
         <script type="text/babel" src="index.js"></script>
     </body>
 </html>
