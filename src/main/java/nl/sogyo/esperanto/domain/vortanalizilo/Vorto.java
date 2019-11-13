@@ -21,11 +21,16 @@ public class Vorto {
 	 * @param vorto
 	 */
 	public Vorto(String vorto) {
+		this(vorto, true);
+	}
+	public Vorto(String vorto, boolean filtriNevalidajnAnalizaĵojn) {
 		this.vorto = vorto;
 		eblajAnalizaĵoj = new HashSet<>();
 		
 		analiziĝi();
-		filtriNevalidajnAnalizaĵojn();
+		if(filtriNevalidajnAnalizaĵojn) {
+			filtriNevalidajnAnalizaĵojn();
+		}
 	}
 	
 	/**
@@ -40,7 +45,7 @@ public class Vorto {
 			String forprenaĵo = vorto.substring(i);
 			List<Vortero> rezulto = DatumbazKomunikilo.preniElDatumbazo(forprenaĵo, v -> v.getVorterSpeco() != VorterSpeco.LITERO);
 			if(!rezulto.isEmpty()) {
-				Vorto subVorto = new Vorto(vorto.substring(0, i));
+				Vorto subVorto = new Vorto(vorto.substring(0, i), false);
 				subVorto.analiziĝi();
 				for(Analizaĵo analizaĵo : subVorto.eblajAnalizaĵoj) {
 					for(Vortero v : rezulto) {
@@ -73,7 +78,7 @@ public class Vorto {
 	}
 	
 	/**
-	 * Prenas unu el la eblaj {@code Analizaĵo}j laŭ la donita ŝablono.
+	 * Prenas unu el la eblaj {@code Analizaĵo}j laŭ la donita ŝablono. Redonas {@code null}, se neniu estas trovata.
 	 * @param dividaĈeno {@code String}-objekto, kiu reprezentas la vort-dividon de la dezirata {@code Analizaĵo}. Vertikala streko funkciu por la divido; ekzemple: "esper|ant|o"
 	 * @return unu el la eblaj {@code Analizaĵo}j, kiu kongruas kun {@code dividaĈeno}
 	 */

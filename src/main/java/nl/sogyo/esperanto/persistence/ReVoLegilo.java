@@ -32,6 +32,7 @@ public class ReVoLegilo {
 	public static final String ETIKEDO_VORTSPECO = "vspec";
 	public static final String ETIKEDO_DERIVAĴO = "drv";
 	public static final String ETIKEDO_DIFINO = "dif";
+	public static final String ETIKEDO_SUBARTIKOLO = "subart"; //por pluraj difinoj en unu artikoloj
 	
 	/**
 	 * Regula esprimo, kiu reprezentas unu minusklan aŭ majusklan Esperanto-literon.
@@ -105,6 +106,12 @@ public class ReVoLegilo {
 	 */
 	private void determiniVorterSpecon(Element ĉefElemento) {
 		NodeList kapvortNodoj = ĉefElemento.getElementsByTagName(ETIKEDO_KAPVORTO);
+		Element unuaArtikolo;
+		if(ĉefElemento.getElementsByTagName(ETIKEDO_SUBARTIKOLO).getLength() > 0) {
+			unuaArtikolo = (Element)ĉefElemento.getElementsByTagName(ETIKEDO_SUBARTIKOLO).item(0);
+		} else {
+			unuaArtikolo = ĉefElemento;
+		}
 		
 		boolean streketoAntaŭRadiko = false; //por determini ĉu estas finaĵo aŭ sufikso
 		
@@ -157,9 +164,9 @@ public class ReVoLegilo {
 		
 		String kongruaĵo;
 		if(streketoAntaŭRadiko) {
-			kongruaĵo = testiDifinonJeTeksto(ĉefElemento, "finaĵo", "sufikso");
+			kongruaĵo = testiDifinonJeTeksto(unuaArtikolo, "finaĵo", "sufikso");
 		} else {
-    		kongruaĵo = testiDifinonJeTeksto(ĉefElemento,
+    		kongruaĵo = testiDifinonJeTeksto(unuaArtikolo,
     				"finaĵo",
     				"pronomo",
     				"prepozicio", "prep\\.",

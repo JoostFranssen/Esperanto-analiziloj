@@ -12,6 +12,15 @@ import nl.sogyo.esperanto.API.VorterSpeco;
 public class Vortero implements IVortero {
 	public static final Vortero O_FINAĴO = new Vortero("o", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
 	public static final Vortero A_FINAĴO = new Vortero("a", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
+	public static final Vortero E_FINAĴO = new Vortero("e", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
+	public static final Vortero J_FINAĴO = new Vortero("j", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
+	public static final Vortero N_FINAĴO = new Vortero("n", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
+	public static final Vortero I_FINAĴO = new Vortero("i", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
+	public static final Vortero AS_FINAĴO = new Vortero("as", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
+	public static final Vortero IS_FINAĴO = new Vortero("is", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
+	public static final Vortero OS_FINAĴO = new Vortero("os", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
+	public static final Vortero US_FINAĴO = new Vortero("us", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
+	public static final Vortero U_FINAĴO = new Vortero("u", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
 	
 	private String vortero;
 	private VorterSpeco vorterSpeco;

@@ -34,8 +34,9 @@ class ReVoLegiloTest {
 	private static final String EĈ = LOKA_PADO + "ecx.xml";
 	private static final String HOLA = LOKA_PADO + "hola.xml";
 	private static final String ZZZ = LOKA_PADO + "zzz.xml";
+	private static final String POST = LOKA_PADO + "post.xml";
 	
-	private static ReVoLegilo aŭtoLegilo, sciiLegilo, fumoLegilo, homoLegilo, krediLegilo, perLegilo, ĉiaLegilo, kajLegilo, keLegilo, aĉLegilo, reLegilo, laLegilo, aLegilo, liLegilo, a1Legilo, aŭLegilo, ahaLegilo, hodiaŭLegilo, eĉLegilo, holaLegilo, zzzLegilo;
+	private static ReVoLegilo aŭtoLegilo, sciiLegilo, fumoLegilo, homoLegilo, krediLegilo, perLegilo, ĉiaLegilo, kajLegilo, keLegilo, aĉLegilo, reLegilo, laLegilo, aLegilo, liLegilo, a1Legilo, aŭLegilo, ahaLegilo, hodiaŭLegilo, eĉLegilo, holaLegilo, zzzLegilo, postLegilo;
 	
 	@BeforeAll
 	public static void iniciato() {
@@ -60,6 +61,7 @@ class ReVoLegiloTest {
 		eĉLegilo = new ReVoLegilo(EĈ);
 		holaLegilo = new ReVoLegilo(HOLA);
 		zzzLegilo = new ReVoLegilo(ZZZ);
+		postLegilo = new ReVoLegilo(POST);
 	}
 	
 	@Test
@@ -229,5 +231,12 @@ class ReVoLegiloTest {
 		ReVoEnigo enigo = zzzLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.SONIMITO, enigo.getVorterSpeco());
+	}
+	
+	@Test
+	public void postEstasPrepozicio() {
+		ReVoEnigo enigo = postLegilo.getEnigo();
+		
+		assertEquals(VorterSpeco.PREPOZICIO, enigo.getVorterSpeco());
 	}
 }
