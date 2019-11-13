@@ -21,6 +21,14 @@ public class Vortero implements IVortero {
 	public static final Vortero OS_FINAĴO = new Vortero("os", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
 	public static final Vortero US_FINAĴO = new Vortero("us", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
 	public static final Vortero U_FINAĴO = new Vortero("u", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
+	public static final Vortero AKTIVA_FINITA_PARTICIPA_SUFIKSO = new Vortero("int", VorterSpeco.SUFIKSO, Transitiveco.NEDIFINITA);
+	public static final Vortero AKTIVA_DAŬRA_PARTICIPA_SUFIKSO = new Vortero("ant", VorterSpeco.SUFIKSO, Transitiveco.NEDIFINITA);
+	public static final Vortero AKTIVA_ESTONTA_PARTICIPA_SUFIKSO = new Vortero("ont", VorterSpeco.SUFIKSO, Transitiveco.NEDIFINITA);
+	public static final Vortero PASIVA_FINITA_PARTICIPA_SUFIKSO = new Vortero("it", VorterSpeco.SUFIKSO, Transitiveco.NEDIFINITA);
+	public static final Vortero PASIVA_DAŬRA_PARTICIPA_SUFIKSO = new Vortero("at", VorterSpeco.SUFIKSO, Transitiveco.NEDIFINITA);
+	public static final Vortero PASIVA_ESTONTA_PARTICIPA_SUFIKSO = new Vortero("ot", VorterSpeco.SUFIKSO, Transitiveco.NEDIFINITA);
+	public static final Vortero IG_SUFIKSO = new Vortero("ig", VorterSpeco.SUFIKSO, Transitiveco.TRANSITIVA);
+	public static final Vortero IĜ_SUFIKSO = new Vortero("iĝ", VorterSpeco.SUFIKSO, Transitiveco.NETRANSITIVA);
 	
 	private String vortero;
 	private VorterSpeco vorterSpeco;

@@ -228,13 +228,38 @@ public class Analizaĵo {
 			case VERBO_NETRANSITIVA: break;
 			case VERBO_PRETERITO: return lastaVortero().equals(Vortero.IS_FINAĴO);
 			case VERBO_PREZENCO: return lastaVortero().equals(Vortero.AS_FINAĴO);
-			case VERBO_TRANSITIVA: break;
+			case VERBO_TRANSITIVA: return estasTransitiva();
 			case VERBO_VOLITIVO: return lastaVortero().equals(Vortero.U_FINAĴO);
 		}
 		
 		return false;
 	}
 	
+	public boolean estasTransitiva() {
+		if(!estasVerbo()) {
+			return false;
+		}
+		
+		boolean transitiva = false;
+		for(Vortero vortero : vorteroj) {
+			if(vortero.getTransitiveco() == Transitiveco.TRANSITIVA || vortero.getTransitiveco() == Transitiveco.AMBAŬ) {
+				transitiva = true;
+			} else if(vortero.equals(Vortero.PASIVA_FINITA_PARTICIPA_SUFIKSO) || vortero.equals(Vortero.PASIVA_DAŬRA_PARTICIPA_SUFIKSO) || vortero.equals(Vortero.PASIVA_ESTONTA_PARTICIPA_SUFIKSO)) {
+				transitiva = false;
+			} else if(vortero.equals(Vortero.IĜ_SUFIKSO)) {
+				transitiva = false;
+			} else if(vortero.getVorterSpeco() == VorterSpeco.PREPOZICIO) {
+				transitiva = true;
+			}
+		}
+		
+		return transitiva;
+	}
+	
+	/**
+	 * Testas, ĉu la vorto finiĝas per unu el la verbaj finaĵoj.
+	 * @return ĉu la vort estas verbo
+	 */
 	public boolean estasVerbo() {
 		List<Trajto> verbajTrajtoj = new ArrayList<Trajto>(Arrays.asList(Trajto.VERBO_FUTURO, Trajto.VERBO_INFINITIVO, Trajto.VERBO_KONDICIONALO, Trajto.VERBO_PRETERITO, Trajto.VERBO_PREZENCO, Trajto.VERBO_VOLITIVO));
 		for(Trajto trajto : verbajTrajtoj) {

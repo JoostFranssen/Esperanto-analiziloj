@@ -273,4 +273,40 @@ class AnalizaĵoTest {
 		
 		assertTrue(zzz_.kontroliTrajton(Trajto.SONIMITO));
 	}
+	
+	@Test
+	public void sciiEstasTransitiva() {
+		Vorto scii = new Vorto("scii");
+		
+		Analizaĵo sci_i = scii.preniAnalizaĵonLaŭDividaĈeno("sci|i");
+		
+		assertTrue(sci_i.kontroliTrajton(Trajto.VERBO_TRANSITIVA));
+	}
+	
+	@Test
+	public void boligiEstasTransitiva() {
+		Vorto boligi = new Vorto("boligi");
+		
+		Analizaĵo bol_ig_i = boligi.preniAnalizaĵonLaŭDividaĈeno("bol|ig|i");
+		
+		assertTrue(bol_ig_i.kontroliTrajton(Trajto.VERBO_TRANSITIVA));
+	}
+	
+	@Test
+	public void respondiEstasTransitiva() {
+		Vorto respondi = new Vorto("respondi");
+		
+		Analizaĵo respond_i = respondi.preniAnalizaĵonLaŭDividaĈeno("respond|i");
+		
+		assertTrue(respond_i.kontroliTrajton(Trajto.VERBO_TRANSITIVA));
+	}
+	
+	@Test
+	public void transiriEstasTransitiva() {
+		Vorto transiri = new Vorto("transiri");
+		
+		Analizaĵo trans_ir_i = transiri.preniAnalizaĵonLaŭDividaĈeno("trans|ir|i");
+		
+		assertTrue(trans_ir_i.kontroliTrajton(Trajto.VERBO_TRANSITIVA));
+	}
 }
