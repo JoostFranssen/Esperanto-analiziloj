@@ -4,7 +4,7 @@ class Analizaĵo extends React.Component {
     }
 
     render() {
-        let analizaĵeroj = this.disigiVorton();
+        let analizaĵeroj = this.props.analizaĵo.vorteroj;
         let komponentListo = [];
         if(analizaĵeroj) {
             for(const analizaĵero of analizaĵeroj) {
@@ -20,6 +20,7 @@ class Analizaĵo extends React.Component {
                 onClick={this.props.onClick}
             >
                 {komponentListo.slice(1)}
+                {this.props.elektita ? <VortTrajtoj analizaĵo={this.props.analizaĵo}/> : <span></span> }
             </div>
         );
     }

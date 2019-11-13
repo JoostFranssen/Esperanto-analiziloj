@@ -3,6 +3,7 @@ class VortAnalizilo extends React.Component {
         super(props);
         this.state = {
             analizaĵoj: null,
+            vorto: null,
         }
     }
 
@@ -11,11 +12,11 @@ class VortAnalizilo extends React.Component {
             <div id="vort-analizilo">
                 <h1>Vorto-Analizilo</h1>
                 <form
-                    onSubmit={(event) => this.traktiKonfirmon(event, document.getElementById("vort-enmeto").value)}
+                    onSubmit={(event) => this.traktiKonfirmon(event)}
                     id="vort-analizilo-form"
                     autocomplete="off"
                 >
-                    <label id="vorto-etikedo">
+                    <label id="vorto-etikedo" for="vort-enmeto">
                         Analizota vorto
                     </label>
                     <input
@@ -28,6 +29,15 @@ class VortAnalizilo extends React.Component {
                         pattern="^((?=[a-zA-ZĉĈĝĜĥĤĵĴŝŜŭŬ])[^qQw-yW-Y])+$"
                         required
                         autoFocus
+                        onInvalid={
+                            (event) => {
+                                if(event.target.value === "" || /\s/.test(event.target.value)) {
+                                    event.target.setCustomValidity("Bonvolu enmeti unu Esperantan vorton");
+                                } else {
+                                    event.target.setCustomValidity('Bonvolu uzi nur Esperantajn literojn.')}
+                                }
+                            }
+                        onInput={(event) => event.target.setCustomValidity('')}
                     />
                     <input
                         type="submit"
@@ -40,17 +50,19 @@ class VortAnalizilo extends React.Component {
         );
     }
 
-    async traktiKonfirmon(event, value) {
+    async traktiKonfirmon(event) {
         event.preventDefault();
-        let response = await fetch(`api/vortanalizo?vorto=${value}`);
+        let enmeto = document.getElementById("vort-enmeto");
+        let response = await fetch(`api/vortanalizo?vorto=${enmeto.value}`);
         let result = await response.json();
 
         this.setState({
             analizaĵoj: result.analizaĵoj,
+            vorto: enmeto.value,
         });
     }
 
     bildigiAnalizaĵojn() {
-        return <Analizaĵoj analizaĵoj={this.state.analizaĵoj}/>;
+        return <Analizaĵoj key={this.state.vorto} analizaĵoj={this.state.analizaĵoj}/>;
     }
 }

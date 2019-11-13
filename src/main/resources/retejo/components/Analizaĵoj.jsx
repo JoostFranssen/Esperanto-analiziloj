@@ -3,45 +3,45 @@ class Analizaĵoj extends React.Component {
         super(props);
         this.state = {
             elektitaIndico: null,
-            komponentoj: null,
+            komponantoj: null,
         }
     }
 
     render() {
         return (
             <div className="vort-analizaĵujo">
-                {this.kreiKomponentojn()}
+                {this.kreiKomponantojn()}
             </div>
         );
     }
 
-    kreiKomponentojn() {
-        let komponentListo = [];
+    kreiKomponantojn() {
+        let komponantListo = [];
         if(this.props.analizaĵoj) {
             for(let i = 0; i < this.props.analizaĵoj.length; i++) {
-                komponentListo.push(
+                komponantListo.push(
                     <Analizaĵo
                         analizaĵo={this.props.analizaĵoj[i]}
                         elektita={this.state.elektitaIndico === i}
-                        onClick={() => this.elektiKomponenton(i)}
+                        onClick={() => this.elektiKomponanton(i)}
                     />
                 );
             }
         }
 
-        this.state.komponentoj = komponentListo;
+        this.state.komponantoj = komponantListo;
 
-        if(komponentListo.length > 0 && !this.state.elektitaIndico) {
-            this.elektiKomponenton(0);
+        if(komponantListo.length > 0 && !this.state.elektitaIndico) {
+            this.elektiKomponanton(0);
         }
 
-        return komponentListo;
+        return komponantListo;
     }
 
-    elektiKomponenton(indico) {
+    elektiKomponanton(indico) {
         let newState = Object.assign({}, this.state);
 
-        if(indico < 0 || !this.state.komponentoj || indico >= this.state.komponentoj.length) {
+        if(indico < 0 || !this.state.komponantoj || indico >= this.state.komponantoj.length) {
             newState.elektitaIndico = null;
         } else {
             newState.elektitaIndico = indico;
