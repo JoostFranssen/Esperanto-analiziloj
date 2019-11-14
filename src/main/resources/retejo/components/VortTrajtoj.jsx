@@ -8,7 +8,7 @@ class VortTrajtoj extends React.Component {
         if(this.props.analizaĵo) {
             for(const trajto of this.props.analizaĵo.trajtoj) {
                 listoDeKomponantoj.push(
-                    <li className="vorta-trajto">{snakeCaseToTitleCase(trajto)}</li>
+                    <li className="vorta-trajto">{this.formatiTrajton(trajto)}</li>
                 );
             }
         }
@@ -22,5 +22,10 @@ class VortTrajtoj extends React.Component {
         } else {
             return null;
         }
+    }
+
+    formatiTrajton(trajto) {
+        let trajtPartoj = snakeCaseToTitleCase(trajto).split(" ");
+        return trajtPartoj[trajtPartoj.length - 1];
     }
 }

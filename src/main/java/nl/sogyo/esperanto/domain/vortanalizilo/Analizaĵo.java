@@ -53,7 +53,7 @@ public class Analizaĵo {
 			|| sufiksoAperasPostFinaĵo()
 			|| lastaVorteroEstasAfiksoAŭRadiko()
 			|| finaĵoAperasKomence()
-			|| !akuzativoAperasNurLasteAŭPostE()
+			|| !akuzativoAperasNurLasteAŭPostEAŭPostSi()
 		) {
 			return false;
 		}
@@ -73,10 +73,11 @@ public class Analizaĵo {
 	 * Kontrolas, ĉu la akuzativa finaĵo aperas nur en la lasta pozicio aŭ tuj post la e-finaĵo. Ĉi-lasta estas por permesi vortojn kiel ‘reen-iri’.
 	 * @return ĉu la n-finaĵo aperas nur laste aŭ tuj post la e-finaĵo
 	 */
-	private boolean akuzativoAperasNurLasteAŭPostE() {
+	private boolean akuzativoAperasNurLasteAŭPostEAŭPostSi() {
 		for(int i = 1; i < vorteroj.size() - 1; i++) {
 			if(vorteroj.get(i).equals(Vortero.N_FINAĴO)) {
-				if(!vorteroj.get(i - 1).equals(Vortero.E_FINAĴO)) {
+				Vortero antaŭaVortero = vorteroj.get(i - 1);
+				if(!antaŭaVortero.equals(Vortero.E_FINAĴO) && !antaŭaVortero.equals(Vortero.SI_PRONOMO)) {
 					return false;
 				}
 			}
@@ -277,12 +278,24 @@ public class Analizaĵo {
 		}
 		
 		boolean netransitiva = false;
+		boolean trovisPrepozicion = false; //por preventi, ke vortoj kiel ‘eniri’ markiĝis kiel netransitivaj.
 		
 		for(Vortero vortero : vorteroj) {
 			if(vortero.getTransitiveco() == Transitiveco.NETRANSITIVA || vortero.getTransitiveco() == Transitiveco.AMBAŬ) {
 				netransitiva = true;
-			} else if(vortero.equals(Vortero.IG_SUFIKSO)) {
+			}
+			
+			if(trovisPrepozicion) {
+				if(vortero.getVorterSpeco() == VorterSpeco.RADIKO) {
+					trovisPrepozicion = false;
+					netransitiva = false;
+				}
+			}
+			
+			if(vortero.equals(Vortero.IG_SUFIKSO)) {
 				netransitiva = false;
+			} else if(vortero.getVorterSpeco() == VorterSpeco.PREPOZICIO) {
+				trovisPrepozicion = true;
 			}
 		}
 		

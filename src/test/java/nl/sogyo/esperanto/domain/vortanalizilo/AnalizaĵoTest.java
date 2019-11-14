@@ -2,6 +2,7 @@ package nl.sogyo.esperanto.domain.vortanalizilo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -360,5 +361,23 @@ class AnalizaĵoTest {
 		Comparator<Analizaĵo> komparilo = Analizaĵo.getNekonsekvencaKomparilo();
 		
 		assertTrue(komparilo.compare(real_iĝ_i, re_al_iĝ_i) < 0);
+	}
+	
+	@Test
+	public void transiriNeEstasNetransitiva() {
+		Vorto transiri = new Vorto("transiri");
+		
+		Analizaĵo trans_ir_i = transiri.preniAnalizaĵonLaŭDividaĈeno("trans|ir|i");
+		
+		assertFalse(trans_ir_i.kontroliTrajton(Trajto.VERBO_NETRANSITIVA));
+	}
+	
+	@Test
+	public void si_n_gard_aEstasRekonata() {
+		Vorto singarda = new Vorto("singarda");
+		
+		Analizaĵo si_n_gard_a = singarda.preniAnalizaĵonLaŭDividaĈeno("si|n|gard|a");
+		
+		assertNotNull(si_n_gard_a);
 	}
 }
