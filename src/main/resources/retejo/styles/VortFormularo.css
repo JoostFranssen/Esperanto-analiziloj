@@ -1,0 +1,61 @@
+body {
+    font-size: 16px;
+}
+
+#vort-analizilo {
+    text-align: center;
+}
+
+#vort-analizilo-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 80%;
+    margin: 2em 10%;
+}
+
+#vorto-etikedo {
+    text-align: left;
+    font-size: 24px;
+    font-weight: bold;
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+#vort-enmeto {
+    font-size: 24px;
+    grid-area: 2 / 1 / 3 / 2;
+    min-width: 0px;
+}
+
+#konfirm-butono {
+    font-size: 24px;
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+#vort-validaĵo {
+    font-size: 20px;
+    color: crimson;
+    grid-area: 3 / 1 / 4 / 2;
+    text-align: left;
+    height: 0;
+}
+
+#vort-ŝargikono {
+    grid-area: 2 / 1 / 3 / 2;
+    text-align: right;
+    justify-self: end;
+    align-self: center;
+    height: 14px;
+    width: 14px;
+    border: 8px solid lightgray;
+    border-top: 8px solid #009E00;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 3px;
+    pointer-events: none;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% {transform: rotate(360deg); }
+}

@@ -4,6 +4,8 @@ class VortAnalizilo extends React.Component {
         this.state = {
             analizaĵoj: null,
             vorto: null,
+            validMesaĝo: null,
+            ŝargante: false,
         }
     }
 
@@ -15,6 +17,7 @@ class VortAnalizilo extends React.Component {
                     onSubmit={(event) => this.traktiKonfirmon(event)}
                     id="vort-analizilo-form"
                     autocomplete="off"
+                    novalidate
                 >
                     <label id="vorto-etikedo" for="vort-enmeto">
                         Analizota vorto
@@ -27,23 +30,32 @@ class VortAnalizilo extends React.Component {
                         autoCapitalize="off"
                         spellcheck="false"
                         pattern="^((?=[a-zA-ZĉĈĝĜĥĤĵĴŝŜŭŬ])[^qQw-yW-Y])+$"
-                        required
                         autoFocus
-                        onInvalid={
+                        novalidate
+                        onInput={
                             (event) => {
-                                if(event.target.value === "" || /\s/.test(event.target.value)) {
-                                    event.target.setCustomValidity("Bonvolu enmeti unu Esperantan vorton");
+                                let newState = Object.assign({}, this.state);
+                                if(!event.target.validity.valid) {
+                                    if(/\s/.test(event.target.value)) {
+                                        newState.validMesaĝo = "Enmetu ekzakte unu vorton";
+                                    } else {
+                                        newState.validMesaĝo = "Uzu nur Esperantajn literojn"
+                                    }
                                 } else {
-                                    event.target.setCustomValidity('Bonvolu uzi nur Esperantajn literojn.')}
+                                    newState.validMesaĝo = "";
                                 }
+                                this.setState(newState);
                             }
-                        onInput={(event) => event.target.setCustomValidity('')}
+                        }
+                        onInvalid={(event) => event.preventDefault()}
                     />
                     <input
                         type="submit"
                         value="Analizi"
                         id="konfirm-butono"
                     />
+                    <span id="vort-validaĵo">{this.state.validMesaĝo}</span>
+                    <span id="vort-ŝargikono" style={{display: this.state.ŝargante ? "block" : "none"}}></span>
                 </form>
                 {this.bildigiAnalizaĵojn()}
             </div>
@@ -52,6 +64,11 @@ class VortAnalizilo extends React.Component {
 
     async traktiKonfirmon(event) {
         event.preventDefault();
+
+        let newState = Object.assign({}, this.state);
+        newState.ŝargante = true;
+        this.setState(newState);
+
         let enmeto = document.getElementById("vort-enmeto");
         let response = await fetch(`api/vortanalizo?vorto=${enmeto.value}`);
         let result = await response.json();
@@ -59,6 +76,8 @@ class VortAnalizilo extends React.Component {
         this.setState({
             analizaĵoj: result.analizaĵoj,
             vorto: enmeto.value,
+            validMesaĝo: null,
+            ŝargante: false,
         });
     }
 
