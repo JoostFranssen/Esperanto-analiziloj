@@ -15,14 +15,14 @@ import nl.sogyo.esperanto.API.Trajto;
 class AnalizaĵoTest {
 
 	@Test
-	public void malplenaAnalizaĵoEstasNeValida() {
+	public void emptyAnalizaĵoIsInvalid() {
 		Analizaĵo analizaĵo = new Analizaĵo();
 		
 		assertFalse(analizaĵo.isValid());
 	}
 	
 	@Test
-	public void belaEstasAdjektivo() {
+	public void belaIsAdjektivo() {
 		Vorto bela = new Vorto("bela");
 		
 		Analizaĵo bel_a = bela.getAnalizaĵoByString("bel|a");
@@ -31,7 +31,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void ĝojoEstasSubstantivo() {
+	public void ĝojoIsSubstantivo() {
 		Vorto ĝojo = new Vorto("ĝojo");
 		
 		Analizaĵo ĝoj_o = ĝojo.getAnalizaĵoByString("ĝoj|o");
@@ -40,7 +40,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void ŝuojEstasPlurala() {
+	public void ŝuojIsPlurala() {
 		Vorto ŝuoj = new Vorto("ŝuoj");
 		
 		Analizaĵo ŝu_o_j = ŝuoj.getAnalizaĵoByString("ŝu|o|j");
@@ -49,7 +49,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void ŝuonHavasAkuzativon() {
+	public void ŝuonHasAkuzativo() {
 		Vorto ŝuon = new Vorto("ŝuon");
 		
 		Analizaĵo ŝu_o_n = ŝuon.getAnalizaĵoByString("ŝu|o|n");
@@ -58,7 +58,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void ŝuojnEstasSubstantivoKajPluralaKajHavasAkuzativon() {
+	public void ŝuojnIsSubstantivoAndPluralaAndHasAkuzativo() {
 		Vorto ŝuojn = new Vorto("ŝuojn");
 		
 		Analizaĵo ŝu_o_j_n = ŝuojn.getAnalizaĵoByString("ŝu|o|j|n");
@@ -69,7 +69,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void voliEstasInfinitivo() {
+	public void voliIsInfinitivo() {
 		Vorto voli = new Vorto("voli");
 		
 		Analizaĵo vol_i = voli.getAnalizaĵoByString("vol|i");
@@ -79,7 +79,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void volisEstasPreterito() {
+	public void volisIsPreterito() {
 		Vorto volis = new Vorto("volis");
 		
 		Analizaĵo vol_is = volis.getAnalizaĵoByString("vol|is");
@@ -89,7 +89,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void volasEstasPreterito() {
+	public void volasIsPrezenco() {
 		Vorto volas = new Vorto("volas");
 		
 		Analizaĵo vol_as = volas.getAnalizaĵoByString("vol|as");
@@ -99,7 +99,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void volosEstasFuturo() {
+	public void volosIsFuturo() {
 		Vorto volos = new Vorto("volos");
 		
 		Analizaĵo vol_os = volos.getAnalizaĵoByString("vol|os");
@@ -109,7 +109,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void volusEstasKondicionalo() {
+	public void volusIsKondicionalo() {
 		Vorto volus = new Vorto("volus");
 		
 		Analizaĵo vol_us = volus.getAnalizaĵoByString("vol|us");
@@ -119,7 +119,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void voluEstasVolitivo() {
+	public void voluIsVolitivo() {
 		Vorto volu = new Vorto("volu");
 		
 		Analizaĵo vol_u = volu.getAnalizaĵoByString("vol|u");
@@ -129,7 +129,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void laEstasArtikolo() {
+	public void laIsArtikolo() {
 		Vorto la = new Vorto("la");
 		
 		Analizaĵo la_ = la.getAnalizaĵoByString("la");
@@ -138,7 +138,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void laNeEstuRekonataEnBola() {
+	public void laIsNotRecognizedInBola() {
 		Vorto bola = new Vorto("bola");
 		
 		Analizaĵo bo_la = bola.getAnalizaĵoByString("bo|la");
@@ -147,7 +147,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void treEstasAdverbo() {
+	public void treIsAdverbo() {
 		Vorto tre = new Vorto("tre");
 		
 		Analizaĵo tre_ = tre.getAnalizaĵoByString("tre");
@@ -156,7 +156,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void beleEstasAdverbo() {
+	public void beleIsAdverbo() {
 		Vorto bele = new Vorto("bele");
 		
 		Analizaĵo bel_e = bele.getAnalizaĵoByString("bel|e");
@@ -165,7 +165,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void antaŭenEstasAdverboKajHavasAkuzativon() {
+	public void antaŭenIsAdverboAndHasAkuzativo() {
 		Vorto antaŭen = new Vorto("antaŭen");
 		
 		Analizaĵo antaŭ_e_n = antaŭen.getAnalizaĵoByString("antaŭ|e|n");
@@ -175,14 +175,14 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void bopatrinoHavasNurUnuAnalizaĵon() {
+	public void bopatrinoHasOnlyOneAnalizaĵo() {
 		Vorto bopatrino = new Vorto("bopatrino");
 		
 		assertEquals(1, bopatrino.getPossibleAnalizaĵoj().size());
 	}
 	
 	@Test
-	public void heEstasInterjekcio() {
+	public void heIsInterjekcio() {
 		Vorto he = new Vorto("he");
 		
 		Analizaĵo he_ = he.getAnalizaĵoByString("he");
@@ -191,7 +191,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void keEstasKonjunkcio() {
+	public void keIsKonjunkcio() {
 		Vorto ke = new Vorto("ke");
 		
 		Analizaĵo ke_ = ke.getAnalizaĵoByString("ke");
@@ -200,7 +200,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void ĉiaEstasKorelativo() {
+	public void ĉiaIsKorelativo() {
 		Vorto ĉia = new Vorto("ĉia");
 		
 		Analizaĵo ĉia_ = ĉia.getAnalizaĵoByString("ĉia");
@@ -209,7 +209,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void nenioEstasKorelativo() {
+	public void nenioIsKorelativo() {
 		Vorto nenio = new Vorto("nenio");
 		
 		Analizaĵo neni_o = nenio.getAnalizaĵoByString("neni|o");
@@ -218,7 +218,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void kvarEstasNumeralo() {
+	public void kvarIsNumeralo() {
 		Vorto kvar = new Vorto("kvar");
 		
 		Analizaĵo kvar_ = kvar.getAnalizaĵoByString("kvar");
@@ -227,7 +227,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void dudekEstasNumeralo() {
+	public void dudekIsNumeralo() {
 		Vorto dudek = new Vorto("dudek");
 		
 		Analizaĵo du_dek = dudek.getAnalizaĵoByString("du|dek");
@@ -236,7 +236,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void unuaNeEstasNumeralo() {
+	public void unuaIsNotNumeralo() {
 		Vorto unua = new Vorto("unua");
 		
 		Analizaĵo unu_a = unua.getAnalizaĵoByString("unu|a");
@@ -245,7 +245,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void postEstasPrepozicio() {
+	public void postIsPrepozicio() {
 		Vorto post = new Vorto("post");
 		
 		Analizaĵo post_ = post.getAnalizaĵoByString("post");
@@ -254,7 +254,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void maltransEstasPrepozicio() {
+	public void maltransIsPrepozicio() {
 		Vorto maltrans = new Vorto("maltrans");
 		
 		Analizaĵo mal_trans = maltrans.getAnalizaĵoByString("mal|trans");
@@ -263,7 +263,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void liEstasPronomo() {
+	public void liIsPronomo() {
 		Vorto li = new Vorto("li");
 		
 		Analizaĵo li_ = li.getAnalizaĵoByString("li");
@@ -272,7 +272,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void zzzEstasSonimito() {
+	public void zzzIsSonimito() {
 		Vorto zzz = new Vorto("zzz");
 		
 		Analizaĵo zzz_ = zzz.getAnalizaĵoByString("zzz");
@@ -281,7 +281,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void sciiEstasTransitiva() {
+	public void sciiIsTransitiva() {
 		Vorto scii = new Vorto("scii");
 		
 		Analizaĵo sci_i = scii.getAnalizaĵoByString("sci|i");
@@ -290,7 +290,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void boligiEstasTransitiva() {
+	public void boligiIsTransitiva() {
 		Vorto boligi = new Vorto("boligi");
 		
 		Analizaĵo bol_ig_i = boligi.getAnalizaĵoByString("bol|ig|i");
@@ -299,7 +299,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void respondiEstasTransitiva() {
+	public void respondiIsTransitiva() {
 		Vorto respondi = new Vorto("respondi");
 		
 		Analizaĵo respond_i = respondi.getAnalizaĵoByString("respond|i");
@@ -308,7 +308,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void transiriEstasTransitiva() {
+	public void transiriIsTransitiva() {
 		Vorto transiri = new Vorto("transiri");
 		
 		Analizaĵo trans_ir_i = transiri.getAnalizaĵoByString("trans|ir|i");
@@ -317,7 +317,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void eniNeEstasTransitiva() {
+	public void eniIsNotTransitiva() {
 		Vorto transi = new Vorto("transi");
 		
 		Analizaĵo trans_i = transi.getAnalizaĵoByString("trans|i");
@@ -326,7 +326,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void iriEstasNetransitiva() {
+	public void iriIsNetransitiva() {
 		Vorto iri = new Vorto("iri");
 		
 		Analizaĵo ir_i = iri.getAnalizaĵoByString("ir|i");
@@ -335,7 +335,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void sciiĝiEstasNetransitiva() {
+	public void sciiĝiIsNetransitiva() {
 		Vorto sciiĝi = new Vorto("sciiĝi");
 		
 		Analizaĵo sci_iĝ_i = sciiĝi.getAnalizaĵoByString("sci|iĝ|i");
@@ -344,7 +344,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void paŝigiNeEstasNetransitiva() {
+	public void paŝigiIsNotNetransitiva() {
 		Vorto paŝigi = new Vorto("paŝigi");
 		
 		Analizaĵo paŝ_ig_i = paŝigi.getAnalizaĵoByString("paŝ|ig|i");
@@ -353,18 +353,18 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void re_al_iĝ_iEstasMalpliAltaOlReal_iĝ_i() {
+	public void re_al_iĝ_iComesAfterReal_iĝ_i() {
 		Vorto realiĝi = new Vorto("realiĝi");
 		
 		Analizaĵo re_al_iĝ_i = realiĝi.getAnalizaĵoByString("re|al|iĝ|i");
 		Analizaĵo real_iĝ_i = realiĝi.getAnalizaĵoByString("real|iĝ|i");
 		Comparator<Analizaĵo> komparilo = Analizaĵo.getComparator();
 		
-		assertTrue(komparilo.compare(real_iĝ_i, re_al_iĝ_i) < 0);
+		assertTrue(komparilo.compare(re_al_iĝ_i, real_iĝ_i) > 0);
 	}
 	
 	@Test
-	public void transiriNeEstasNetransitiva() {
+	public void transiriIsNotNetransitiva() {
 		Vorto transiri = new Vorto("transiri");
 		
 		Analizaĵo trans_ir_i = transiri.getAnalizaĵoByString("trans|ir|i");
@@ -373,7 +373,7 @@ class AnalizaĵoTest {
 	}
 	
 	@Test
-	public void si_n_gard_aEstasRekonata() {
+	public void si_n_gard_aIsRecognized() {
 		Vorto singarda = new Vorto("singarda");
 		
 		Analizaĵo si_n_gard_a = singarda.getAnalizaĵoByString("si|n|gard|a");

@@ -8,21 +8,21 @@ import org.junit.jupiter.api.Test;
 class VortoTest {
 
 	@Test
-	public void laHavasUnuAnalizaĵon() {
+	public void laHasOneAnalizaĵo() {
 		Vorto la = new Vorto("la");
 		
 		assertEquals(1, la.getPossibleAnalizaĵoj().size());
 	}
 	
 	@Test
-	public void belojnHavasUnuAnalizaĵon() {
+	public void belojnHasOneAnalizaĵo() {
 		Vorto belojn = new Vorto("belojn");
 		
 		assertEquals(1, belojn.getPossibleAnalizaĵoj().size());
 	}
 	
 	@Test
-	public void preniAnalizaĵonLaŭDividaĈeno() {
+	public void getAnalizaĵoByStringTest() {
 		Vorto batato = new Vorto("batato");
 		
 		Analizaĵo bat_at_o = batato.getAnalizaĵoByString("bat|at|o");

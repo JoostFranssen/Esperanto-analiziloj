@@ -8,38 +8,38 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-class DatumbazKomunikiloTest {
+class DatabaseCommunicatorTest {
 
 	@Test
-	public void laHavasUnuEnigon() {
+	public void laHasOneEntry() {
 		List<Vortero> rezulto = DatabaseCommunicator.getFromDatabase("la");
 		
 		assertEquals(1, rezulto.size());
 	}
 	
 	@Test
-	public void ĉarHavasDuEnigojn() {
+	public void ĉarHasTwoEntries() {
 		List<Vortero> rezulto = DatabaseCommunicator.getFromDatabase("ĉar");
 		
 		assertEquals(2, rezulto.size());
 	}
 	
 	@Test
-	public void ĉarRezultojEstasMalsamaj() {
+	public void ĉarResultsAreDifferent() {
 		List<Vortero> rezulto = DatabaseCommunicator.getFromDatabase("ĉar");
 		
 		assertNotEquals(rezulto.get(0), rezulto.get(1));
 	}
 	
 	@Test
-	public void malplenaĈenoHavasNeniunEnigon() {
+	public void emptyStringHasNoEntries() {
 		List<Vortero> rezulto = DatabaseCommunicator.getFromDatabase("");
 		
 		assertEquals(0, rezulto.size());
 	}
 	
 	@Test
-	public void iHavasTriMalsamajnRezultojn() {
+	public void iHasThreeDifferentEntries() {
 		Set<Vortero> rezulto = new HashSet<>(DatabaseCommunicator.getFromDatabase("i"));
 		
 		assertEquals(3, rezulto.size());
