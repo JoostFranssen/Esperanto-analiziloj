@@ -1,5 +1,7 @@
 package nl.sogyo.esperanto.domain.vortanalizilo;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +16,6 @@ import nl.sogyo.esperanto.API.VorterSpeco;
 public class Vorto {
 	private String vorto;
 	private Set<Analizaĵo> eblajAnalizaĵoj;
-	private Analizaĵo ĉefAnalizaĵo;
 	
 	/**
 	 * Iniciatas novan vorton, analizas ĝin por trovi {@code Analizaĵo}jn, kiuj poste estas filtritaj laŭ ĝia valideco.
@@ -72,9 +73,11 @@ public class Vorto {
 	public Set<Analizaĵo> getEblajAnalizaĵoj() {
 		return new HashSet<>(eblajAnalizaĵoj);
 	}
-
-	public Analizaĵo getĈefAnalizaĵo() {
-		return ĉefAnalizaĵo;
+	
+	public List<Analizaĵo> getEblajAnalizaĵojSortitaj() {
+		ArrayList<Analizaĵo> eblajAnalizaĵojListo = new ArrayList<>(eblajAnalizaĵoj);
+		Collections.sort(eblajAnalizaĵojListo, Analizaĵo.getNekonsekvencaKomparilo());
+		return eblajAnalizaĵojListo;
 	}
 	
 	/**

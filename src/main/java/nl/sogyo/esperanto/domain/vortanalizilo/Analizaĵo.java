@@ -2,9 +2,11 @@ package nl.sogyo.esperanto.domain.vortanalizilo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import nl.sogyo.esperanto.API.Trajto;
 import nl.sogyo.esperanto.API.Transitiveco;
@@ -225,7 +227,7 @@ public class Analizaĵo {
 			case VERBO_FUTURO: return lastaVortero().equals(Vortero.OS_FINAĴO);
 			case VERBO_INFINITIVO: return lastaVortero().equals(Vortero.I_FINAĴO);
 			case VERBO_KONDICIONALO: return lastaVortero().equals(Vortero.US_FINAĴO);
-			case VERBO_NETRANSITIVA: break;
+			case VERBO_NETRANSITIVA: return estasNetransitiva();
 			case VERBO_PRETERITO: return lastaVortero().equals(Vortero.IS_FINAĴO);
 			case VERBO_PREZENCO: return lastaVortero().equals(Vortero.AS_FINAĴO);
 			case VERBO_TRANSITIVA: return estasTransitiva();
@@ -235,13 +237,26 @@ public class Analizaĵo {
 		return false;
 	}
 	
+	/**
+	 * Testas, ĉu verbo estas transitiva.
+	 * @return ĉu verbo estas transitiva. Se la vorto ne estas verbo, la rezulto estos {@code false}
+	 */
 	public boolean estasTransitiva() {
 		if(!estasVerbo()) {
 			return false;
 		}
 		
 		boolean transitiva = false;
+		boolean trovisPrepozicion = false; //por kontroli transitivecon de vortoj kun la formo ‘prep. + rad.’, kiel ‘eniri’.
+		
 		for(Vortero vortero : vorteroj) {
+			if(trovisPrepozicion) {
+				if(vortero.getVorterSpeco() != VorterSpeco.FINAĴO) {
+					trovisPrepozicion = false;
+					transitiva = true;
+				}
+			}
+			
 			if(vortero.getTransitiveco() == Transitiveco.TRANSITIVA || vortero.getTransitiveco() == Transitiveco.AMBAŬ) {
 				transitiva = true;
 			} else if(vortero.equals(Vortero.PASIVA_FINITA_PARTICIPA_SUFIKSO) || vortero.equals(Vortero.PASIVA_DAŬRA_PARTICIPA_SUFIKSO) || vortero.equals(Vortero.PASIVA_ESTONTA_PARTICIPA_SUFIKSO)) {
@@ -249,11 +264,29 @@ public class Analizaĵo {
 			} else if(vortero.equals(Vortero.IĜ_SUFIKSO)) {
 				transitiva = false;
 			} else if(vortero.getVorterSpeco() == VorterSpeco.PREPOZICIO) {
-				transitiva = true;
+				trovisPrepozicion = true;
 			}
 		}
 		
 		return transitiva;
+	}
+	
+	public boolean estasNetransitiva() {
+		if(!estasVerbo()) {
+			return false;
+		}
+		
+		boolean netransitiva = false;
+		
+		for(Vortero vortero : vorteroj) {
+			if(vortero.getTransitiveco() == Transitiveco.NETRANSITIVA || vortero.getTransitiveco() == Transitiveco.AMBAŬ) {
+				netransitiva = true;
+			} else if(vortero.equals(Vortero.IG_SUFIKSO)) {
+				netransitiva = false;
+			}
+		}
+		
+		return netransitiva;
 	}
 	
 	/**
@@ -372,5 +405,28 @@ public class Analizaĵo {
 			return false;
 		}
 		return true;
+	}
+	
+	private int nombri(Predicate<Vortero> kondiĉo) {
+		return (int)vorteroj.stream().filter(kondiĉo).count();
+	}
+	
+	private int kompareNombri(Analizaĵo alia, Predicate<Vortero> kondiĉo) {
+		return nombri(kondiĉo) - alia.nombri(kondiĉo);
+	}
+	
+	public static Comparator<Analizaĵo> getNekonsekvencaKomparilo() {
+		return (a1, a2) -> {
+			int kvanto = a1.kompareNombri(a2, v -> true);
+			if(kvanto != 0) {
+				return kvanto;
+			}
+			kvanto = a1.kompareNombri(a2, v -> v.getVorterSpeco() == VorterSpeco.RADIKO);
+			if(kvanto != 0) {
+				return kvanto;
+			}
+			
+			return 0;
+		};
 	}
 }

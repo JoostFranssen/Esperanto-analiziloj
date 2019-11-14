@@ -43,9 +43,7 @@ public class VortoJSONProcezilo {
 		
 		json.put("vorto", vorto.getVorto());
 		
-		json.put("analizaĵoj", vorto.getEblajAnalizaĵoj().stream().map(VortoJSONProcezilo::konvertiAnalizaĵonAlJSON).toArray());
-		
-//		json.put("ĉefAnalizaĵo", konvertiAnalizaĵonAlJSON(vorto.getĈefAnalizaĵo()));
+		json.put("analizaĵoj", vorto.getEblajAnalizaĵojSortitaj().stream().map(VortoJSONProcezilo::konvertiAnalizaĵonAlJSON).toArray());
 		
 		return json;
 	}

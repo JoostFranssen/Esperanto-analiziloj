@@ -1,6 +1,11 @@
 package nl.sogyo.esperanto.domain.vortanalizilo;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Comparator;
 
 import org.junit.jupiter.api.Test;
 
@@ -308,5 +313,52 @@ class AnalizaĵoTest {
 		Analizaĵo trans_ir_i = transiri.preniAnalizaĵonLaŭDividaĈeno("trans|ir|i");
 		
 		assertTrue(trans_ir_i.kontroliTrajton(Trajto.VERBO_TRANSITIVA));
+	}
+	
+	@Test
+	public void eniNeEstasTransitiva() {
+		Vorto transi = new Vorto("transi");
+		
+		Analizaĵo trans_i = transi.preniAnalizaĵonLaŭDividaĈeno("trans|i");
+		
+		assertFalse(trans_i.kontroliTrajton(Trajto.VERBO_TRANSITIVA));
+	}
+	
+	@Test
+	public void iriEstasNetransitiva() {
+		Vorto iri = new Vorto("iri");
+		
+		Analizaĵo ir_i = iri.preniAnalizaĵonLaŭDividaĈeno("ir|i");
+		
+		assertTrue(ir_i.kontroliTrajton(Trajto.VERBO_NETRANSITIVA));
+	}
+	
+	@Test
+	public void sciiĝiEstasNetransitiva() {
+		Vorto sciiĝi = new Vorto("sciiĝi");
+		
+		Analizaĵo sci_iĝ_i = sciiĝi.preniAnalizaĵonLaŭDividaĈeno("sci|iĝ|i");
+		
+		assertTrue(sci_iĝ_i.kontroliTrajton(Trajto.VERBO_NETRANSITIVA));
+	}
+	
+	@Test
+	public void paŝigiNeEstasNetransitiva() {
+		Vorto paŝigi = new Vorto("paŝigi");
+		
+		Analizaĵo paŝ_ig_i = paŝigi.preniAnalizaĵonLaŭDividaĈeno("paŝ|ig|i");
+		
+		assertFalse(paŝ_ig_i.kontroliTrajton(Trajto.VERBO_NETRANSITIVA));
+	}
+	
+	@Test
+	public void re_al_iĝ_iEstasMalpliAltaOlReal_iĝ_i() {
+		Vorto realiĝi = new Vorto("realiĝi");
+		
+		Analizaĵo re_al_iĝ_i = realiĝi.preniAnalizaĵonLaŭDividaĈeno("re|al|iĝ|i");
+		Analizaĵo real_iĝ_i = realiĝi.preniAnalizaĵonLaŭDividaĈeno("real|iĝ|i");
+		Comparator<Analizaĵo> komparilo = Analizaĵo.getNekonsekvencaKomparilo();
+		
+		assertTrue(komparilo.compare(real_iĝ_i, re_al_iĝ_i) < 0);
 	}
 }
