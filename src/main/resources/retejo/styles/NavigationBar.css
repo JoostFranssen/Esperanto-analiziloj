@@ -1,0 +1,21 @@
+.navigation-bar {
+    background-color: white;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    line-height: 2em;
+    text-align: center;
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+}
+
+.navigation-button {
+    text-align: center;
+    font-size: 24px;
+    height: 100%;
+}
+
+.bannericon {
+    height: 100%;
+}

@@ -60,6 +60,7 @@ public class Database {
 				connection = DriverManager.getConnection("jdbc:hsqldb:mem:" + NAME, "SA", "");
 				type = "mem";
 				createDatabaseFromReVoFiles();
+				persistDatabaseToFile();
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -144,14 +145,18 @@ public class Database {
 	 */
 	public void closeConnection() {
 		try {
-			if(!DATABASE_FOLDER.exists()) {
-				DATABASE_FOLDER.mkdirs();
-    			Statement statement = connection.createStatement();
-    			statement.execute(String.format("SCRIPT '%s';", DATABASE_LOCATION + ".script"));
-			}
+			persistDatabaseToFile();
 			connection.close();
 		} catch(SQLException e) {
 			e.printStackTrace();
+		}
+	}
+
+	private void persistDatabaseToFile() throws SQLException {
+		if(!DATABASE_FOLDER.exists()) {
+			DATABASE_FOLDER.mkdirs();
+			Statement statement = connection.createStatement();
+			statement.execute(String.format("SCRIPT '%s';", DATABASE_LOCATION + ".script"));
 		}
 	}
 	

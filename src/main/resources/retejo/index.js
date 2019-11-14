@@ -9,6 +9,6 @@ function snakeCaseToTitleCase(string) {
 // ========================================
 
 ReactDOM.render(
-    <VortAnalizilo />,
-    document.getElementById('radiko')
+    <Main />,
+    document.getElementById('root')
 );

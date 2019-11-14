@@ -4,7 +4,7 @@ class VortAnalizilo extends React.Component {
         this.state = {
             analizaĵoj: null,
             vorto: null,
-            errorMessage: null,
+            errorMessage: "",
             loading: false,
         }
     }
@@ -65,18 +65,19 @@ class VortAnalizilo extends React.Component {
     async traktiKonfirmon(event) {
         event.preventDefault();
 
+        let input = document.getElementById("vort-input");
+
         let newState = Object.assign({}, this.state);
         newState.loading = true;
         this.setState(newState);
 
-        let enmeto = document.getElementById("vort-input");
-        let response = await fetch(`api/vortanalizo?vorto=${enmeto.value}`);
+        let response = await fetch(`api/vortanalizo?vorto=${input.value}`);
         let result = await response.json();
 
         this.setState({
             analizaĵoj: result.analizaĵoj,
-            vorto: enmeto.value,
-            errorMessage: null,
+            vorto: input.value,
+            errorMessage: result.analizaĵoj.length == 0 ? "Neniuj rezultoj montreblaj" : "",
             loading: false,
         });
     }
