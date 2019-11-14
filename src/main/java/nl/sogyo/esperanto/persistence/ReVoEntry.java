@@ -9,21 +9,21 @@ import nl.sogyo.esperanto.API.VorterSpeco;
  * @author jfranssen
  *
  */
-public class ReVoEnigo implements IVortero {
+public class ReVoEntry implements IVortero {
 	private String vortero;
 	private VorterSpeco vorterSpeco;
 	private Transitiveco transitiveco;
 	
-	public ReVoEnigo() {
+	public ReVoEntry() {
 		this("", null);
 	}
-	public ReVoEnigo(String vortero) {
+	public ReVoEntry(String vortero) {
 		this(vortero, null);
 	}
-	public ReVoEnigo(String vortero, VorterSpeco vorterSpeco) {
+	public ReVoEntry(String vortero, VorterSpeco vorterSpeco) {
 		this(vortero, vorterSpeco, Transitiveco.NEDIFINITA);
 	}
-	public ReVoEnigo(String vortero, VorterSpeco vorterSpeco, Transitiveco transitiveco) {
+	public ReVoEntry(String vortero, VorterSpeco vorterSpeco, Transitiveco transitiveco) {
 		this.vortero = vortero;
 		this.vorterSpeco = vorterSpeco;
 		this.transitiveco = transitiveco;
@@ -76,7 +76,7 @@ public class ReVoEnigo implements IVortero {
 		if(getClass() != obj.getClass()) {
 			return false;
 		}
-		ReVoEnigo other = (ReVoEnigo)obj;
+		ReVoEntry other = (ReVoEntry)obj;
 		if(transitiveco != other.transitiveco) {
 			return false;
 		}

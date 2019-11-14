@@ -35,8 +35,8 @@ public class Vortero implements IVortero {
 	private VorterSpeco vorterSpeco;
 	private Transitiveco transitiveco;
 	
-	public Vortero(IVortero enigo) {
-		this(enigo.getVortero(), enigo.getVorterSpeco(), enigo.getTransitiveco());
+	public Vortero(IVortero entry) {
+		this(entry.getVortero(), entry.getVorterSpeco(), entry.getTransitiveco());
 	}
 	public Vortero(String vortero, VorterSpeco vorterSpeco, Transitiveco transitiveco) {
 		this.vortero = vortero;

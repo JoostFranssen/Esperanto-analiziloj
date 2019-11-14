@@ -11,21 +11,21 @@ class VortoTest {
 	public void laHavasUnuAnalizaĵon() {
 		Vorto la = new Vorto("la");
 		
-		assertEquals(1, la.getEblajAnalizaĵoj().size());
+		assertEquals(1, la.getPossibleAnalizaĵoj().size());
 	}
 	
 	@Test
 	public void belojnHavasUnuAnalizaĵon() {
 		Vorto belojn = new Vorto("belojn");
 		
-		assertEquals(1, belojn.getEblajAnalizaĵoj().size());
+		assertEquals(1, belojn.getPossibleAnalizaĵoj().size());
 	}
 	
 	@Test
 	public void preniAnalizaĵonLaŭDividaĈeno() {
 		Vorto batato = new Vorto("batato");
 		
-		Analizaĵo bat_at_o = batato.preniAnalizaĵonLaŭDividaĈeno("bat|at|o");
+		Analizaĵo bat_at_o = batato.getAnalizaĵoByString("bat|at|o");
 		List<Vortero> vorteroj = bat_at_o.getVorteroj();
 		
 		assertEquals("bat", vorteroj.get(0).getVortero());

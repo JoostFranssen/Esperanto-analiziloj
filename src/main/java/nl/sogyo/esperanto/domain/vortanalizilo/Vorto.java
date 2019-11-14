@@ -15,7 +15,7 @@ import nl.sogyo.esperanto.API.VorterSpeco;
  */
 public class Vorto {
 	private String vorto;
-	private Set<Analizaĵo> eblajAnalizaĵoj;
+	private Set<Analizaĵo> possibleAnalizaĵoj;
 	
 	/**
 	 * Iniciatas novan vorton, analizas ĝin por trovi {@code Analizaĵo}jn, kiuj poste estas filtritaj laŭ ĝia valideco.
@@ -24,35 +24,35 @@ public class Vorto {
 	public Vorto(String vorto) {
 		this(vorto, true);
 	}
-	public Vorto(String vorto, boolean filtriNevalidajnAnalizaĵojn) {
+	public Vorto(String vorto, boolean filterInvalidAnalizaĵoj) {
 		this.vorto = vorto;
-		eblajAnalizaĵoj = new HashSet<>();
+		possibleAnalizaĵoj = new HashSet<>();
 		
-		analiziĝi();
-		if(filtriNevalidajnAnalizaĵojn) {
-			filtriNevalidajnAnalizaĵojn();
+		analyze();
+		if(filterInvalidAnalizaĵoj) {
+			filterInvalidAnalizaĵoj();
 		}
 	}
 	
 	/**
 	 * Iniciatas la aron da {@code Analizaĵo}j.
 	 */
-	private void analiziĝi() {
+	private void analyze() {
 		if(vorto.isEmpty()) {
-			eblajAnalizaĵoj.add(new Analizaĵo());
+			possibleAnalizaĵoj.add(new Analizaĵo());
 		}
 		
 		for(int i = vorto.length() - 1; i >= 0; i--) {
-			String forprenaĵo = vorto.substring(i);
-			List<Vortero> rezulto = DatumbazKomunikilo.preniElDatumbazo(forprenaĵo, v -> v.getVorterSpeco() != VorterSpeco.LITERO);
-			if(!rezulto.isEmpty()) {
+			String takenPart = vorto.substring(i);
+			List<Vortero> result = DatabaseCommunicator.getFromDatabase(takenPart, v -> v.getVorterSpeco() != VorterSpeco.LITERO);
+			if(!result.isEmpty()) {
 				Vorto subVorto = new Vorto(vorto.substring(0, i), false);
-				subVorto.analiziĝi();
-				for(Analizaĵo analizaĵo : subVorto.eblajAnalizaĵoj) {
-					for(Vortero v : rezulto) {
-						Analizaĵo novaAnalizaĵo = new Analizaĵo(analizaĵo);
-						novaAnalizaĵo.aldoniVorteron(v);
-						eblajAnalizaĵoj.add(novaAnalizaĵo);
+				subVorto.analyze();
+				for(Analizaĵo analizaĵo : subVorto.possibleAnalizaĵoj) {
+					for(Vortero v : result) {
+						Analizaĵo newAnalizaĵo = new Analizaĵo(analizaĵo);
+						newAnalizaĵo.addVortero(v);
+						possibleAnalizaĵoj.add(newAnalizaĵo);
 					}
 				}
 			}
@@ -62,32 +62,32 @@ public class Vorto {
 	/**
 	 * Filtras la {@code Analizaĵo}jn laŭ valideco.
 	 */
-	private void filtriNevalidajnAnalizaĵojn() {
-		eblajAnalizaĵoj.removeIf(a -> !a.estasValida());
+	private void filterInvalidAnalizaĵoj() {
+		possibleAnalizaĵoj.removeIf(a -> !a.isValid());
 	}
 	
 	public String getVorto() {
 		return vorto;
 	}
 
-	public Set<Analizaĵo> getEblajAnalizaĵoj() {
-		return new HashSet<>(eblajAnalizaĵoj);
+	public Set<Analizaĵo> getPossibleAnalizaĵoj() {
+		return new HashSet<>(possibleAnalizaĵoj);
 	}
 	
-	public List<Analizaĵo> getEblajAnalizaĵojSortitaj() {
-		ArrayList<Analizaĵo> eblajAnalizaĵojListo = new ArrayList<>(eblajAnalizaĵoj);
-		Collections.sort(eblajAnalizaĵojListo, Analizaĵo.getNekonsekvencaKomparilo());
-		return eblajAnalizaĵojListo;
+	public List<Analizaĵo> getPossibleAnalizaĵojSorted() {
+		ArrayList<Analizaĵo> possibleAnalizaĵojList = new ArrayList<>(possibleAnalizaĵoj);
+		Collections.sort(possibleAnalizaĵojList, Analizaĵo.getComparator());
+		return possibleAnalizaĵojList;
 	}
 	
 	/**
 	 * Prenas unu el la eblaj {@code Analizaĵo}j laŭ la donita ŝablono. Redonas {@code null}, se neniu estas trovata.
-	 * @param dividaĈeno {@code String}-objekto, kiu reprezentas la vort-dividon de la dezirata {@code Analizaĵo}. Vertikala streko funkciu por la divido; ekzemple: "esper|ant|o"
+	 * @param string {@code String}-objekto, kiu reprezentas la vort-dividon de la dezirata {@code Analizaĵo}. Vertikala streko funkciu por la divido; ekzemple: "esper|ant|o"
 	 * @return unu el la eblaj {@code Analizaĵo}j, kiu kongruas kun {@code dividaĈeno}
 	 */
-	public Analizaĵo preniAnalizaĵonLaŭDividaĈeno(String dividaĈeno) {
-		for(Analizaĵo analizaĵo : eblajAnalizaĵoj) {
-			if(analizaĵo.toString().equals(dividaĈeno)) {
+	public Analizaĵo getAnalizaĵoByString(String string) {
+		for(Analizaĵo analizaĵo : possibleAnalizaĵoj) {
+			if(analizaĵo.toString().equals(string)) {
 				return analizaĵo;
 			}
 		}

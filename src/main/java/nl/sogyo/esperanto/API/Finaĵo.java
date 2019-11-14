@@ -8,12 +8,12 @@ package nl.sogyo.esperanto.API;
 public enum Finaĵo {
 	VERBO_INFINITIVO("i");
 	
-	private String valoro;
-	private Finaĵo(String valoro) {
-		this.valoro = valoro;
+	private String value;
+	private Finaĵo(String value) {
+		this.value = value;
 	}
 	
-	public String getValoro() {
-		return valoro;
+	public String getValue() {
+		return value;
 	}
 }

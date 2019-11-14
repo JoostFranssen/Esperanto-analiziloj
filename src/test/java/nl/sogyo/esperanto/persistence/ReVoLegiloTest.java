@@ -36,206 +36,206 @@ class ReVoLegiloTest {
 	private static final String ZZZ = LOKA_PADO + "zzz.xml";
 	private static final String POST = LOKA_PADO + "post.xml";
 	
-	private static ReVoLegilo aŭtoLegilo, sciiLegilo, fumoLegilo, homoLegilo, krediLegilo, perLegilo, ĉiaLegilo, kajLegilo, keLegilo, aĉLegilo, reLegilo, laLegilo, aLegilo, liLegilo, a1Legilo, aŭLegilo, ahaLegilo, hodiaŭLegilo, eĉLegilo, holaLegilo, zzzLegilo, postLegilo;
+	private static ReVoReader aŭtoLegilo, sciiLegilo, fumoLegilo, homoLegilo, krediLegilo, perLegilo, ĉiaLegilo, kajLegilo, keLegilo, aĉLegilo, reLegilo, laLegilo, aLegilo, liLegilo, a1Legilo, aŭLegilo, ahaLegilo, hodiaŭLegilo, eĉLegilo, holaLegilo, zzzLegilo, postLegilo;
 	
 	@BeforeAll
 	public static void iniciato() {
-		aŭtoLegilo = new ReVoLegilo(AŬTO);
-		sciiLegilo = new ReVoLegilo(SCII);
-		fumoLegilo = new ReVoLegilo(FUMO);
-		homoLegilo = new ReVoLegilo(HOMO);
-		krediLegilo = new ReVoLegilo(KREDI);
-		perLegilo = new ReVoLegilo(PER);
-		ĉiaLegilo = new ReVoLegilo(ĈIA);
-		kajLegilo = new ReVoLegilo(KAJ);
-		keLegilo = new ReVoLegilo(KE);
-		aĉLegilo = new ReVoLegilo(AĈ);
-		reLegilo = new ReVoLegilo(RE);
-		laLegilo = new ReVoLegilo(LA);
-		aLegilo = new ReVoLegilo(A);
-		liLegilo = new ReVoLegilo(LI);
-		a1Legilo = new ReVoLegilo(A1);
-		aŭLegilo = new ReVoLegilo(AŬ);
-		ahaLegilo = new ReVoLegilo(AHA);
-		hodiaŭLegilo = new ReVoLegilo(HODIAŬ);
-		eĉLegilo = new ReVoLegilo(EĈ);
-		holaLegilo = new ReVoLegilo(HOLA);
-		zzzLegilo = new ReVoLegilo(ZZZ);
-		postLegilo = new ReVoLegilo(POST);
+		aŭtoLegilo = new ReVoReader(AŬTO);
+		sciiLegilo = new ReVoReader(SCII);
+		fumoLegilo = new ReVoReader(FUMO);
+		homoLegilo = new ReVoReader(HOMO);
+		krediLegilo = new ReVoReader(KREDI);
+		perLegilo = new ReVoReader(PER);
+		ĉiaLegilo = new ReVoReader(ĈIA);
+		kajLegilo = new ReVoReader(KAJ);
+		keLegilo = new ReVoReader(KE);
+		aĉLegilo = new ReVoReader(AĈ);
+		reLegilo = new ReVoReader(RE);
+		laLegilo = new ReVoReader(LA);
+		aLegilo = new ReVoReader(A);
+		liLegilo = new ReVoReader(LI);
+		a1Legilo = new ReVoReader(A1);
+		aŭLegilo = new ReVoReader(AŬ);
+		ahaLegilo = new ReVoReader(AHA);
+		hodiaŭLegilo = new ReVoReader(HODIAŬ);
+		eĉLegilo = new ReVoReader(EĈ);
+		holaLegilo = new ReVoReader(HOLA);
+		zzzLegilo = new ReVoReader(ZZZ);
+		postLegilo = new ReVoReader(POST);
 	}
 	
 	@Test
 	public void aŭtoHavasĜustanRadikon() {
-		ReVoEnigo enigo = aŭtoLegilo.getEnigo();
+		ReVoEntry enigo = aŭtoLegilo.getEnigo();
 		
 		assertEquals("aŭt", enigo.getVortero());
 	}
 	
 	@Test
 	public void aŭtoEstasRadiko() {
-		ReVoEnigo enigo = aŭtoLegilo.getEnigo();
+		ReVoEntry enigo = aŭtoLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.RADIKO, enigo.getVorterSpeco());
 	}
 	
 	@Test
 	public void aŭtiEstasNetransitiva() {
-		ReVoEnigo enigo = aŭtoLegilo.getEnigo();
+		ReVoEntry enigo = aŭtoLegilo.getEnigo();
 		
 		assertEquals(Transitiveco.NETRANSITIVA, enigo.getTransitiveco());
 	}
 	
 	@Test
 	public void legiloFunkciasPerDosiero() {
-		ReVoLegilo legilo = new ReVoLegilo(new File(AŬTO));
-		ReVoEnigo enigo = legilo.getEnigo();
+		ReVoReader legilo = new ReVoReader(new File(AŬTO));
+		ReVoEntry enigo = legilo.getEnigo();
 		
 		assertEquals(aŭtoLegilo.getEnigo(), enigo);
 	}
 	
 	@Test
 	public void sciiEstasTransitiva() {
-		ReVoEnigo enigo = sciiLegilo.getEnigo();
+		ReVoEntry enigo = sciiLegilo.getEnigo();
 		
 		assertEquals(Transitiveco.TRANSITIVA, enigo.getTransitiveco());
 	}
 	
 	@Test //testas, ĉu trovi kaj [tr] kaj [ntr] donas ĝustan transitivecon
 	public void fumiEstasKajTransitivaKajNetransitiva() {
-		ReVoEnigo enigo = fumoLegilo.getEnigo();
+		ReVoEntry enigo = fumoLegilo.getEnigo();
 		
 		assertEquals(Transitiveco.AMBAŬ, enigo.getTransitiveco());
 	}
 	
 	@Test
 	public void homoTransitivecoEstasNedifinita() {
-		ReVoEnigo enigo = homoLegilo.getEnigo();
+		ReVoEntry enigo = homoLegilo.getEnigo();
 		
 		assertEquals(Transitiveco.NEDIFINITA, enigo.getTransitiveco());
 	}
 	
 	@Test //testas, ĉu la indikilo [x] donas ĝustan transitivecon
 	public void krediEstasKajTransitivaKajNeTransitiva() {
-		ReVoEnigo enigo = krediLegilo.getEnigo();
+		ReVoEntry enigo = krediLegilo.getEnigo();
 		
 		assertEquals(Transitiveco.AMBAŬ, enigo.getTransitiveco());
 	}
 	
 	@Test
 	public void perEstasPrepozicio() {
-		ReVoEnigo enigo = perLegilo.getEnigo();
+		ReVoEntry enigo = perLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.PREPOZICIO, enigo.getVorterSpeco());
 	}
 	
 	@Test
 	public void ĉiaEstasKorelativo() {
-		ReVoEnigo enigo = ĉiaLegilo.getEnigo();
+		ReVoEntry enigo = ĉiaLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.KORELATIVO, enigo.getVorterSpeco());
 	}
 	
 	@Test
 	public void kajEstasKonjunkcio() {
-		ReVoEnigo enigo = kajLegilo.getEnigo();
+		ReVoEntry enigo = kajLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.KONJUNKCIO, enigo.getVorterSpeco());
 	}
 	
 	@Test
 	public void keEstasKonjunkcio() {
-		ReVoEnigo enigo = keLegilo.getEnigo();
+		ReVoEntry enigo = keLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.KONJUNKCIO, enigo.getVorterSpeco());
 	}
 	
 	@Test
 	public void aĉEstasSufikso() {
-		ReVoEnigo enigo = aĉLegilo.getEnigo();
+		ReVoEntry enigo = aĉLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.SUFIKSO, enigo.getVorterSpeco());
 	}
 	
 	@Test
 	public void reEstasPrefikso() {
-		ReVoEnigo enigo = reLegilo.getEnigo();
+		ReVoEntry enigo = reLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.PREFIKSO, enigo.getVorterSpeco());
 	}
 	
 	@Test
 	public void laEstasArtikolo() {
-		ReVoEnigo enigo = laLegilo.getEnigo();
+		ReVoEntry enigo = laLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.ARTIKOLO, enigo.getVorterSpeco());
 	}
 	
 	@Test
 	public void aEstasFinaĵo() {
-		ReVoEnigo enigo = aLegilo.getEnigo();
+		ReVoEntry enigo = aLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.FINAĴO, enigo.getVorterSpeco());
 	}
 	
 	@Test
 	public void liEstasPronomo() {
-		ReVoEnigo enigo = liLegilo.getEnigo();
+		ReVoEntry enigo = liLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.PRONOMO, enigo.getVorterSpeco());
 	}
 	
 	@Test
 	public void a1EstasLitero() {
-		ReVoEnigo enigo = a1Legilo.getEnigo();
+		ReVoEntry enigo = a1Legilo.getEnigo();
 		
 		assertEquals(VorterSpeco.LITERO, enigo.getVorterSpeco());
 	}
 	
 	@Test
 	public void aŭEstasKonjunkcioNeAŭVorto() {
-		ReVoEnigo enigo = aŭLegilo.getEnigo();
+		ReVoEntry enigo = aŭLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.KONJUNKCIO, enigo.getVorterSpeco());
 	}
 	
 	@Test
 	public void ahaEstasInterjekcio() {
-		ReVoEnigo enigo = ahaLegilo.getEnigo();
+		ReVoEntry enigo = ahaLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.INTERJEKCIO, enigo.getVorterSpeco());
 	}
 	
 	@Test
 	public void hodiaŭEstasAdverbo() {
-		ReVoEnigo enigo = hodiaŭLegilo.getEnigo();
+		ReVoEntry enigo = hodiaŭLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.ADVERBO, enigo.getVorterSpeco());
 	}
 	
 	@Test
 	public void eĉEstasAdverbo() {
-		ReVoEnigo enigo = eĉLegilo.getEnigo();
+		ReVoEntry enigo = eĉLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.ADVERBO, enigo.getVorterSpeco());
 	}
 	
 	@Test
 	public void holaEstasInterjekcio() {
-		ReVoEnigo enigo = holaLegilo.getEnigo();
+		ReVoEntry enigo = holaLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.INTERJEKCIO, enigo.getVorterSpeco());
 	}
 	
 	@Test
 	public void zzzEstasSonimito() {
-		ReVoEnigo enigo = zzzLegilo.getEnigo();
+		ReVoEntry enigo = zzzLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.SONIMITO, enigo.getVorterSpeco());
 	}
 	
 	@Test
 	public void postEstasPrepozicio() {
-		ReVoEnigo enigo = postLegilo.getEnigo();
+		ReVoEntry enigo = postLegilo.getEnigo();
 		
 		assertEquals(VorterSpeco.PREPOZICIO, enigo.getVorterSpeco());
 	}

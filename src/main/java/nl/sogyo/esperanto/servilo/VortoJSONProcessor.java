@@ -10,8 +10,8 @@ import nl.sogyo.esperanto.API.Trajto;
 import nl.sogyo.esperanto.domain.vortanalizilo.Analizaĵo;
 import nl.sogyo.esperanto.domain.vortanalizilo.Vorto;
 
-public class VortoJSONProcezilo {
-	public static JSONObject konvertiVorteronAlJSON(IVortero vortero) {
+public class VortoJSONProcessor {
+	public static JSONObject convertVorteroToJSON(IVortero vortero) {
 		JSONObject json = new JSONObject();
 		
 		json.put("vortero", vortero.getVortero());
@@ -21,14 +21,14 @@ public class VortoJSONProcezilo {
 		return json;
 	}
 	
-	public static JSONObject konvertiAnalizaĵonAlJSON(Analizaĵo analizaĵo) {
+	public static JSONObject convertAnalizaĵoToJSON(Analizaĵo analizaĵo) {
 		JSONObject json = new JSONObject();
 		
-		json.put("vorteroj", analizaĵo.getVorteroj().stream().map(VortoJSONProcezilo::konvertiVorteronAlJSON).toArray());
+		json.put("vorteroj", analizaĵo.getVorteroj().stream().map(VortoJSONProcessor::convertVorteroToJSON).toArray());
 		
 		List<Trajto> trajtoj = new ArrayList<>();
 		for(Trajto trajto : Trajto.values()) {
-			if(analizaĵo.kontroliTrajton(trajto)) {
+			if(analizaĵo.checkTrajto(trajto)) {
 				trajtoj.add(trajto);
 			}
 		}
@@ -38,12 +38,12 @@ public class VortoJSONProcezilo {
 		return json;
 	}
 	
-	public static JSONObject konvertiVortonAlJSON(Vorto vorto) {
+	public static JSONObject convertVortoToJSON(Vorto vorto) {
 		JSONObject json = new JSONObject();
 		
 		json.put("vorto", vorto.getVorto());
 		
-		json.put("analizaĵoj", vorto.getEblajAnalizaĵojSortitaj().stream().map(VortoJSONProcezilo::konvertiAnalizaĵonAlJSON).toArray());
+		json.put("analizaĵoj", vorto.getPossibleAnalizaĵojSorted().stream().map(VortoJSONProcessor::convertAnalizaĵoToJSON).toArray());
 		
 		return json;
 	}

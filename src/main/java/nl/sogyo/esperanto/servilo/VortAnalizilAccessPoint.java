@@ -18,14 +18,14 @@ import nl.sogyo.esperanto.domain.vortanalizilo.Vorto;
  *
  */
 @Path("vortanalizo")
-public class VortAnalizAlirejo {
+public class VortAnalizilAccessPoint {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response akiriVortAnalizon(@QueryParam("vorto") String vortĈeno) {
-		Vorto vorto = new Vorto(vortĈeno);
+	public Response getVortAnalysis(@QueryParam("vorto") String string) {
+		Vorto vorto = new Vorto(string);
 		
-		JSONObject respondaTeksto = VortoJSONProcezilo.konvertiVortonAlJSON(vorto);
+		JSONObject responseJSON = VortoJSONProcessor.convertVortoToJSON(vorto);
 		
-		return Response.status(HttpStatus.OK_200).entity(respondaTeksto.toString()).build();
+		return Response.status(HttpStatus.OK_200).entity(responseJSON.toString()).build();
 	}
 }
