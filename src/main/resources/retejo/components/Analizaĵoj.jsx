@@ -2,52 +2,52 @@ class Analizaĵoj extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            elektitaIndico: null,
-            komponantoj: null,
+            selectedIndex: null,
+            components: null,
         }
     }
 
     render() {
         return (
             <div className="vort-analizaĵujo">
-                {this.kreiKomponantojn()}
+                {this.createComponents()}
             </div>
         );
     }
 
-    kreiKomponantojn() {
-        let komponantListo = [];
+    createComponents() {
+        let componentList = [];
         if(this.props.analizaĵoj) {
             for(let i = 0; i < this.props.analizaĵoj.length; i++) {
-                komponantListo.push(
+                componentList.push(
                     <Analizaĵo
                         analizaĵo={this.props.analizaĵoj[i]}
-                        elektita={this.state.elektitaIndico === i}
-                        onClick={() => this.elektiKomponanton(i)}
+                        selected={this.state.selectedIndex === i}
+                        onClick={() => this.selectComponent(i)}
                     />
                 );
             }
         }
 
-        this.state.komponantoj = komponantListo;
+        this.state.components = componentList;
 
-        if(komponantListo.length > 0 && !this.state.elektitaIndico) {
-            this.elektiKomponanton(0);
+        if(componentList.length > 0 && !this.state.selectedIndex) {
+            this.selectComponent(0);
         }
 
-        return komponantListo;
+        return componentList;
     }
 
-    elektiKomponanton(indico) {
+    selectComponent(index) {
         let newState = Object.assign({}, this.state);
 
-        if(indico < 0 || !this.state.komponantoj || indico >= this.state.komponantoj.length) {
-            newState.elektitaIndico = null;
+        if(index < 0 || !this.state.components || index >= this.state.components.length) {
+            newState.selectedIndex = null;
         } else {
-            newState.elektitaIndico = indico;
+            newState.selectedIndex = index;
         }
 
-        if(this.state.elektitaIndico != indico) {
+        if(this.state.selectedIndex != index) {
             this.setState(newState);
         }
     }

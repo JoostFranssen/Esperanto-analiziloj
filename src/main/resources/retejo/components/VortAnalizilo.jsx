@@ -4,8 +4,8 @@ class VortAnalizilo extends React.Component {
         this.state = {
             analizaĵoj: null,
             vorto: null,
-            validMesaĝo: null,
-            ŝargante: false,
+            errorMessage: null,
+            loading: false,
         }
     }
 
@@ -19,13 +19,13 @@ class VortAnalizilo extends React.Component {
                     autocomplete="off"
                     novalidate
                 >
-                    <label id="vorto-etikedo" for="vort-enmeto">
+                    <label id="vort-label" for="vort-input">
                         Analizota vorto
                     </label>
                     <input
                         type="text"
                         name="vorto"
-                        id="vort-enmeto"
+                        id="vort-input"
                         autocomplete="off"
                         autoCapitalize="off"
                         spellcheck="false"
@@ -37,12 +37,12 @@ class VortAnalizilo extends React.Component {
                                 let newState = Object.assign({}, this.state);
                                 if(!event.target.validity.valid) {
                                     if(/\s/.test(event.target.value)) {
-                                        newState.validMesaĝo = "Enmetu ekzakte unu vorton";
+                                        newState.errorMessage = "Enmetu ekzakte unu vorton";
                                     } else {
-                                        newState.validMesaĝo = "Uzu nur Esperantajn literojn"
+                                        newState.errorMessage = "Uzu nur Esperantajn literojn"
                                     }
                                 } else {
-                                    newState.validMesaĝo = "";
+                                    newState.errorMessage = "";
                                 }
                                 this.setState(newState);
                             }
@@ -52,10 +52,10 @@ class VortAnalizilo extends React.Component {
                     <input
                         type="submit"
                         value="Analizi"
-                        id="konfirm-butono"
+                        id="confirm-button"
                     />
-                    <span id="vort-validaĵo">{this.state.validMesaĝo}</span>
-                    <span id="vort-ŝargikono" style={{display: this.state.ŝargante ? "block" : "none"}}></span>
+                    <span id="vort-error-message">{this.state.errorMessage}</span>
+                    <span id="vort-loading" style={{display: this.state.loading ? "block" : "none"}}></span>
                 </form>
                 {this.bildigiAnalizaĵojn()}
             </div>
@@ -66,18 +66,18 @@ class VortAnalizilo extends React.Component {
         event.preventDefault();
 
         let newState = Object.assign({}, this.state);
-        newState.ŝargante = true;
+        newState.loading = true;
         this.setState(newState);
 
-        let enmeto = document.getElementById("vort-enmeto");
+        let enmeto = document.getElementById("vort-input");
         let response = await fetch(`api/vortanalizo?vorto=${enmeto.value}`);
         let result = await response.json();
 
         this.setState({
             analizaĵoj: result.analizaĵoj,
             vorto: enmeto.value,
-            validMesaĝo: null,
-            ŝargante: false,
+            errorMessage: null,
+            loading: false,
         });
     }
 

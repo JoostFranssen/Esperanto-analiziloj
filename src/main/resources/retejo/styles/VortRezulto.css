@@ -16,15 +16,15 @@
     border-bottom: 1px solid gray;
 }
 
-.elektita.vort-analizaĵingo {
+.selected.vort-analizaĵingo {
     font-size: 36px;
 }
 
-.vort-analizaĵingo:not(.elektita) {
+.vort-analizaĵingo:not(.selected) {
     cursor: pointer;
 }
 
-.elektita > .vort-analizaĵeringo:hover {
+.selected > .vort-analizaĵeringo:hover {
     text-decoration: underline;
 }
 
@@ -45,7 +45,7 @@
     box-shadow: 2px 2px 1px gray;
 }
 
-.elektita > [tooltip]:hover:before {
+.selected > [tooltip]:hover:before {
     opacity: 1;
     background: white;
     border: 1px solid black;

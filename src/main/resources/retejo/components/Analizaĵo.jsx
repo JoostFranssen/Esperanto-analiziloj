@@ -5,27 +5,23 @@ class Analizaĵo extends React.Component {
 
     render() {
         let analizaĵeroj = this.props.analizaĵo.vorteroj;
-        let komponentListo = [];
+        let componentList = [];
         if(analizaĵeroj) {
             for(const analizaĵero of analizaĵeroj) {
-                komponentListo.push(<b>|</b>);
-                komponentListo.push(
+                componentList.push(<b>|</b>);
+                componentList.push(
                     <Analizaĵero analizaĵero={analizaĵero} />
                 )
             }
         }
         return (
             <div
-                className={["vort-analizaĵingo", this.props.elektita ? "elektita" : ""].join(" ")}
+                className={["vort-analizaĵingo", this.props.selected ? "selected" : ""].join(" ")}
                 onClick={this.props.onClick}
             >
-                {komponentListo.slice(1)}
-                {this.props.elektita ? <VortTrajtoj analizaĵo={this.props.analizaĵo}/> : <span></span> }
+                {componentList.slice(1)}
+                {this.props.selected ? <VortTrajtoj analizaĵo={this.props.analizaĵo}/> : <span></span> }
             </div>
         );
-    }
-
-    disigiVorton() {
-        return (this.props.analizaĵo.vorteroj.map(v => v.vortero));
     }
 }

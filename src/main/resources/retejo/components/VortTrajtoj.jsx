@@ -4,19 +4,19 @@ class VortTrajtoj extends React.Component {
     }
 
     render() {
-        let listoDeKomponantoj = [];
+        let componentList = [];
         if(this.props.analizaĵo) {
             for(const trajto of this.props.analizaĵo.trajtoj) {
-                listoDeKomponantoj.push(
-                    <li className="vorta-trajto">{this.formatiTrajton(trajto)}</li>
+                componentList.push(
+                    <li className="vorta-trajto">{this.formatTrajto(trajto)}</li>
                 );
             }
         }
 
-        if(listoDeKomponantoj.length > 0) {
+        if(componentList.length > 0) {
             return (
                 <ul className="vortaj-trajtoj">
-                    {listoDeKomponantoj}
+                    {componentList}
                 </ul>
             );
         } else {
@@ -24,7 +24,7 @@ class VortTrajtoj extends React.Component {
         }
     }
 
-    formatiTrajton(trajto) {
+    formatTrajto(trajto) {
         let trajtPartoj = snakeCaseToTitleCase(trajto).split(" ");
         return trajtPartoj[trajtPartoj.length - 1];
     }
