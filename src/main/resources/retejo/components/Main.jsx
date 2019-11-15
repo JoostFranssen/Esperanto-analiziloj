@@ -13,6 +13,9 @@ class Main extends React.Component {
                 <div style={this.displayOnIndex(0)}>
                     <VortAnalizilo />
                 </div>
+                <div style={this.displayOnIndex(1)}>
+                    <FrazAnalizilo />
+                </div>
             </div>
         );
     }
