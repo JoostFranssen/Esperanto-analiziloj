@@ -6,7 +6,7 @@ body {
     text-align: center;
 }
 
-#vort-analizilo-form {
+.analizilo-form {
     display: grid;
     grid-template-columns: 1fr auto;
     grid-column-gap: 0px;
@@ -15,25 +15,25 @@ body {
     margin: 2em 10%;
 }
 
-#vort-label {
+.analizilo-form .input-label {
     text-align: left;
     font-size: 24px;
     font-weight: bold;
     grid-area: 1 / 1 / 2 / 3;
 }
 
-#vort-input {
+.analizilo-form .input {
     font-size: 24px;
     grid-area: 2 / 1 / 3 / 2;
     min-width: 0px;
 }
 
-#confirm-button {
+.analizilo-form .confirm-button {
     font-size: 24px;
     grid-area: 2 / 2 / 3 / 3;
 }
 
-#vort-error-message {
+.analizilo-form .error-message {
     font-size: 20px;
     color: crimson;
     grid-area: 3 / 1 / 4 / 2;
@@ -41,7 +41,7 @@ body {
     height: 0;
 }
 
-#vort-loading {
+.analizilo-form .loading {
     grid-area: 2 / 1 / 3 / 2;
     text-align: right;
     justify-self: end;
