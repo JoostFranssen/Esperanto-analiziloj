@@ -13,12 +13,12 @@ class VortAnalizilo extends React.Component {
                 <h1>Vorto-Analizilo</h1>
                 <InputForm
                     handleConfirm={this.handleConfirm.bind(this)}
-                    title="Analizota vorto"
+                    label="Analizota vorto"
                     pattern="^((?=[a-zA-ZĉĈĝĜĥĤĵĴŝŜŭŬ])[^qQw-yW-Y])+$"
                     handleInvalidity={this.handleInvalidity}
                     errorMessageForNoResults="Neniuj rezultoj montreblaj"
                 />
-                {this.bildigiAnalizaĵojn()}
+                {this.renderAnalizaĵo()}
             </div>
         );
     }
@@ -43,7 +43,7 @@ class VortAnalizilo extends React.Component {
         }
     }
 
-    bildigiAnalizaĵojn() {
+    renderAnalizaĵo() {
         return <Analizaĵoj key={this.state.vorto} analizaĵoj={this.state.analizaĵoj}/>;
     }
 }

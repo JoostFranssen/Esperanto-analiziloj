@@ -3,7 +3,7 @@ class InputForm extends React.Component {
         super(props);
         /*
          * handleConfirm: redonu, ĉu rezultoj estis akiritaj
-         * title: titolo de la formularo
+         * label: etikedo de la formularo
          * pattern: ŝablono por valideco de la enmeto
          * handleInvalidity: se la enmeto estas nevalida, redonu la erarmesaĝon (en diversaj kazoj)
          * errorMessageForNoResults: la erarmesaĝo, kiam ne estis rezultoj
@@ -23,7 +23,7 @@ class InputForm extends React.Component {
                 novalidate
             >
                 <label className="input-label" for="input">
-                    {this.props.title}
+                    {this.props.label}
                 </label>
                 <input
                     type="text"
