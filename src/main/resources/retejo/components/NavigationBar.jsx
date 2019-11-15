@@ -13,6 +13,7 @@ class NavigationBar extends React.Component {
                 }
             ],
         }
+        props.passNewSelected(this.state.selectedIndex);
     }
 
     render() {
@@ -30,6 +31,9 @@ class NavigationBar extends React.Component {
         let newState = Object.assign({}, this.state);
         newState.selectedIndex = index;
         this.setState(newState);
+        if(this.props.passNewSelected) {
+            this.props.passNewSelected(index);
+        }
     }
 
     createComponents() {
@@ -50,7 +54,7 @@ class NavigationBar extends React.Component {
     componentDidMount() {
         let image = document.getElementById("icon");
         let newState = Object.assign({}, this.state);
-        newState.imageWidth = image.style.height;
+        newState.imageWidth = image.offsetHeight;
         this.setState(newState);
     }
 }
