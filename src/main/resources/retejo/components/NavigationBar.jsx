@@ -3,6 +3,15 @@ class NavigationBar extends React.Component {
         super(props);
         this.state = {
             imageWidth: 0,
+            selectedIndex: 0,
+            componentProps: [
+                {
+                    title: "Vort-Analizilo",
+                },
+                {
+                    title: "Fraz-Analizilo",
+                }
+            ],
         }
     }
 
@@ -17,29 +26,31 @@ class NavigationBar extends React.Component {
         );
     }
 
-    clickHandler(event) {
-        for(const component of this.state.componentList) {
-            event.target.state.selected = (component == event.target);
-        }
+    clickHandler(event, index) {
+        let newState = Object.assign({}, this.state);
+        newState.selectedIndex = index;
+        this.setState(newState);
     }
 
     createComponents() {
-        return [
-            <NavigationButton
-                onClick={this.clickHandler}
-                text="Vort-Analizilo"
-                selected={true}
-            />,
-            <NavigationButton
-                onClick={this.clickHandler}
-                text="Fraz-Analizilo"
-                selected={false}
-            />
-        ]
+        let componentList = [];
+        for(let i = 0; i < this.state.componentProps.length; i++) {
+            let prop = this.state.componentProps[i];
+            componentList.push(
+                <NavigationButton
+                    onClick={(event) => this.clickHandler(event, i)}
+                    text={prop.title}
+                    selected={i === this.state.selectedIndex}
+                />
+            );
+        }
+        return componentList;
     }
 
     componentDidMount() {
         let image = document.getElementById("icon");
-        this.setState({imageWidth: image.style.height});
+        let newState = Object.assign({}, this.state);
+        newState.imageWidth = image.style.height;
+        this.setState(newState);
     }
 }
