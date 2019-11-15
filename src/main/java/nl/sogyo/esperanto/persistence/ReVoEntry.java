@@ -73,23 +73,9 @@ public class ReVoEntry implements IVortero {
 		if(obj == null) {
 			return false;
 		}
-		if(getClass() != obj.getClass()) {
+		if(!(obj instanceof IVortero)) {
 			return false;
 		}
-		ReVoEntry other = (ReVoEntry)obj;
-		if(transitiveco != other.transitiveco) {
-			return false;
-		}
-		if(vorterSpeco != other.vorterSpeco) {
-			return false;
-		}
-		if(vortero == null) {
-			if(other.vortero != null) {
-				return false;
-			}
-		} else if(!vortero.equals(other.vortero)) {
-			return false;
-		}
-		return true;
+		return IVortero.equals(this, (IVortero)obj);
 	}
 }

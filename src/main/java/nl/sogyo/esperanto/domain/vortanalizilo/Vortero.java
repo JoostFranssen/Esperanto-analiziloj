@@ -15,22 +15,30 @@ public class Vortero implements IVortero {
 	public static final Vortero E_FINAĴO = new Vortero("e", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
 	public static final Vortero J_FINAĴO = new Vortero("j", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
 	public static final Vortero N_FINAĴO = new Vortero("n", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
+	
 	public static final Vortero I_FINAĴO = new Vortero("i", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
 	public static final Vortero AS_FINAĴO = new Vortero("as", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
 	public static final Vortero IS_FINAĴO = new Vortero("is", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
 	public static final Vortero OS_FINAĴO = new Vortero("os", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
 	public static final Vortero US_FINAĴO = new Vortero("us", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
 	public static final Vortero U_FINAĴO = new Vortero("u", VorterSpeco.FINAĴO, Transitiveco.NEDIFINITA);
+	
 	public static final Vortero AKTIVA_FINITA_PARTICIPA_SUFIKSO = new Vortero("int", VorterSpeco.SUFIKSO, Transitiveco.NEDIFINITA);
 	public static final Vortero AKTIVA_DAŬRA_PARTICIPA_SUFIKSO = new Vortero("ant", VorterSpeco.SUFIKSO, Transitiveco.NEDIFINITA);
 	public static final Vortero AKTIVA_ESTONTA_PARTICIPA_SUFIKSO = new Vortero("ont", VorterSpeco.SUFIKSO, Transitiveco.NEDIFINITA);
 	public static final Vortero PASIVA_FINITA_PARTICIPA_SUFIKSO = new Vortero("it", VorterSpeco.SUFIKSO, Transitiveco.NEDIFINITA);
 	public static final Vortero PASIVA_DAŬRA_PARTICIPA_SUFIKSO = new Vortero("at", VorterSpeco.SUFIKSO, Transitiveco.NEDIFINITA);
 	public static final Vortero PASIVA_ESTONTA_PARTICIPA_SUFIKSO = new Vortero("ot", VorterSpeco.SUFIKSO, Transitiveco.NEDIFINITA);
+	
 	public static final Vortero IG_SUFIKSO = new Vortero("ig", VorterSpeco.SUFIKSO, Transitiveco.TRANSITIVA);
 	public static final Vortero IĜ_SUFIKSO = new Vortero("iĝ", VorterSpeco.SUFIKSO, Transitiveco.NETRANSITIVA);
 	public static final Vortero SI_PRONOMO = new Vortero("si", VorterSpeco.PRONOMO, Transitiveco.NEDIFINITA);
+	
 	public static final Vortero NENI_KORELATIVO = new Vortero("neni", VorterSpeco.RADIKO, Transitiveco.NEDIFINITA);
+	
+	public static final Vortero J_SUFIKSO = new Vortero("j", VorterSpeco.SUFIKSO, Transitiveco.NEDIFINITA);
+	public static final Vortero ĈJ_SUFIKSO = new Vortero("ĉj", VorterSpeco.SUFIKSO, Transitiveco.NEDIFINITA);
+	public static final Vortero NJ_SUFIKSO = new Vortero("nj", VorterSpeco.SUFIKSO, Transitiveco.NEDIFINITA);
 	
 	private String vortero;
 	private VorterSpeco vorterSpeco;
@@ -79,23 +87,9 @@ public class Vortero implements IVortero {
 		if(obj == null) {
 			return false;
 		}
-		if(getClass() != obj.getClass()) {
+		if(!(obj instanceof IVortero)) {
 			return false;
 		}
-		Vortero other = (Vortero)obj;
-		if(transitiveco != other.transitiveco) {
-			return false;
-		}
-		if(vorterSpeco != other.vorterSpeco) {
-			return false;
-		}
-		if(vortero == null) {
-			if(other.vortero != null) {
-				return false;
-			}
-		} else if(!vortero.equals(other.vortero)) {
-			return false;
-		}
-		return true;
+		return IVortero.equals(this, (IVortero)obj);
 	}
 }

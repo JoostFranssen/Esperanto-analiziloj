@@ -15,6 +15,8 @@ import nl.sogyo.esperanto.persistence.Database;
 public class DatabaseCommunicator {
 	private static Database database = Database.getReVoDatabase();
 	
+	private DatabaseCommunicator() {}
+	
 	/**
 	 * Kontrolas la datumbazon je {@code vortero}.
 	 * @param vortero
