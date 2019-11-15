@@ -93,4 +93,13 @@ public class Vorto {
 		}
 		return null;
 	}
+	
+	@Override
+	public String toString() {
+		if(possibleAnalizaĵoj.size() > 0) {
+			return getPossibleAnalizaĵojSorted().get(0).toString();
+		} else {
+			return "";
+		}
+	}
 }

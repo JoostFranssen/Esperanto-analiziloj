@@ -30,6 +30,7 @@ public class Vortero implements IVortero {
 	public static final Vortero IG_SUFIKSO = new Vortero("ig", VorterSpeco.SUFIKSO, Transitiveco.TRANSITIVA);
 	public static final Vortero IĜ_SUFIKSO = new Vortero("iĝ", VorterSpeco.SUFIKSO, Transitiveco.NETRANSITIVA);
 	public static final Vortero SI_PRONOMO = new Vortero("si", VorterSpeco.PRONOMO, Transitiveco.NEDIFINITA);
+	public static final Vortero NENI_KORELATIVO = new Vortero("neni", VorterSpeco.RADIKO, Transitiveco.NEDIFINITA);
 	
 	private String vortero;
 	private VorterSpeco vorterSpeco;

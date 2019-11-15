@@ -380,4 +380,49 @@ class AnalizaĵoTest {
 		
 		assertNotNull(si_n_gard_a);
 	}
+	
+	@Test
+	public void por_ĉiam_aIsRecognized() {
+		Vorto porĉiama = new Vorto("porĉiama");
+		
+		Analizaĵo por_ĉiam_a = porĉiama.getAnalizaĵoByString("por|ĉiam|a");
+		
+		assertNotNull(por_ĉiam_a);
+	}
+	
+	@Test
+	public void ĉiamaIsNotKorelativo() {
+		Vorto ĉiama = new Vorto("ĉiama");
+		
+		Analizaĵo ĉiam_a = ĉiama.getAnalizaĵoByString("ĉiam|a");
+		
+		assertFalse(ĉiam_a.checkTrajto(Trajto.KORELATIVO));
+	}
+	
+	@Test
+	public void kiujIsKorelativo() {
+		Vorto kiuj = new Vorto("kiuj");
+		
+		Analizaĵo kiu_j = kiuj.getAnalizaĵoByString("kiu|j");
+		
+		assertTrue(kiu_j.checkTrajto(Trajto.KORELATIVO));
+	}
+	
+	@Test
+	public void tionIsKorelativo() {
+		Vorto tion = new Vorto("tion");
+		
+		Analizaĵo tio_n = tion.getAnalizaĵoByString("tio|n");
+		
+		assertTrue(tio_n.checkTrajto(Trajto.KORELATIVO));
+	}
+	
+	@Test
+	public void neniajnIsKorelativo() {
+		Vorto neniajn = new Vorto("neniajn");
+		
+		Analizaĵo nenia_j_n = neniajn.getAnalizaĵoByString("nenia|j|n");
+		
+		assertTrue(nenia_j_n.checkTrajto(Trajto.KORELATIVO));
+	}
 }

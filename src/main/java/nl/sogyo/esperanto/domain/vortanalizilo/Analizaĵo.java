@@ -46,8 +46,9 @@ public class Analizaĵo {
 			|| !vorterSpecoAppearsOnlyAlone(VorterSpeco.INTERJEKCIO)
 			|| !vorterSpecoAppearsOnlyAlone(VorterSpeco.ARTIKOLO)
 			|| !vorterSpecoAppearsOnlyBeginning(VorterSpeco.KONJUNKCIO)
-			|| !vorterSpecoAppearsOnlyBeginning(VorterSpeco.KORELATIVO)
-			|| !vorterSpecoAppearsOnlyBeginningWithPossiblePrefikso(VorterSpeco.PREPOZICIO)
+			|| !vorterSpecoAppearsOnlyBeginning(VorterSpeco.ADVERBO)
+			|| !vorterSpecoAppearsOnlyBeginningWithExceptions(VorterSpeco.PREPOZICIO, VorterSpeco.PREFIKSO)
+			|| !vorterSpecoAppearsOnlyBeginningWithExceptions(VorterSpeco.KORELATIVO, VorterSpeco.PREFIKSO, VorterSpeco.PREPOZICIO)
 			|| !vorterSpecoAppearsOnlyBeginning(VorterSpeco.PRONOMO)
 			|| !verbaFinaĵoAppearsOnlyEnd()
 			|| sufiksoAppearsAfterFinaĵo()
@@ -139,16 +140,18 @@ public class Analizaĵo {
 	 * @param vorterSpeco {@code VorterSpeco}, kiu rajtas nur stari en la komenco de vorto kun iuj prefiksoj
 	 * @return ĉu ĉi tiaj vorteroj aperas nur en la komenco kun eventualaj prefiskoj antaŭ si
 	 */
-	private boolean vorterSpecoAppearsOnlyBeginningWithPossiblePrefikso(VorterSpeco vorterSpeco) {
-		boolean onlyPrefiksoj = true;
+	private boolean vorterSpecoAppearsOnlyBeginningWithExceptions(VorterSpeco vorterSpeco, VorterSpeco... exceptions) {
+		List<VorterSpeco> exceptionsList = Arrays.asList(exceptions);
+		
+		boolean onlyExceptions = true;
 		for(Vortero vortero : vorteroj) {
 			if(vortero.getVorterSpeco() == vorterSpeco) {
-				if(!onlyPrefiksoj) {
+				if(!onlyExceptions) {
 					return false;
 				}
 			}
-			if(vortero.getVorterSpeco() != VorterSpeco.PREFIKSO) {
-				onlyPrefiksoj = false;
+			if(!exceptionsList.contains(vortero.getVorterSpeco())) {
+				onlyExceptions = false;
 			}
 		}
 		return true;
@@ -333,10 +336,17 @@ public class Analizaĵo {
 	 * @return ĉu la vorto estas korelativo
 	 */
 	public boolean isKorelativo() {
-		if(vorteroj.get(0).getVorterSpeco() == VorterSpeco.KORELATIVO) {
+		Vortero firstVortero = vorteroj.get(0);
+		if(firstVortero.getVorterSpeco() == VorterSpeco.KORELATIVO || firstVortero.equals(Vortero.NENI_KORELATIVO)) {
+			for(int i = 1; i < vorteroj.size(); i++) {
+				Vortero vortero = vorteroj.get(i);
+				if(!vortero.equals(Vortero.J_FINAĴO) && !vortero.equals(Vortero.N_FINAĴO) && (firstVortero.equals(Vortero.NENI_KORELATIVO) ? !vortero.equals(Vortero.O_FINAĴO) : true)) {
+					return false;
+				}
+			}
 			return true;
 		}
-		return(vorteroj.get(0).equals(new Vortero("neni", VorterSpeco.RADIKO, Transitiveco.NEDIFINITA)));
+		return false;
 	}
 	
 	/**
