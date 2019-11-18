@@ -39,6 +39,10 @@ public class Frazo {
 		
 		List<Vorto> frazerVortoj = new ArrayList<>();
 		Iterator<Vorto> iterator = Arrays.asList(vortoj).iterator();
+		/*
+		 * Ni bezonas tian konstruon, ĉar ni bezonas la sekvan vorton por analizi la lastan grupon de vortoj.
+		 * Do post la lasta vorto el ‘vortoj’ ni devas fari kroman iteracion.
+		 */
 		do {
 			Vorto vorto = (iterator.hasNext() ? iterator.next() : null);
 			System.out.println(vorto);
@@ -59,6 +63,12 @@ public class Frazo {
 		} while(true);
 	}
 	
+	/**
+	 * Determinas de la lasta grupo de vortoj kaj la nuna vorto, ĉu ni kreu frazeron el la lasta grupo aŭ ne
+	 * @param frazerVortoj grupo da vortoj, kiuj potenciale konsistigas frazeron
+	 * @param currentVorto la nuna vorto, kiu tuj sekvas frazerVortojn
+	 * @return ĉu ni kreu frazeron el la frazerVortoj aŭ aldonu la nuna vorto al la frazerVortoj
+	 */
 	private boolean shouldGoToNextFrazero(List<Vorto> frazerVortoj, Vorto currentVorto) {
 		if(currentVorto == null) {
 			return true;
@@ -75,15 +85,39 @@ public class Frazo {
 		return false;
 	}
 	
+	/**
+	 * La funkcio, kiun certe havu la sekva grupo da vortoj (ekzemple post prepozicio)
+	 */
+	private Funkcio nextFunkcio;
+	
+	/**
+	 * Determinas la funkcion de la listo de vortoj
+	 * @param frazerVortoj
+	 * @return la funkcion de la frazerVortoj
+	 */
 	private Funkcio determineFunkcio(List<Vorto> frazerVortoj) {
+		if(nextFunkcio != null) {
+			Funkcio f = nextFunkcio;
+			nextFunkcio = null;
+			return f;
+		}
+		
+		if(frazerVortoj.size() == 1) {
+			Vorto vorto = frazerVortoj.get(0);
+			if(vorto.checkTrajto(Trajto.VERBO) && !vorto.checkTrajto(Trajto.VERBO_INFINITIVO)) {
+				return Funkcio.ĈEFVERBO;
+			} else if(vorto.checkTrajto(Trajto.PREPOZICIO)) {
+				nextFunkcio = Funkcio.PREPOZICIA_KOMPLEMENTO;
+				return Funkcio.PREPOZICIO;
+			}
+		}
+		
 		if(Vorto.checkTrajtoForAny(frazerVortoj, Trajto.AKUZATIVO)) {
 			if(findByFunkcio(Funkcio.OBJEKTO) == null) {
 				return Funkcio.OBJEKTO;
 			} else {
 				return null;
 			}
-		} else if(Vorto.checkTrajtoForAll(frazerVortoj, Trajto.VERBO) && !Vorto.checkTrajtoForAll(frazerVortoj, Trajto.VERBO_INFINITIVO)) {
-			return Funkcio.ĈEFVERBO;
 		} else if(findByFunkcio(Funkcio.SUBJEKTO) == null) {
 			return Funkcio.SUBJEKTO;
 		}
