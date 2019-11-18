@@ -388,15 +388,17 @@ public class Analizaĵo {
 	
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		for(Vortero vortero : vorteroj) {
-			sb.append("|" + vortero.getVortero());
-		}
-		if(sb.length() == 0) {
-			return "";
-		} else {
-			return sb.substring(1); //forigi la unuan ‘|’
-		}
+		return String.join("|", vorteroj.stream().map(v -> v.getVortero()).toArray(String[]::new));
+		
+//		StringBuilder sb = new StringBuilder();
+//		for(Vortero vortero : vorteroj) {
+//			sb.append("|" + vortero.getVortero());
+//		}
+//		if(sb.length() == 0) {
+//			return "";
+//		} else {
+//			return sb.substring(1); //forigi la unuan ‘|’
+//		}
 	}
 
 	@Override
