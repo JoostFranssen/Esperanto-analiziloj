@@ -10,21 +10,21 @@ import javax.ws.rs.core.Response;
 import org.eclipse.jetty.http.HttpStatus;
 import org.json.JSONObject;
 
-import nl.sogyo.esperanto.domain.vortanalizilo.Vorto;
+import nl.sogyo.esperanto.domain.frazanalizilo.Frazo;
 
 /**
- * La alirejo por la vortanalizilo.
+ * La alirejo por la frazanalizilo.
  * @author jfranssen
  *
  */
-@Path("vortanalizo")
-public class VortAnalizilAccessPoint {
+@Path("frazanalizo")
+public class FrazAnalizilAccessPoint {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getVortAnalysis(@QueryParam("vorto") String string) {
-		Vorto vorto = new Vorto(string);
+	public Response getFrazAnalysis(@QueryParam("frazo") String string) {
+		Frazo frazo = new Frazo(string);
 		
-		JSONObject responseJSON = VortoJSONProcessor.convertVortoToJSON(vorto);
+		JSONObject responseJSON = FrazoJSONProcessor.convertFrazoToJSON(frazo);
 		
 		return Response.status(HttpStatus.OK_200).entity(responseJSON.toString()).build();
 	}
