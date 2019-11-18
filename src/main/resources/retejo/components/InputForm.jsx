@@ -22,13 +22,12 @@ class InputForm extends React.Component {
                 autocomplete="off"
                 novalidate
             >
-                <label className="input-label" for="input">
+                <label className="input-label" for={this.getInputID()}>
                     {this.props.label}
                 </label>
                 <input
                     type="text"
-                    name="vorto"
-                    id="input"
+                    id={this.getInputID()}
                     className="input"
                     autocomplete="off"
                     autoCapitalize="off"
@@ -63,7 +62,7 @@ class InputForm extends React.Component {
     async handleConfirm(event) {
         event.preventDefault();
 
-        let input = document.getElementById("input");
+        let input = document.getElementById(this.getInputID());
 
         let newState = Object.assign({}, this.state);
         newState.loading = true;
@@ -75,5 +74,9 @@ class InputForm extends React.Component {
             errorMessage: !resultObtained ? this.props.errorMessageForNoResults : "",
             loading: false,
         });
+    }
+
+    getInputID() {
+        return this.props.label.replace(/\s/g, "-") + "-input";
     }
 }

@@ -6,13 +6,11 @@ class Analizaĵo extends React.Component {
     render() {
         let analizaĵeroj = this.props.analizaĵo.vorteroj;
         let componentList = [];
-        if(analizaĵeroj) {
-            for(const analizaĵero of analizaĵeroj) {
-                componentList.push(<b>|</b>);
-                componentList.push(
-                    <Analizaĵero analizaĵero={analizaĵero} />
-                )
-            }
+        for(const analizaĵero of analizaĵeroj) {
+            componentList.push(<b>|</b>);
+            componentList.push(
+                <Analizaĵero analizaĵero={analizaĵero} />
+            )
         }
         return (
             <div

@@ -1,0 +1,30 @@
+.frazo {
+    font-size: 24px;
+    width: 80%;
+    margin: 0 10%;
+    text-align: center;
+    padding: 10px;
+}
+
+.frazero {
+    font-size: 36px;
+    color: black;
+}
+
+.frazero:hover {
+    color: red;
+}
+
+.fraz-vorto {
+    text-decoration: none;
+}
+
+.fraz-vorto:hover {
+    text-decoration: underline;
+}
+
+.frazer-properties {
+    text-align: left;
+    margin: 20px 0;
+    font-size: 24px;
+}

@@ -93,7 +93,11 @@ public class Vorto {
 	}
 	
 	public Analizaĵo getFirstAnalizaĵo() {
-		return getPossibleAnalizaĵojSorted().get(0);
+		if(!possibleAnalizaĵoj.isEmpty()) {
+			return getPossibleAnalizaĵojSorted().get(0);
+		} else {
+			return null;
+		}
 	}
 
 	/**

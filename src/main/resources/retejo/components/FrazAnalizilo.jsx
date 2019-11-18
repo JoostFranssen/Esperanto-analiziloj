@@ -1,6 +1,9 @@
 class FrazAnalizilo extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            frazo: null,
+        }
     }
 
     render() {
@@ -14,15 +17,31 @@ class FrazAnalizilo extends React.Component {
                     handleInvalidity={this.handleInvalidity}
                     errorMessageForNoResults="Neniuj rezultoj montreblaj"
                 />
+                {this.renderFrazo()}
             </div>
         );
     }
 
-    handleConfirm() {
-        return false;
+    async handleConfirm(value) {
+        let response = await fetch(`api/frazanalizo?frazo=${value}`);
+        let result = await response.json();
+
+        this.setState({
+            frazo: result,
+        });
+
+        return result.frazeroj.length != 0;
     }
 
     handleInvalidity(value) {
-        return "Enmetu Esperantan frazon";
+        if(/^\s+$/.test(value)) {
+            return "Enmetu Esperantan frazon";
+        } else {
+            return "Uzu nur Esperantajn literojn kaj spacetojn";
+        }
+    }
+
+    renderFrazo() {
+        return <Frazo key={this.state.frazo} frazo={this.state.frazo}/>
     }
 }

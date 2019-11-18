@@ -21,6 +21,7 @@ class Main extends React.Component {
     }
 
     updateSelected(index) {
+        localStorage.setItem("selectedIndex", index);
         this.setState({selectedIndex: index});
     }
 

@@ -3,7 +3,7 @@ class NavigationBar extends React.Component {
         super(props);
         this.state = {
             imageWidth: 0,
-            selectedIndex: 0,
+            selectedIndex: (localStorage.getItem("selectedIndex") ? Number(localStorage.getItem("selectedIndex")) : 0),
             componentProps: [
                 {
                     title: "Vort-Analizilo",

@@ -49,8 +49,10 @@ public class Frazo {
 	public Frazero findĈefverbo() {
 		for(Vorto vorto : vortoj) {
 			Analizaĵo analizaĵo = vorto.getFirstAnalizaĵo();
-			if(analizaĵo.checkTrajto(Trajto.VERBO) && !analizaĵo.checkTrajto(Trajto.VERBO_INFINITIVO)) {
-				return new Frazero(Funkcio.ĈEFVERBO, vorto);
+			if(analizaĵo != null) {
+    			if(analizaĵo.checkTrajto(Trajto.VERBO) && !analizaĵo.checkTrajto(Trajto.VERBO_INFINITIVO)) {
+    				return new Frazero(Funkcio.ĈEFVERBO, vorto);
+    			}
 			}
 		}
 		return null;
