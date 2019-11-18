@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 import nl.sogyo.esperanto.API.IVortero;
+import nl.sogyo.esperanto.API.Trajto;
 import nl.sogyo.esperanto.API.VorterSpeco;
 
 /**
@@ -101,14 +102,48 @@ public class Vorto {
 		}
 	}
 	
+	/**
+	 * Kontrolas, ĉu la finaĵoj kongruas kun la unua analizaĵo.
+	 * @param finaĵoj
+	 * @return ĉu la finaĵoj kongruas
+	 */
 	public boolean matchFinaĵoj(List<Vortero> finaĵoj) {
-		return getFirstAnalizaĵo().matchFinaĵoj(finaĵoj);
+		return getFirstAnalizaĵo() != null && getFirstAnalizaĵo().matchFinaĵoj(finaĵoj);
 	}
 	
+	/**
+	 * Kontrolas, ĉu la finaĵoj kongruas kun la finaĵoj de ĉiuj donitaj vortoj.
+	 * @param vortoj
+	 * @return ĉu la finaĵoj kongruas unuj kun la aliaj
+	 */
 	public boolean matchFinaĵojOf(Vorto... vortoj) {
-		return getFirstAnalizaĵo().matchFinaĵojOf(Arrays.asList(vortoj).stream().map(v -> v.getFirstAnalizaĵo()).toArray(Analizaĵo[]::new));
+		return getFirstAnalizaĵo() != null && getFirstAnalizaĵo().matchFinaĵojOf(Arrays.asList(vortoj).stream().map(v -> v.getFirstAnalizaĵo()).toArray(Analizaĵo[]::new));
 	}
-
+	
+	public boolean checkTrajto(Trajto trajto) {
+		return getFirstAnalizaĵo() != null && getFirstAnalizaĵo().checkTrajto(trajto);
+	}
+	
+	/**
+	 * Kontrolas, ĉu unu el la vortoj en la listo havas la specifitan trajton.
+	 * @param vortoj
+	 * @param trajto
+	 * @return ĉu unu el la vortoj havas tiun trajton
+	 */
+	public static boolean checkTrajtoForAny(List<Vorto> vortoj, Trajto trajto) {
+		return vortoj.stream().anyMatch(v -> v.checkTrajto(trajto));
+	}
+	
+	/**
+	 * Kontrolas, ĉu ĉiu vorto en la listo havas la specifitan trajton.
+	 * @param vortoj
+	 * @param trajto
+	 * @return ĉu ĉiu vorto havas tiun trajton
+	 */
+	public static boolean checkTrajtoForAll(List<Vorto> vortoj, Trajto trajto) {
+		return vortoj.stream().allMatch(v -> v.checkTrajto(trajto));
+	}
+	
 	/**
 	 * Prenas unu el la eblaj {@code Analizaĵo}j laŭ la donita ŝablono. Redonas
 	 * {@code null}, se neniu estas trovata.
@@ -130,8 +165,8 @@ public class Vorto {
 
 	@Override
 	public String toString() {
-		if(possibleAnalizaĵoj.size() > 0) {
-			return getPossibleAnalizaĵojSorted().get(0).toString();
+		if(getFirstAnalizaĵo() != null) {
+			return getFirstAnalizaĵo().toString();
 		} else {
 			return "";
 		}

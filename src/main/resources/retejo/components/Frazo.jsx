@@ -12,6 +12,7 @@ class Frazo extends React.Component {
             let componentList = [];
             if(frazeroj) {
                 for(const frazero of frazeroj) {
+                    componentList.push(<span>&nbsp;</span>);
                     componentList.push(
                         <Frazero
                             frazero={frazero}
@@ -36,7 +37,7 @@ class Frazo extends React.Component {
                 <div
                     className="frazo"
                 >
-                    {componentList}
+                    {componentList.slice(1)}
                     {propertiesComponent}
                 </div>
             );

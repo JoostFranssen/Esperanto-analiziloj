@@ -7,6 +7,7 @@ class Frazero extends React.Component {
         let vortoj = this.props.frazero.vortoj;
         let componentList = [];
         for(const vorto of vortoj) {
+            componentList.push(<span>&nbsp;</span>);
             componentList.push(
                 <FrazaVorto vorto={vorto}/>
             )
@@ -16,7 +17,7 @@ class Frazero extends React.Component {
                 className={["frazero", this.props.selected ? "selected" : ""].join(" ")}
                 onClick={() => this.props.onClick(this.props.frazero)}
             >
-                {componentList}
+                {componentList.slice(1)}
             </span>
         )
     }

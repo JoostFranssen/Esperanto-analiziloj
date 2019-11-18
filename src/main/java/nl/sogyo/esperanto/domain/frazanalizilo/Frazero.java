@@ -28,4 +28,13 @@ public class Frazero {
 	public Funkcio getFunkcio() {
 		return funkcio;
 	}
+	
+	public void addVorto(Vorto vorto) {
+		vortoj.add(vorto);
+	}
+	
+	@Override
+	public String toString() {
+		return String.join(" ", vortoj.stream().map(v -> v.getVorto()).toArray(String[]::new));
+	}
 }

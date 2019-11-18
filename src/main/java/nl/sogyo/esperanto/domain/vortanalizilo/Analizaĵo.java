@@ -407,9 +407,9 @@ public class Analizaĵo {
 	 * @return ĉu la finaĵoj kongruas unuj kun la aliaj
 	 */
 	public boolean matchFinaĵoj(List<Vortero> finaĵoj) {
-		Predicate<Vortero> endsInJOrN = v -> v.equals(Vortero.J_FINAĴO) || v.equals(Vortero.N_FINAĴO);
-		return finaĵoj.stream().filter(endsInJOrN).collect(Collectors.toList())
-				.equals(getLastFinaĵoj().stream().filter(endsInJOrN).collect(Collectors.toList()));
+		Predicate<Vortero> ignoreAEOFinaĵoj = v -> !v.equals(Vortero.O_FINAĴO) && !v.equals(Vortero.A_FINAĴO) && !v.equals(Vortero.E_FINAĴO);
+		return finaĵoj.stream().filter(ignoreAEOFinaĵoj).collect(Collectors.toList())
+				.equals(getLastFinaĵoj().stream().filter(ignoreAEOFinaĵoj).collect(Collectors.toList()));
 	}
 	
 	/**
