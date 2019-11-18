@@ -54,10 +54,10 @@ public class Database {
 	private Database() {
 		try {
 			if(DATABASE_FOLDER.exists()) {
-				connection = DriverManager.getConnection("jdbc:hsqldb:file:" + DATABASE_LOCATION + ";files_readonly=true", "SA", "");
+				connection = DriverManager.getConnection("jdbc:hsqldb:file:" + DATABASE_LOCATION + ";files_readonly=true;sql.ignore_case=true", "SA", "");
 				type = "file";
 			} else {
-				connection = DriverManager.getConnection("jdbc:hsqldb:mem:" + NAME, "SA", "");
+				connection = DriverManager.getConnection("jdbc:hsqldb:mem:" + NAME + ";sql.ignore_case=true", "SA", "");
 				type = "mem";
 				createDatabaseFromReVoFiles();
 				persistDatabaseToFile();
