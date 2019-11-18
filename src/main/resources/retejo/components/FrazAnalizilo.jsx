@@ -10,7 +10,7 @@ class FrazAnalizilo extends React.Component {
                 <InputForm
                     handleConfirm={this.handleConfirm.bind(this)}
                     label="Analizota frazo"
-                    pattern="^(((?=[a-zA-ZĉĈĝĜĥĤĵĴŝŜŭŬ])[^qQw-yW-Y])+([,\s])?)+(\.!?)$" //FIX, FOR IT'S WRONG
+                    pattern="^(((?=[a-zA-ZĉĈĝĜĥĤĵĴŝŜŭŬ])[^qQw-yW-Y])+(,? )?)+([\.!\?])?$"
                     handleInvalidity={this.handleInvalidity}
                     errorMessageForNoResults="Neniuj rezultoj montreblaj"
                 />
