@@ -26,4 +26,31 @@ class FrazoTest {
 		
 		assertTrue("homo".equalsIgnoreCase(subjekto.toString()));
 	}
+	
+	@Test
+	public void EsperantonIsObjekto() {
+		Frazo frazo = new Frazo("Mi parolas Esperanton.");
+		
+		Frazero objekto = frazo.findByFunkcio(Funkcio.OBJEKTO);
+		
+		assertTrue("Esperanton".equalsIgnoreCase(objekto.toString()));
+	}
+	
+	@Test
+	public void perEstasPrepozicio() {
+		Frazo frazo = new Frazo("Mi veturas per aŭto.");
+		
+		Frazero prepozicio = frazo.findByFunkcio(Funkcio.PREPOZICIO);
+		
+		assertTrue("per".equalsIgnoreCase(prepozicio.toString()));
+	}
+	
+	@Test
+	public void miaAŭtoEstasPrepoziciaKomplemento() {
+		Frazo frazo = new Frazo("Mi veturas per mia aŭto");
+		
+		Frazero komplemento = frazo.findByFunkcio(Funkcio.PREPOZICIA_KOMPLEMENTO);
+		
+		assertTrue("mia aŭto".equalsIgnoreCase(komplemento.toString()));
+	}
 }
