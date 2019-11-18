@@ -10,7 +10,14 @@ import nl.sogyo.esperanto.API.Trajto;
 import nl.sogyo.esperanto.domain.vortanalizilo.Analizaĵo;
 import nl.sogyo.esperanto.domain.vortanalizilo.Vorto;
 
+/**
+ * Kapablas konverti ĉiujn objektojn rilatajn al vortoj al JSON-objektoj.
+ * @author jfranssen
+ *
+ */
 public class VortoJSONProcessor {
+	private VortoJSONProcessor() {}
+	
 	public static JSONObject convertVorteroToJSON(IVortero vortero) {
 		JSONObject json = new JSONObject();
 		

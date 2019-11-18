@@ -12,7 +12,6 @@ import nl.sogyo.esperanto.API.VorterSpeco;
 
 /**
  * Analizita vorto.
- * 
  * @author jfranssen
  *
  */

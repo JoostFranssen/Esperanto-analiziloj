@@ -11,7 +11,7 @@ import nl.sogyo.esperanto.domain.vortanalizilo.Analizaĵo;
 import nl.sogyo.esperanto.domain.vortanalizilo.Vorto;
 
 /**
- * Reprezentas frazon
+ * Reprezentas frazon/
  * @author jfranssen
  *
  */
@@ -59,5 +59,13 @@ public class Frazo {
 	@Override
 	public String toString() {
 		return String.join(" ", Arrays.asList(vortoj).stream().map(v -> v.toString()).toArray(String[]::new));
+	}
+	
+	public Vorto[] getVortoj() {
+		return vortoj.clone();
+	}
+	
+	public List<Frazero> getFrazeroj() {
+		return new ArrayList<>(frazeroj);
 	}
 }

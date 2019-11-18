@@ -7,6 +7,11 @@ import java.util.List;
 import nl.sogyo.esperanto.API.Funkcio;
 import nl.sogyo.esperanto.domain.vortanalizilo.Vorto;
 
+/**
+ * Reprezentas parton de frazo kun unu specifa funkcio (ekzemple subjekto aŭ ĉefverbo).
+ * @author jfranssen
+ *
+ */
 public class Frazero {
 	private List<Vorto> vortoj;
 	private Funkcio funkcio;
