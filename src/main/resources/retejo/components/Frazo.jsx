@@ -16,15 +16,17 @@ class Frazo extends React.Component {
                         <Frazero
                             frazero={frazero}
                             onClick={this.handleFrazeroClick.bind(this)}
+                            selected={frazero === this.state.currentFrazero}
                         />
                     );
                 }
             }
 
             let propertiesComponent = null;
-            if(this.state.currentFrazero) {
+            if(frazeroj.includes(this.state.currentFrazero)) {
                 propertiesComponent = <div
                     className="frazer-properties"
+                    key={this.state.currentFrazero}
                     >
                         {snakeCaseToTitleCase(this.state.currentFrazero.funkcio)}
                 </div>

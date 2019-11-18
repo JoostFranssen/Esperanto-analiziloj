@@ -13,7 +13,7 @@ class Frazero extends React.Component {
         }
         return (
             <span
-                className="frazero"
+                className={["frazero", this.props.selected ? "selected" : ""].join(" ")}
                 onClick={() => this.props.onClick(this.props.frazero)}
             >
                 {componentList}
