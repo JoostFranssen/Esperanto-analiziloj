@@ -1,6 +1,6 @@
 package nl.sogyo.esperanto.domain.vortanalizilo;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
@@ -31,5 +31,31 @@ class VortoTest {
 		assertEquals("bat", vorteroj.get(0).getVortero());
 		assertEquals("at", vorteroj.get(1).getVortero());
 		assertEquals("o", vorteroj.get(2).getVortero());
+	}
+	
+	@Test
+	public void threeSingularNominativoMatch() {
+		Vorto tia = new Vorto("tia");
+		Vorto aĉa = new Vorto("aĉa");
+		Vorto hundo = new Vorto("hundo");
+		
+		assertTrue(tia.matchFinaĵojOf(aĉa, hundo));
+	}
+	
+	@Test
+	public void threePluralAkuzativoMatch() {
+		Vorto bonajn = new Vorto("ĉiajn");
+		Vorto stultajn = new Vorto("stultajn");
+		Vorto ideojn = new Vorto("ideojn");
+		
+		assertTrue(bonajn.matchFinaĵojOf(stultajn, ideojn));
+	}
+	
+	@Test
+	public void onePluralOneAkuzativoDoNotMatch() {
+		Vorto bonan = new Vorto("bonan");
+		Vorto ludoj = new Vorto("ludoj");
+		
+		assertFalse(bonan.matchFinaĵojOf(ludoj));
 	}
 }

@@ -1,6 +1,7 @@
 package nl.sogyo.esperanto.domain.vortanalizilo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -98,6 +99,14 @@ public class Vorto {
 		} else {
 			return null;
 		}
+	}
+	
+	public boolean matchFinaĵoj(List<Vortero> finaĵoj) {
+		return getFirstAnalizaĵo().matchFinaĵoj(finaĵoj);
+	}
+	
+	public boolean matchFinaĵojOf(Vorto... vortoj) {
+		return getFirstAnalizaĵo().matchFinaĵojOf(Arrays.asList(vortoj).stream().map(v -> v.getFirstAnalizaĵo()).toArray(Analizaĵo[]::new));
 	}
 
 	/**

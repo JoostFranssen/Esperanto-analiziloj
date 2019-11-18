@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import nl.sogyo.esperanto.API.Trajto;
 import nl.sogyo.esperanto.API.Transitiveco;
@@ -398,6 +399,28 @@ public class Analizaĵo {
 			}
 		}
 		return finaĵoj;
+	}
+	
+	/**
+	 * Kontrolas, ĉu la finaĵoj de ĉi tiu analizaĵ kongruas kun la donita listo de finaĵoj.
+	 * @param finaĵoj la finaĵoj, kun kiuj la analizaĵ kongruu
+	 * @return ĉu la finaĵoj kongruas unuj kun la aliaj
+	 */
+	public boolean matchFinaĵoj(List<Vortero> finaĵoj) {
+		Predicate<Vortero> endsInJOrN = v -> v.equals(Vortero.J_FINAĴO) || v.equals(Vortero.N_FINAĴO);
+		return finaĵoj.stream().filter(endsInJOrN).collect(Collectors.toList())
+				.equals(getLastFinaĵoj().stream().filter(endsInJOrN).collect(Collectors.toList()));
+	}
+	
+	/**
+	 * Kontrolas, ĉu la finaĵoj kongruas kun tiuj de la donita analizaĵo.
+	 * @param analizaĵo analizaĵo, kies finaĵoj kungruu kun ĉi tiu
+	 * @return ĉu la finaĵoj de ambaŭ analizaĵoj kongruas
+	 */
+	public boolean matchFinaĵojOf(Analizaĵo... analizaĵoj) {
+		return Arrays.asList(analizaĵoj).stream().filter(a -> matchFinaĵoj(a.getLastFinaĵoj())).count() == analizaĵoj.length;
+		
+//		matchFinaĵoj(analizaĵo.getLastFinaĵoj());
 	}
 	
 	@Override

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 
 import org.junit.jupiter.api.Test;
@@ -424,5 +425,106 @@ class AnalizaĵoTest {
 		Analizaĵo nenia_j_n = neniajn.getAnalizaĵoByString("nenia|j|n");
 		
 		assertTrue(nenia_j_n.checkTrajto(Trajto.KORELATIVO));
+	}
+	
+	@Test
+	public void singularNominativoEndingsMatchEmptyList() {
+		Vorto bela = new Vorto("bela");
+		
+		Analizaĵo bel_a = bela.getAnalizaĵoByString("bel|a");
+		
+		assertTrue(bel_a.matchFinaĵoj(new ArrayList<Vortero>()));
+	}
+	
+	@Test
+	public void singularNominativoOfTwoAnalizaĵojMatch() {
+		Vorto tuja = new Vorto("tuja");
+		Vorto evento = new Vorto("evento");
+		
+		Analizaĵo tuj_a = tuja.getAnalizaĵoByString("tuj|a");
+		Analizaĵo event_o = evento.getAnalizaĵoByString("event|o");
+		
+		assertTrue(tuj_a.matchFinaĵojOf(event_o));
+	}
+	
+	@Test
+	public void pluralNominativoOfTwoAnalizaĵojMatch() {
+		Vorto bonaj = new Vorto("bonaj");
+		Vorto homoj = new Vorto("homoj");
+		
+		Analizaĵo bon_a_j = bonaj.getAnalizaĵoByString("bon|a|j");
+		Analizaĵo hom_o_j = homoj.getAnalizaĵoByString("hom|o|j");
+		
+		assertTrue(bon_a_j.matchFinaĵojOf(hom_o_j));
+	}
+	
+	@Test
+	public void SingularAkuzativoOfTwoAnalizaĵojMatch() {
+		Vorto bonan = new Vorto("bonan");
+		Vorto homon = new Vorto("homon");
+		
+		Analizaĵo bon_a_n = bonan.getAnalizaĵoByString("bon|a|n");
+		Analizaĵo hom_o_n = homon.getAnalizaĵoByString("hom|o|n");
+		
+		assertTrue(bon_a_n.matchFinaĵojOf(hom_o_n));
+	}
+	
+	@Test
+	public void pluralAkuzativoOfTwoAnalizaĵojMatch() {
+		Vorto bonajn = new Vorto("bonajn");
+		Vorto homojn = new Vorto("homojn");
+		
+		Analizaĵo bon_a_j_n = bonajn.getAnalizaĵoByString("bon|a|j|n");
+		Analizaĵo hom_o_j_n = homojn.getAnalizaĵoByString("hom|o|j|n");
+		
+		assertTrue(bon_a_j_n.matchFinaĵojOf(hom_o_j_n));
+	}
+	
+	@Test
+	public void singularAndPluralDoNotMatch() {
+		Vorto tiuj = new Vorto("tiuj");
+		Vorto homo = new Vorto("homo");
+		
+		Analizaĵo tiu_j = tiuj.getAnalizaĵoByString("tiu|j");
+		Analizaĵo hom_o = homo.getAnalizaĵoByString("hom|o");
+		
+		assertFalse(tiu_j.matchFinaĵojOf(hom_o));
+	}
+	
+	@Test
+	public void nominativoAndAkuzativoDoNotMatch() {
+		Vorto tia = new Vorto("tia");
+		Vorto homon = new Vorto("homon");
+		
+		Analizaĵo tia_ = tia.getAnalizaĵoByString("tia");
+		Analizaĵo hom_o_n = homon.getAnalizaĵoByString("hom|o|n");
+		
+		assertFalse(tia_.matchFinaĵojOf(hom_o_n));
+	}
+	
+	@Test
+	public void multipleSingularNominativoMatch() {
+		Vorto tiu = new Vorto("tiu");
+		Vorto bela = new Vorto("bela");
+		Vorto viro = new Vorto("viro");
+		
+		Analizaĵo tiu_ = tiu.getAnalizaĵoByString("tiu");
+		Analizaĵo bel_a = bela.getAnalizaĵoByString("bel|a");
+		Analizaĵo vir_o = viro.getAnalizaĵoByString("vir|o");
+		
+		assertTrue(tiu_.matchFinaĵojOf(bel_a, vir_o));
+	}
+	
+	@Test
+	public void oneOutOfThreePluralNominativoDoesNotMatch() {
+		Vorto tiuj = new Vorto("tiuj");
+		Vorto belaj = new Vorto("belaj");
+		Vorto viro = new Vorto("viro");
+		
+		Analizaĵo tiu_j = tiuj.getAnalizaĵoByString("tiu|j");
+		Analizaĵo bel_a_j = belaj.getAnalizaĵoByString("bel|a|j");
+		Analizaĵo vir_o = viro.getAnalizaĵoByString("vir|o");
+		
+		assertFalse(tiu_j.matchFinaĵojOf(bel_a_j, vir_o));
 	}
 }
