@@ -34,9 +34,9 @@ public class ReVoReader {
 	public static final String TAG_DIFINO = "dif";
 	public static final String TAG_SUBARTIKOLO = "subart"; //por pluraj difinoj en unu artikoloj
 	
-	private static final Pattern KORELATIVO_REGEX_PATTERN = Pattern.compile("^(k|t|ĉ|nen|)i(a|e|o|u|al|am|el|es|om)$");
-	private static final Pattern KORELATIVO_REGEX_PATTERN_OTHER = Pattern.compile("^ali(u|al|am|el|es|om)$");
-	private static final Pattern NUMERALO_REGEX_PATTERN = Pattern.compile("^(unu|du|tri|kvar|kvin|ses|sep|ok|naŭ|dek|cent|mil)$");
+	private static final Pattern KORELATIVO_REGEX_PATTERN = Pattern.compile("^(k|t|ĉ|nen|)i(a|e|o|u|al|am|el|es|om)$", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+	private static final Pattern KORELATIVO_REGEX_PATTERN_OTHER = Pattern.compile("^ali(u|al|am|el|es|om)$", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+	private static final Pattern NUMERALO_REGEX_PATTERN = Pattern.compile("^(unu|du|tri|kvar|kvin|ses|sep|ok|naŭ|dek|cent|mil)$", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 	
 	/**
 	 * Regula esprimo, kiu reprezentas unu minusklan aŭ majusklan Esperanto-literon.

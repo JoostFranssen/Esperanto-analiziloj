@@ -3,10 +3,10 @@ package nl.sogyo.esperanto.domain.vortanalizilo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 import nl.sogyo.esperanto.API.Trajto;
 import nl.sogyo.esperanto.API.Transitiveco;
@@ -19,6 +19,8 @@ import nl.sogyo.esperanto.API.VorterSpeco;
  *
  */
 public class Analizaĵo {
+	private static final Pattern LAST_FINAĴOJ_PATTERN = Pattern.compile("^(i)|(is)|(as)|(os)|(us)|(u)|(oj?n?)|(aj?n?)|(en?)|(j?n?)"); //(j?n?) por permesi neniun finaĵon kaj nur j/n kun korelativoj: kio|n
+	
 	private List<Vortero> vorteroj;
 	
 	public Analizaĵo() {
@@ -55,6 +57,7 @@ public class Analizaĵo {
 			|| lastVorteroIsAfiksoOrRadiko()
 			|| finaĵoAppearsBeginning()
 			|| !akuzativoAppearsOnlyEndOrAfterEOrSi()
+			|| !lastFinaĵojAreInCorrectFormation()
 		) {
 			return false;
 		}
@@ -184,6 +187,19 @@ public class Analizaĵo {
 		return vs == VorterSpeco.PREFIKSO || vs == VorterSpeco.SUFIKSO || vs == VorterSpeco.RADIKO;
 	}
 	
+	/**
+	 * Kontrolas, ĉu la lastaj finaĵoj estas en akceptebla formo.
+	 * @return ĉu estas tiel
+	 */
+	private boolean lastFinaĵojAreInCorrectFormation() {
+		Optional<String> finaĵojOptionalString = getLastFinaĵoj().stream().map(f -> f.getVortero()).reduce((s1, s2) -> s1 + s2);
+		String finaĵoj = "";
+		if(!finaĵojOptionalString.isEmpty()) {
+			finaĵoj = finaĵojOptionalString.get();
+		}
+		return LAST_FINAĴOJ_PATTERN.matcher(finaĵoj).matches();
+	}
+	
 	public List<Vortero> getVorteroj() {
 		return new ArrayList<>(vorteroj);
 	}
@@ -213,7 +229,7 @@ public class Analizaĵo {
 	 */
 	public boolean checkTrajto(Trajto trajto) {
 		switch(trajto) {
-			case ADJEKTIVO: return getSetOfLastFinaĵoj().contains(Vortero.A_FINAĴO);
+			case ADJEKTIVO: return getLastFinaĵoj().contains(Vortero.A_FINAĴO);
 			case ADVERBO: return isAdverbo();
 			case AKUZATIVO: return getLastVortero().equals(Vortero.N_FINAĴO);
 			case ARTIKOLO: return vorteroj.get(0).getVorterSpeco() == VorterSpeco.ARTIKOLO;
@@ -221,11 +237,11 @@ public class Analizaĵo {
 			case KONJUNKCIO: return getLastVortero().getVorterSpeco() == VorterSpeco.KONJUNKCIO;
 			case KORELATIVO: return isKorelativo();
 			case NUMERALO: return isNumeralo();
-			case PLURALO: return getSetOfLastFinaĵoj().contains(Vortero.J_FINAĴO);
+			case PLURALO: return getLastFinaĵoj().contains(Vortero.J_FINAĴO);
 			case PREPOZICIO: return getLastVortero().getVorterSpeco() == VorterSpeco.PREPOZICIO;
 			case PRONOMO: return getLastVortero().getVorterSpeco() == VorterSpeco.PRONOMO;
 			case SONIMITO: return getLastVortero().getVorterSpeco() == VorterSpeco.SONIMITO;
-			case SUBSTANTIVO: return getSetOfLastFinaĵoj().contains(Vortero.O_FINAĴO);
+			case SUBSTANTIVO: return getLastFinaĵoj().contains(Vortero.O_FINAĴO);
 			case VERBO: return isVerbo();
 			case VERBO_FUTURO: return getLastVortero().equals(Vortero.OS_FINAĴO);
 			case VERBO_INFINITIVO: return getLastVortero().equals(Vortero.I_FINAĴO);
@@ -357,7 +373,7 @@ public class Analizaĵo {
 		if(getLastVortero().getVorterSpeco() == VorterSpeco.ADVERBO) {
 			return true;
 		}
-		return getSetOfLastFinaĵoj().contains(Vortero.E_FINAĴO);
+		return getLastFinaĵoj().contains(Vortero.E_FINAĴO);
 	}
 	
 	/**
@@ -369,16 +385,14 @@ public class Analizaĵo {
 	}
 	
 	/**
-	 * Determinas ĉiujn finaĵojn, kiuj aperas je la fino de la vorto. Se neniu finaĵo aperas, malplena aro estas redonita. La finaĵoj estas en arbitra ordo. Ne aperas duablajn finaĵojn.
+	 * Determinas ĉiujn finaĵojn, kiuj aperas je la fino de la vorto. Se neniu finaĵo aperas, malplena aro estas redonita. La finaĵoj estas en la ordo, en kiu ili aperas.
 	 * @return aron de la lastaj finaĵoj 
 	 */
-	public Set<Vortero> getSetOfLastFinaĵoj() {
-		Set<Vortero> finaĵoj = new HashSet<Vortero>();
+	public List<Vortero> getLastFinaĵoj() {
+		List<Vortero> finaĵoj = new ArrayList<>();
 		for(int i = vorteroj.size() - 1; i >= 0; i--) {
 			if(vorteroj.get(i).getVorterSpeco() == VorterSpeco.FINAĴO) {
-				if(!finaĵoj.add(vorteroj.get(i))) { //preventi daŭrigi je duobla finaĵo
-					break;
-				}
+				finaĵoj.add(0, vorteroj.get(i));
 			} else {
 				break;
 			}
@@ -389,16 +403,6 @@ public class Analizaĵo {
 	@Override
 	public String toString() {
 		return String.join("|", vorteroj.stream().map(v -> v.getVortero()).toArray(String[]::new));
-		
-//		StringBuilder sb = new StringBuilder();
-//		for(Vortero vortero : vorteroj) {
-//			sb.append("|" + vortero.getVortero());
-//		}
-//		if(sb.length() == 0) {
-//			return "";
-//		} else {
-//			return sb.substring(1); //forigi la unuan ‘|’
-//		}
 	}
 
 	@Override
