@@ -44,13 +44,10 @@ public class Frazo {
 		 */
 		do {
 			Vorto vorto = (iterator.hasNext() ? iterator.next() : null);
-			System.out.println(vorto);
 			
 			if(shouldGoToNextFrazero(frazerVortoj, vorto)) {
-				System.out.println("TO NEXT FRAZERO");
 				Frazero frazero = new Frazero(determineFunkcio(frazerVortoj), frazerVortoj.toArray(Vorto[]::new));
 				frazeroj.add(frazero);
-				System.out.println("DETERMINED: " + frazero + " is " + frazero.getFunkcio());
 				frazerVortoj.clear();
 			}
 			
