@@ -244,7 +244,7 @@ public class Analizaĵo {
 			case NUMERALO: return isNumeralo();
 			case PLURALO: return getLastFinaĵoj().contains(Vortero.J_FINAĴO);
 			case PREPOZICIO: return getLastVortero().getVorterSpeco() == VorterSpeco.PREPOZICIO;
-			case PRONOMO: return getLastVortero().getVorterSpeco() == VorterSpeco.PRONOMO;
+			case PRONOMO: return isPronomo();
 			case SONIMITO: return getLastVortero().getVorterSpeco() == VorterSpeco.SONIMITO;
 			case SUBSTANTIVO: return getLastFinaĵoj().contains(Vortero.O_FINAĴO);
 			case VERBO: return isVerbo();
@@ -354,6 +354,19 @@ public class Analizaĵo {
 			}
 		}
 		return true;
+	}
+	
+	/**
+	 * Kontrolas, ĉu la vorto estas pronomo. Tio estas ĉiam nur pronoma vortero plus eventuala akuzativo, sed ne posedaj pronomoj
+	 * @return ĉu la vorto estas pronomo
+	 */
+	public boolean isPronomo() {
+		if(getLastVortero().getVorterSpeco() == VorterSpeco.PRONOMO) {
+			return true;
+		} else if(getLastVortero().equals(Vortero.N_FINAĴO)) {
+			return vorteroj.get(vorteroj.size() - 2).getVorterSpeco() == VorterSpeco.PRONOMO;
+		}
+		return false;
 	}
 	
 	/**

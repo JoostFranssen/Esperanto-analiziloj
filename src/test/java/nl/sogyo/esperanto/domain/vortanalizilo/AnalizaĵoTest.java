@@ -527,4 +527,22 @@ class AnalizaĵoTest {
 		
 		assertFalse(tiu_j.matchFinaĵojOf(bel_a_j, vir_o));
 	}
+	
+	@Test
+	public void minIsAPronomo() {
+		Vorto min = new Vorto("min");
+		
+		Analizaĵo mi_n = min.getAnalizaĵoByString("mi|n");
+		
+		assertTrue(mi_n.checkTrajto(Trajto.PRONOMO));
+	}
+	
+	@Test
+	public void viaIsNotAPronomo() {
+		Vorto mia = new Vorto("mia");
+		
+		Analizaĵo mi_a = mia.getAnalizaĵoByString("mi|a");
+		
+		assertFalse(mi_a.checkTrajto(Trajto.PRONOMO));
+	}
 }
