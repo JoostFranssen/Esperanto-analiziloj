@@ -89,4 +89,30 @@ class FrazoTest {
 		
 		assertEquals("tre longan frazon", objekto.toString());
 	}
+	
+	@Test
+	public void adverboModifyingNextVerboIsASeparateFrazero() {
+		Frazo frazo = new Frazo("Li rapide falis.");
+		
+		Frazero adverbo = frazo.findByFunkcio(Funkcio.ADVERBO);
+		
+		assertEquals("rapide", adverbo.toString());
+	}
+	
+	@Test
+	public void adverboModifyingPreviousVerboIsASeparateFrazero() {
+		Frazo frazo = new Frazo("Ĝi falos rapide.");
+		
+		Frazero adverbo = frazo.findByFunkcio(Funkcio.ADVERBO);
+		
+		assertEquals("rapide", adverbo.toString());
+	}
+	
+	@Test
+	public void adverboModifyingAdverboAreOneFrazero() {
+		Frazo frazo = new Frazo("Planto tre rapide kreskas");
+		
+		Frazero adverbo = frazo.findByFunkcio(Funkcio.ADVERBO);
+		assertEquals("tre rapide", adverbo.toString());
+	}
 }

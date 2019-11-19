@@ -94,6 +94,12 @@ public class Frazo {
 			}
 		}
 		
+		if(lastVorto.checkTrajto(Trajto.SUBSTANTIVO)) {
+			if(currentVorto.checkTrajto(Trajto.ADVERBO)) {
+				return true;
+			}
+		}
+		
 		if(currentVorto.checkTrajto(Trajto.PREPOZICIO) || lastVorto.checkTrajto(Trajto.PREPOZICIO)) { //prepozicio ĉiam staras sola
 			return true;
 		}
@@ -117,15 +123,20 @@ public class Frazo {
 	private Funkcio determineFunkcio(Frazero frazero) {
 		List<Vorto> frazerVortoj = frazero.getVortoj();
 		
-		if(frazerVortoj.size() == 1) {
-			Vorto vorto = frazerVortoj.get(0);
-			if(vorto.checkTrajto(Trajto.VERBO) && !vorto.checkTrajto(Trajto.VERBO_INFINITIVO)) {
-				return Funkcio.ĈEFVERBO;
-			} else if(vorto.checkTrajto(Trajto.PREPOZICIO)) {
-				return Funkcio.PREPOZICIO;
-			} else if(vorto.checkTrajto(Trajto.ADVERBO)) {
-				return Funkcio.ADVERBO;
-			}
+		if(frazerVortoj.isEmpty()) {
+			return null;
+		}
+		
+		Vorto lastVorto = frazerVortoj.get(frazerVortoj.size() - 1);
+		
+		if(lastVorto.checkTrajto(Trajto.VERBO) && !lastVorto.checkTrajto(Trajto.VERBO_INFINITIVO)) {
+			return Funkcio.ĈEFVERBO;
+		}
+		if(lastVorto.checkTrajto(Trajto.PREPOZICIO)) {
+			return Funkcio.PREPOZICIO;
+		}
+		if(lastVorto.checkTrajto(Trajto.ADVERBO)) {
+			return Funkcio.ADVERBO;
 		}
 		
 		if(Vorto.checkTrajtoForAny(frazerVortoj, Trajto.AKUZATIVO)) {
@@ -170,6 +181,10 @@ public class Frazo {
 			}
 		}
 		return null;
+	}
+	
+	public Frazero[] findAllByFunkcio(Funkcio funkcio) {
+		return frazeroj.stream().filter(f -> f.getFunkcio() == funkcio).toArray(Frazero[]::new);
 	}
 	
 	@Override
