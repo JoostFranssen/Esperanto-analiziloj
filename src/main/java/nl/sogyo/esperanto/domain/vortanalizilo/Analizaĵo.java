@@ -295,6 +295,10 @@ public class Analizaĵo {
 		return transitiva;
 	}
 	
+	/**
+	 * Testas, ĉu verbo estas netransitiva.
+	 * @return ĉu verbo estas netransitiva. Se la vorto ne estas verbo, la rezulto estos {$code false}
+	 */
 	public boolean isNetransitiva() {
 		if(!isVerbo()) {
 			return false;
