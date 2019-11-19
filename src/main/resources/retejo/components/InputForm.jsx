@@ -37,6 +37,8 @@ class InputForm extends React.Component {
                     novalidate
                     onInput={
                         (event) => {
+                            event.target.value = convertXSystem(event.target.value);
+
                             let newState = Object.assign({}, this.state);
                             if(!event.target.validity.valid) {
                                 newState.errorMessage = this.props.handleInvalidity(event.target.value);
