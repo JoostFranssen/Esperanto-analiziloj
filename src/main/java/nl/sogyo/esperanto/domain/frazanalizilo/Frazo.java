@@ -82,16 +82,30 @@ public class Frazo {
 		if(currentVorto == null) { //se ni estas ĉe la fino de la frazo
 			return true;
 		}
-		if(!currentVorto.matchFinaĵojOf(frazerVortoj.toArray(Vorto[]::new))) {
-			return true;
-		}
+		
 		Vorto lastVorto = frazerVortoj.get(frazerVortoj.size() - 1);
+		
+		if(lastVorto.checkTrajto(Trajto.ADVERBO)) {
+			if(currentVorto.checkTrajto(Trajto.VERBO)) {
+				return true;
+			}
+			if(currentVorto.checkTrajto(Trajto.ADVERBO) || currentVorto.checkTrajto(Trajto.ADJEKTIVO)) {
+				return false;
+			}
+		}
+		
 		if(currentVorto.checkTrajto(Trajto.PREPOZICIO) || lastVorto.checkTrajto(Trajto.PREPOZICIO)) { //prepozicio ĉiam staras sola
 			return true;
 		}
+		
 		if(currentVorto.checkTrajto(Trajto.PRONOMO) || lastVorto.checkTrajto(Trajto.PRONOMO)) { //pronomo ĉiam komencas novan frazeron
 			return true;
 		}
+		
+		if(!currentVorto.matchFinaĵojOf(lastVorto)) {
+			return true;
+		}
+		
 		return false;
 	}
 	
@@ -109,6 +123,8 @@ public class Frazo {
 				return Funkcio.ĈEFVERBO;
 			} else if(vorto.checkTrajto(Trajto.PREPOZICIO)) {
 				return Funkcio.PREPOZICIO;
+			} else if(vorto.checkTrajto(Trajto.ADVERBO)) {
+				return Funkcio.ADVERBO;
 			}
 		}
 		

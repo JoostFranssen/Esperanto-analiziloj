@@ -14,7 +14,7 @@ class FrazoTest {
 		
 		Frazero ĉefverbo = pluvas.findByFunkcio(Funkcio.ĈEFVERBO);
 		
-		assertTrue("pluvas".equalsIgnoreCase(ĉefverbo.getVortoj().get(0).getVorto()));
+		assertEquals("Pluvas", ĉefverbo.getVortoj().get(0).getVorto());
 		assertEquals(Funkcio.ĈEFVERBO, ĉefverbo.getFunkcio());
 	}
 	
@@ -24,7 +24,7 @@ class FrazoTest {
 		
 		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
 		
-		assertTrue("homo".equalsIgnoreCase(subjekto.toString()));
+		assertEquals("Homo", subjekto.toString());
 	}
 	
 	@Test
@@ -33,7 +33,7 @@ class FrazoTest {
 		
 		Frazero objekto = frazo.findByFunkcio(Funkcio.OBJEKTO);
 		
-		assertTrue("Esperanton".equalsIgnoreCase(objekto.toString()));
+		assertEquals("Esperanton", objekto.toString());
 	}
 	
 	@Test
@@ -42,7 +42,7 @@ class FrazoTest {
 		
 		Frazero prepozicio = frazo.findByFunkcio(Funkcio.PREPOZICIO);
 		
-		assertTrue("per".equalsIgnoreCase(prepozicio.toString()));
+		assertEquals("per", prepozicio.toString());
 	}
 	
 	@Test
@@ -51,7 +51,7 @@ class FrazoTest {
 		
 		Frazero komplemento = frazo.findByFunkcio(Funkcio.PREPOZICIA_KOMPLEMENTO);
 		
-		assertTrue("mia aŭto".equalsIgnoreCase(komplemento.toString()));
+		assertEquals("mia aŭto", komplemento.toString());
 	}
 	
 	@Test
@@ -60,7 +60,7 @@ class FrazoTest {
 		
 		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
 		
-		assertTrue("mi".equalsIgnoreCase(subjekto.toString()));
+		assertEquals("mi", subjekto.toString());
 	}
 	
 	@Test
@@ -69,6 +69,24 @@ class FrazoTest {
 		
 		Frazero prepociziaKomplemento = frazo.findByFunkcio(Funkcio.PREPOZICIA_KOMPLEMENTO);
 		
-		assertTrue("mi".equalsIgnoreCase(prepociziaKomplemento.toString()));
+		assertEquals("mi", prepociziaKomplemento.toString());
+	}
+	
+	@Test
+	public void adverboModifyingNominativaAdjektivoIsWithinTheSameFrazero() {
+		Frazo frazo = new Frazo("Tre longa frazo skribiĝis.");
+		
+		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
+		
+		assertEquals("Tre longa frazo", subjekto.toString());
+	}
+	
+	@Test
+	public void adverboModifyingAkuzativaAdjektivoIsWithinTheSameFrazero() {
+		Frazo frazo = new Frazo("Mi skribas tre longan frazon.");
+		
+		Frazero objekto = frazo.findByFunkcio(Funkcio.OBJEKTO);
+		
+		assertEquals("tre longan frazon", objekto.toString());
 	}
 }
