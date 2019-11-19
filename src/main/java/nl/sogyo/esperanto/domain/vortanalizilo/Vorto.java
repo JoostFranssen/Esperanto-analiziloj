@@ -40,14 +40,15 @@ public class Vorto {
 		String[] parts = vorto.split("-", 2);
 		this.vorto = parts[0];
 		possibleAnalizaĵoj = new HashSet<>();
-
+		
+		analyze();
+		
 		if(parts.length >= 2) {
 			addVorto(new Vorto(parts[1], false));
 		}
 		
-		analyze();
-		
 		this.vorto = String.join("-", parts);
+		
 		
 		if(filterInvalidAnalizaĵoj) {
 			filterInvalidAnalizaĵoj();
@@ -103,8 +104,8 @@ public class Vorto {
 		this.vorto += vorto.getVorto();
 		Set<Analizaĵo> newAnalizaĵoj = new HashSet<>();
 		for(Analizaĵo analizaĵo : possibleAnalizaĵoj) {
-			Analizaĵo newAnalizaĵo = new Analizaĵo(analizaĵo);
 			for(Analizaĵo otherAnalizaĵo : vorto.possibleAnalizaĵoj) {
+				Analizaĵo newAnalizaĵo = new Analizaĵo(analizaĵo);
 				newAnalizaĵo.addAnalizaĵo(otherAnalizaĵo);
 				newAnalizaĵoj.add(newAnalizaĵo);
 			}
