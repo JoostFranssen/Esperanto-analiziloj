@@ -53,4 +53,22 @@ class FrazoTest {
 		
 		assertTrue("mia aŭto".equalsIgnoreCase(komplemento.toString()));
 	}
+	
+	@Test
+	public void pronomoIsNotPutTogetherWithOtherWordsWithCongruentEnding() {
+		Frazo frazo = new Frazo("Al domo mi iras.");
+		
+		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
+		
+		assertTrue("mi".equalsIgnoreCase(subjekto.toString()));
+	}
+	
+	@Test
+	public void pronomoStandsOnItsOwn() {
+		Frazo frazo = new Frazo("Al mi homo paŝas.");
+		
+		Frazero prepociziaKomplemento = frazo.findByFunkcio(Funkcio.PREPOZICIA_KOMPLEMENTO);
+		
+		assertTrue("mi".equalsIgnoreCase(prepociziaKomplemento.toString()));
+	}
 }

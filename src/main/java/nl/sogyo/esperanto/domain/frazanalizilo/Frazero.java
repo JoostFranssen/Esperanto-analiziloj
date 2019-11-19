@@ -16,9 +16,12 @@ public class Frazero {
 	private List<Vorto> vortoj;
 	private Funkcio funkcio;
 	
+	public Frazero() {
+		this(null);
+	}
 	public Frazero(Funkcio funkcio, Vorto... vortoj) {
 		this.funkcio = funkcio;
-		this.vortoj = Arrays.asList(vortoj);
+		this.vortoj = new ArrayList<>(Arrays.asList(vortoj));
 	}
 
 	public List<Vorto> getVortoj() {
@@ -27,6 +30,10 @@ public class Frazero {
 
 	public Funkcio getFunkcio() {
 		return funkcio;
+	}
+	
+	void setFunkcio(Funkcio funkcio) {
+		this.funkcio = funkcio;
 	}
 	
 	public void addVorto(Vorto vorto) {

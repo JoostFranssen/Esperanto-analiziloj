@@ -36,74 +36,94 @@ public class Frazo {
 	private void analyze() {
 		frazeroj = new ArrayList<>();
 		
-		List<Vorto> frazerVortoj = new ArrayList<>();
 		Iterator<Vorto> iterator = Arrays.asList(vortoj).iterator();
 		/*
 		 * Ni bezonas tian konstruon, ĉar ni bezonas la sekvan vorton por analizi la lastan grupon de vortoj.
 		 * Do post la lasta vorto el ‘vortoj’ ni devas fari kroman iteracion.
 		 */
+		Frazero frazero = new Frazero();
+		System.out.println("=".repeat(10));
 		do {
 			Vorto vorto = (iterator.hasNext() ? iterator.next() : null);
 			
-			if(shouldGoToNextFrazero(frazerVortoj, vorto)) {
-				Frazero frazero = new Frazero(determineFunkcio(frazerVortoj), frazerVortoj.toArray(Vorto[]::new));
-				frazeroj.add(frazero);
-				frazerVortoj.clear();
+			if(vorto != null) {
+				System.out.println(vorto.getVorto());
+			} else {
+				System.out.println("null");
 			}
 			
-			frazerVortoj.add(vorto);
+			if(shouldGoToNextFrazero(frazero, vorto)) {
+				Funkcio funkcio = null;
+				
+				System.out.println("--" + frazero + ": " + frazero.getFunkcio());
+				
+				if(frazero.getFunkcio() == null) {
+    				funkcio = determineFunkcio(frazero);
+    				frazero.setFunkcio(funkcio);
+				}
+				
+				System.out.println("--" + funkcio);
+				
+				frazeroj.add(frazero);
+				
+				frazero = new Frazero();
+				frazero.setFunkcio(nextFunkcio(funkcio));
+				
+				System.out.println("--" + frazero.getFunkcio());
+			}
 			
 			if(vorto == null) {
 				break;
 			}
+			
+			frazero.addVorto(vorto);
+			
+			System.out.println("-".repeat(10));
 		} while(true);
 	}
 	
 	/**
 	 * Determinas de la lasta grupo de vortoj kaj la nuna vorto, ĉu ni kreu frazeron el la lasta grupo aŭ ne
-	 * @param frazerVortoj grupo da vortoj, kiuj potenciale konsistigas frazeron
+	 * @param frazero la kreata frazero
 	 * @param currentVorto la nuna vorto, kiu tuj sekvas frazerVortojn
 	 * @return ĉu ni kreu frazeron el la frazerVortoj aŭ aldonu la nuna vorto al la frazerVortoj
 	 */
-	private boolean shouldGoToNextFrazero(List<Vorto> frazerVortoj, Vorto currentVorto) {
-		if(currentVorto == null) {
+	private boolean shouldGoToNextFrazero(Frazero frazero, Vorto currentVorto) {
+		System.out.println("Next? " + frazero + ": " + frazero.getFunkcio() + " | " + (currentVorto != null ? currentVorto.getVorto() : "null"));
+		List<Vorto> frazerVortoj = frazero.getVortoj();
+		if(frazerVortoj.isEmpty()) {
+			return false;
+		}
+		
+		if(currentVorto == null) { //se ni estas ĉe la fino de la frazo
 			return true;
 		}
 		if(!currentVorto.matchFinaĵojOf(frazerVortoj.toArray(Vorto[]::new))) {
 			return true;
 		}
-		if(currentVorto.checkTrajto(Trajto.PREPOZICIO)) {
+		Vorto lastVorto = frazerVortoj.get(frazerVortoj.size() - 1);
+		if(currentVorto.checkTrajto(Trajto.PREPOZICIO) || lastVorto.checkTrajto(Trajto.PREPOZICIO)) { //prepozicio ĉiam staras sola
 			return true;
 		}
-		if(!frazerVortoj.isEmpty() && frazerVortoj.get(frazerVortoj.size() - 1).checkTrajto(Trajto.PREPOZICIO)) {
+		if(currentVorto.checkTrajto(Trajto.PRONOMO) || lastVorto.checkTrajto(Trajto.PRONOMO)) { //pronomo ĉiam komencas novan frazeron
 			return true;
 		}
 		return false;
 	}
 	
 	/**
-	 * La funkcio, kiun certe havu la sekva grupo da vortoj (ekzemple post prepozicio)
-	 */
-	private Funkcio nextFunkcio;
-	
-	/**
 	 * Determinas la funkcion de la listo de vortoj
 	 * @param frazerVortoj
 	 * @return la funkcion de la frazerVortoj
 	 */
-	private Funkcio determineFunkcio(List<Vorto> frazerVortoj) {
-		if(nextFunkcio != null) {
-			Funkcio f = nextFunkcio;
-			nextFunkcio = null;
-			return f;
-		}
+	private Funkcio determineFunkcio(Frazero frazero) {
+		List<Vorto> frazerVortoj = frazero.getVortoj();
 		
 		if(frazerVortoj.size() == 1) {
 			Vorto vorto = frazerVortoj.get(0);
 			if(vorto.checkTrajto(Trajto.VERBO) && !vorto.checkTrajto(Trajto.VERBO_INFINITIVO)) {
 				return Funkcio.ĈEFVERBO;
 			} else if(vorto.checkTrajto(Trajto.PREPOZICIO)) {
-				nextFunkcio = Funkcio.PREPOZICIA_KOMPLEMENTO;
 				return Funkcio.PREPOZICIO;
 			}
 		}
@@ -119,6 +139,23 @@ public class Frazo {
 		}
 		
 		return null;
+	}
+	
+	/**
+	 * Determinas la funkcion de la sekva frazero, se tio eblas; ekzemple post prepozicio.
+	 * @param currentFunkcio la funkcio de la nuna frazero
+	 * @return la funkcion de la sekva frazero
+	 */
+	private Funkcio nextFunkcio(Funkcio currentFunkcio) {
+		if(currentFunkcio == null) {
+			return null;
+		}
+		switch(currentFunkcio) {
+			case PREPOZICIO:
+				return Funkcio.PREPOZICIA_KOMPLEMENTO;
+			default:
+				return null;
+		}
 	}
 	
 	/**
