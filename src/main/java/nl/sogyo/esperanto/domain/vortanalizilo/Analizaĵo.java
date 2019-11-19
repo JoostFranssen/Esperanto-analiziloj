@@ -427,8 +427,6 @@ public class Analizaĵo {
 	 */
 	public boolean matchFinaĵojOf(Analizaĵo... analizaĵoj) {
 		return Arrays.asList(analizaĵoj).stream().filter(a -> matchFinaĵoj(a.getLastFinaĵoj())).count() == analizaĵoj.length;
-		
-//		matchFinaĵoj(analizaĵo.getLastFinaĵoj());
 	}
 	
 	@Override
