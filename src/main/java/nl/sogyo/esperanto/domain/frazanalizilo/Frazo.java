@@ -42,34 +42,21 @@ public class Frazo {
 		 * Do post la lasta vorto el ‘vortoj’ ni devas fari kroman iteracion.
 		 */
 		Frazero frazero = new Frazero();
-		System.out.println("=".repeat(10));
 		do {
 			Vorto vorto = (iterator.hasNext() ? iterator.next() : null);
 			
-			if(vorto != null) {
-				System.out.println(vorto.getVorto());
-			} else {
-				System.out.println("null");
-			}
-			
 			if(shouldGoToNextFrazero(frazero, vorto)) {
 				Funkcio funkcio = null;
-				
-				System.out.println("--" + frazero + ": " + frazero.getFunkcio());
 				
 				if(frazero.getFunkcio() == null) {
     				funkcio = determineFunkcio(frazero);
     				frazero.setFunkcio(funkcio);
 				}
 				
-				System.out.println("--" + funkcio);
-				
 				frazeroj.add(frazero);
 				
 				frazero = new Frazero();
 				frazero.setFunkcio(nextFunkcio(funkcio));
-				
-				System.out.println("--" + frazero.getFunkcio());
 			}
 			
 			if(vorto == null) {
@@ -77,8 +64,6 @@ public class Frazo {
 			}
 			
 			frazero.addVorto(vorto);
-			
-			System.out.println("-".repeat(10));
 		} while(true);
 	}
 	
@@ -89,7 +74,6 @@ public class Frazo {
 	 * @return ĉu ni kreu frazeron el la frazerVortoj aŭ aldonu la nuna vorto al la frazerVortoj
 	 */
 	private boolean shouldGoToNextFrazero(Frazero frazero, Vorto currentVorto) {
-		System.out.println("Next? " + frazero + ": " + frazero.getFunkcio() + " | " + (currentVorto != null ? currentVorto.getVorto() : "null"));
 		List<Vorto> frazerVortoj = frazero.getVortoj();
 		if(frazerVortoj.isEmpty()) {
 			return false;
