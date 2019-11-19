@@ -7,6 +7,7 @@ class NavigationButton extends React.Component {
         return <button
             className={["navigation-button", this.props.selected ? "selected" : ""].join(" ")}
             onClick={this.props.onClick}
+            id={this.props.id}
         >
             {this.props.text}
         </button>

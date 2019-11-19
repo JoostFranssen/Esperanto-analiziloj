@@ -6,10 +6,12 @@ class NavigationBar extends React.Component {
             selectedIndex: (localStorage.getItem("selectedIndex") ? Number(localStorage.getItem("selectedIndex")) : 0),
             componentProps: [
                 {
-                    title: "Vort-Analizilo",
+                    title: "Vorto-Analizilo",
+                    id: "navigation-button-vorto",
                 },
                 {
-                    title: "Fraz-Analizilo",
+                    title: "Frazo-Analizilo",
+                    id: "navigation-button-frazo",
                 }
             ],
         }
@@ -18,11 +20,11 @@ class NavigationBar extends React.Component {
 
     render() {
         return (
-            <div
-                className="navigation-bar"
-            >
+            <div className="navigation-bar">
                 <Banner width={this.state.imageWidth}/>
-                {this.createComponents()}
+                <div className="navigation-buttons">
+                    {this.createComponents()}
+                </div>
             </div>
         );
     }
@@ -45,6 +47,7 @@ class NavigationBar extends React.Component {
                     onClick={(event) => this.clickHandler(event, i)}
                     text={prop.title}
                     selected={i === this.state.selectedIndex}
+                    id={prop.id}
                 />
             );
         }

@@ -26,11 +26,24 @@
     font-size: 24px;
     grid-area: 2 / 1 / 3 / 2;
     min-width: 0px;
+    outline: 0;
+    border-radius: 5px 0 0 5px;
+    border-color: var(--Esperanto-green);
+    border-width: 2px 0 2px 2px;
+}
+
+.analizilo-form .input:invalid {
+    border-color: crimson;
 }
 
 .analizilo-form .confirm-button {
     font-size: 24px;
     grid-area: 2 / 2 / 3 / 3;
+    outline: 0;
+    background-color: var(--Esperanto-green);
+    color: white;
+    border-color: darkgreen;
+    border-radius: 0 5px 5px 0;
 }
 
 .analizilo-form .error-message {
@@ -49,7 +62,7 @@
     height: 14px;
     width: 14px;
     border: 8px solid lightgray;
-    border-top: 8px solid #009E00;
+    border-top: 8px solid var(--Esperanto-green);
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-right: 3px;

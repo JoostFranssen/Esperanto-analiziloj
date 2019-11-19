@@ -1,3 +1,7 @@
+:root {
+    --Esperanto-green: #009E00;
+}
+
 body {
     font-size: 16px;
     margin: 0;

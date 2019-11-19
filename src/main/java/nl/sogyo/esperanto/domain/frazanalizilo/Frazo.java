@@ -8,7 +8,6 @@ import java.util.stream.IntStream;
 
 import nl.sogyo.esperanto.API.Funkcio;
 import nl.sogyo.esperanto.API.Trajto;
-import nl.sogyo.esperanto.domain.vortanalizilo.Analizaĵo;
 import nl.sogyo.esperanto.domain.vortanalizilo.Vorto;
 
 /**
