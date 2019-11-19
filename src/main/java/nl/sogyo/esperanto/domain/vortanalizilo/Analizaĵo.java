@@ -208,19 +208,23 @@ public class Analizaĵo {
 	protected void addVortero(Vortero vortero) {
 		vorteroj.add(vortero);
 	}
-	protected void addVortero(int indico, Vortero vortero) {
-		vorteroj.add(indico, vortero);
+	protected void addVortero(int index, Vortero vortero) {
+		vorteroj.add(index, vortero);
 	}
 	
-	protected Vortero getVortero(int indico) {
-		return vorteroj.get(indico);
+	protected Vortero getVortero(int index) {
+		return vorteroj.get(index);
 	}
 	
-	protected void removeVortero(int indico) {
-		vorteroj.remove(indico);
+	protected void removeVortero(int index) {
+		vorteroj.remove(index);
 	}
 	protected void removeVortero(Vortero vortero) {
 		vorteroj.remove(vortero);
+	}
+	
+	protected void addAnalizaĵo(Analizaĵo analizaĵo) {
+		vorteroj.addAll(analizaĵo.vorteroj);
 	}
 	
 	/**

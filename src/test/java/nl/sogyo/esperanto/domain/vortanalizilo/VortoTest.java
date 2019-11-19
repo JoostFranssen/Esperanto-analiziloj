@@ -58,4 +58,22 @@ class VortoTest {
 		
 		assertFalse(bonan.matchFinaĵojOf(ludoj));
 	}
+	
+	@Test
+	public void vortoWithADashIsRecognized() {
+		Vorto ĉifoje = new Vorto("ĉi-foje");
+		
+		Analizaĵo ĉi_foj_e = ĉifoje.getAnalizaĵoByString("ĉi|foj|e");
+		
+		assertNotNull(ĉi_foj_e);
+	}
+	
+	@Test
+	public void vortoWithMultipleDashesIsRecognized() {
+		Vorto nombro = new Vorto("cent-dudek-tria");
+		
+		Analizaĵo cent_du_dek_tri_a = nombro.getAnalizaĵoByString("cent|du|dek|tri|a");
+		
+		assertNotNull(cent_du_dek_tri_a);
+	}
 }

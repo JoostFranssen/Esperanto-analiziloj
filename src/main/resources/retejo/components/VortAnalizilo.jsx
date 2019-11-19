@@ -14,7 +14,7 @@ class VortAnalizilo extends React.Component {
                 <InputForm
                     handleConfirm={this.handleConfirm.bind(this)}
                     label="Analizota vorto"
-                    pattern="^((?=[a-zA-ZĉĈĝĜĥĤĵĴŝŜŭŬ])[^qQw-yW-Y])+$"
+                    pattern="^((?=[a-zA-ZĉĈĝĜĥĤĵĴŝŜŭŬ])[^qQw-yW-Y])+(-((?=[a-zA-ZĉĈĝĜĥĤĵĴŝŜŭŬ])[^qQw-yW-Y])+)*$"
                     handleInvalidity={this.handleInvalidity}
                     errorMessageForNoResults="Neniuj rezultoj montreblaj"
                 />

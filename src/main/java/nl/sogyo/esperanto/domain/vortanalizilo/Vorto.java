@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import nl.sogyo.esperanto.API.IVortero;
 import nl.sogyo.esperanto.API.Trajto;
@@ -35,15 +36,26 @@ public class Vorto {
 	public Vorto(String vorto) {
 		this(vorto, true);
 	}
-
 	public Vorto(String vorto, boolean filterInvalidAnalizaĵoj) {
-		this.vorto = vorto;
+		String[] parts = vorto.split("-", 2);
+		this.vorto = parts[0];
 		possibleAnalizaĵoj = new HashSet<>();
 
+		if(parts.length >= 2) {
+			addVorto(new Vorto(parts[1], false));
+		}
+		
 		analyze();
+		
+		this.vorto = String.join("-", parts);
+		
 		if(filterInvalidAnalizaĵoj) {
 			filterInvalidAnalizaĵoj();
 		}
+	}
+	public Vorto(Vorto vorto) {
+		this.vorto = vorto.getVorto();
+		this.possibleAnalizaĵoj = vorto.possibleAnalizaĵoj.stream().map(a -> new Analizaĵo(a)).collect(Collectors.toSet());
 	}
 
 	/**
@@ -58,14 +70,10 @@ public class Vorto {
 			String takenPart = vorto.substring(i);
 			List<Vortero> result = DatabaseCommunicator.getFromDatabase(takenPart, defaultFilterForDatabase);
 			if(!result.isEmpty()) {
-				Vorto subVorto = new Vorto(vorto.substring(0, i), false);
-				subVorto.analyze();
-				for(Analizaĵo analizaĵo : subVorto.possibleAnalizaĵoj) {
-					for(Vortero v : result) {
-						Analizaĵo newAnalizaĵo = new Analizaĵo(analizaĵo);
-						newAnalizaĵo.addVortero(v);
-						possibleAnalizaĵoj.add(newAnalizaĵo);
-					}
+				for(Vortero v : result) {
+					Vorto subVorto = new Vorto(vorto.substring(0, i), false);
+					subVorto.addVortero(v);
+					subVorto.possibleAnalizaĵoj.forEach(possibleAnalizaĵoj::add);
 				}
 			}
 		}
@@ -76,6 +84,32 @@ public class Vorto {
 	 */
 	private void filterInvalidAnalizaĵoj() {
 		possibleAnalizaĵoj.removeIf(a -> !a.isValid());
+	}
+	
+	/**
+	 * Aldonas vorteron al ĉi tiu vorto kaj al ĝiaj analizaĵoj.
+	 * @param vortero la vortero por aldoni je la fino
+	 */
+	private void addVortero(Vortero vortero) {
+		vorto += vortero.getVortero();
+		possibleAnalizaĵoj.forEach(a -> a.addVortero(vortero));
+	}
+	
+	/**
+	 * Aldonas tutan vorton je la fino de ĉi tiu vorto kaj kombinas ĉiuj analizaĵoj de ambaŭ vortoj.
+	 * @param vorto la vorto por aldoni je la fino
+	 */
+	private void addVorto(Vorto vorto) {
+		this.vorto += vorto.getVorto();
+		Set<Analizaĵo> newAnalizaĵoj = new HashSet<>();
+		for(Analizaĵo analizaĵo : possibleAnalizaĵoj) {
+			Analizaĵo newAnalizaĵo = new Analizaĵo(analizaĵo);
+			for(Analizaĵo otherAnalizaĵo : vorto.possibleAnalizaĵoj) {
+				newAnalizaĵo.addAnalizaĵo(otherAnalizaĵo);
+				newAnalizaĵoj.add(newAnalizaĵo);
+			}
+		}
+		possibleAnalizaĵoj = newAnalizaĵoj;
 	}
 
 	public String getVorto() {
