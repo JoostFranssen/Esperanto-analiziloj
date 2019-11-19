@@ -94,6 +94,13 @@ public class Frazo {
 			}
 		}
 		
+		if(lastVorto.checkTrajto(Trajto.ARTIKOLO)) { //artikolo neniam povas stari sole
+			return false;
+		}
+		if(currentVorto.checkTrajto(Trajto.ARTIKOLO)) { //artikolo ĉiam staras ĉe la komenco de frazero
+			return true;
+		}
+		
 		if(lastVorto.checkTrajto(Trajto.SUBSTANTIVO)) {
 			if(currentVorto.checkTrajto(Trajto.ADVERBO)) {
 				return true;

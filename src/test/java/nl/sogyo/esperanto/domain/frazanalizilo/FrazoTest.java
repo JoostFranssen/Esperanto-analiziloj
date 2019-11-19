@@ -125,4 +125,40 @@ class FrazoTest {
 		
 		assertEquals("antaŭen", adverbo.toString());
 	}
+	
+	@Test
+	public void laIsPartOfTheSubject() {
+		Frazo frazo = new Frazo("La viro iras.");
+		
+		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
+		
+		assertEquals("La viro", subjekto.toString());
+	}
+	
+	@Test
+	public void laIsPartOfTheObject() {
+		Frazo frazo = new Frazo("Ŝi ĵetu la pilkon.");
+		
+		Frazero objekto = frazo.findByFunkcio(Funkcio.OBJEKTO);
+		
+		assertEquals("la pilkon", objekto.toString());
+	}
+	
+	@Test
+	public void laIsPartOfAPrepoziciaKomplemento() {
+		Frazo frazo = new Frazo("Mi sendas literon al la homoj.");
+		
+		Frazero prepKompl = frazo.findByFunkcio(Funkcio.PREPOZICIA_KOMPLEMENTO);
+		
+		assertEquals("la homoj", prepKompl.toString());
+	}
+	
+	@Test
+	public void laWithAdverbojAndAdjektivoj() {
+		Frazo frazo = new Frazo("La rapide iranta homo hastas.");
+		
+		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
+		
+		assertEquals("La rapide iranta homo", subjekto.toString());
+	}
 }
