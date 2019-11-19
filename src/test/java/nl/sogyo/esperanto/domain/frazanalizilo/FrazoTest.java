@@ -113,6 +113,16 @@ class FrazoTest {
 		Frazo frazo = new Frazo("Planto tre rapide kreskas");
 		
 		Frazero adverbo = frazo.findByFunkcio(Funkcio.ADVERBO);
+		
 		assertEquals("tre rapide", adverbo.toString());
+	}
+	
+	@Test
+	public void akuzativaAdverboIsAdverbo() {
+		Frazo frazo = new Frazo("Vi ĵetas pilkon antaŭen.");
+		
+		Frazero	adverbo = frazo.findByFunkcio(Funkcio.ADVERBO);
+		
+		assertEquals("antaŭen", adverbo.toString());
 	}
 }
