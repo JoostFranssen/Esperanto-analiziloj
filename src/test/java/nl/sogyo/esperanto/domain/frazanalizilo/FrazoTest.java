@@ -161,4 +161,31 @@ class FrazoTest {
 		
 		assertEquals("La rapide iranta homo", subjekto.toString());
 	}
+	
+	@Test
+	public void estasHasPredikativo() {
+		Frazo frazo = new Frazo("Ri estas bela.");
+		
+		Frazero predikativo = frazo.findByFunkcio(Funkcio.PREDIKATIVO);
+		
+		assertEquals("bela", predikativo.toString());
+	}
+	
+	@Test
+	public void opiniiHasPredikativo() {
+		Frazo frazo = new Frazo("Li opinias ĝin facila.");
+		
+		Frazero predikativo = frazo.findByFunkcio(Funkcio.PREDIKATIVO);
+		
+		assertEquals("facila", predikativo.toString());
+	}
+	
+	@Test
+	public void taksiWithComplexPredikativo() {
+		Frazo frazo = new Frazo("La homo taksas sian sugeston bonega ideo.");
+		
+		Frazero predikativo = frazo.findByFunkcio(Funkcio.PREDIKATIVO);
+		
+		assertEquals("bonega ideo", predikativo.toString());
+	}
 }

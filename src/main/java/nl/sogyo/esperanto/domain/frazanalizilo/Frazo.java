@@ -154,6 +154,8 @@ public class Frazo {
 			}
 		} else if(findByFunkcio(Funkcio.SUBJEKTO) == null) {
 			return Funkcio.SUBJEKTO;
+		} else if(findByFunkcio(Funkcio.PREDIKATIVO )== null) {
+			return Funkcio.PREDIKATIVO;
 		}
 		
 		return null;
