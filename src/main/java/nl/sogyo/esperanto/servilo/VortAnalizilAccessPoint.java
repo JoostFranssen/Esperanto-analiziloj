@@ -22,10 +22,23 @@ public class VortAnalizilAccessPoint {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getVortAnalysis(@QueryParam("vorto") String string) {
-		Vorto vorto = new Vorto(string);
-		
-		JSONObject responseJSON = VortoJSONProcessor.convertVortoToJSON(vorto);
-		
-		return Response.status(HttpStatus.OK_200).entity(responseJSON.toString()).build();
+		try {
+			Vorto vorto = new Vorto(string);
+			
+			System.out.println(vorto);
+			vorto.getPossibleAnalizaĵoj().forEach(System.out::println);
+			
+			if(vorto.getPossibleAnalizaĵoj().isEmpty()) {
+				return Response.status(HttpStatus.BAD_REQUEST_400).build();
+			}
+			
+    		JSONObject responseJSON = VortoJSONProcessor.convertVortoToJSON(vorto);
+    		
+    		return Response.status(HttpStatus.OK_200).entity(responseJSON.toString()).build();
+		} catch(Exception e) {
+			e.printStackTrace();
+			
+			return Response.status(HttpStatus.INTERNAL_SERVER_ERROR_500).build();
+		}
 	}
 }

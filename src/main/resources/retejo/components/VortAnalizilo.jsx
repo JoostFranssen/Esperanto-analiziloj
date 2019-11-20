@@ -25,14 +25,22 @@ class VortAnalizilo extends React.Component {
 
     async handleConfirm(value) {
         let response = await fetch(`api/vortanalizo?vorto=${value}`);
-        let result = await response.json();
+        
+        if(response.ok) {
+            let result = await response.json();
 
-        this.setState({
-            analizaĵoj: result.analizaĵoj,
-            vorto: value,
-        });
+            this.setState({
+                analizaĵoj: result.analizaĵoj,
+                vorto: value,
+            });
+        } else {
+            this.setState({
+                analizaĵoj: null,
+                vorto: null,
+            });
+        }
 
-        return result.analizaĵoj.length != 0;
+        return response.ok;
     }
 
     handleInvalidity(value) {
