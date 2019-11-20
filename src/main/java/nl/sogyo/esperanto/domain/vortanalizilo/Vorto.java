@@ -23,9 +23,10 @@ public class Vorto {
 	private Set<Analizaĵo> possibleAnalizaĵoj;
 	private List<Analizaĵo> sortedAnalizaĵoj;
 	
-	public static Predicate<IVortero> defaultFilterForDatabase = v -> {
+	public static final Predicate<IVortero> defaultFilterForDatabase = v -> {
 		return v.getVorterSpeco() != VorterSpeco.LITERO && !v.equals(Vortero.J_SUFIKSO) && !v.equals(Vortero.ĈJ_SUFIKSO) && !v.equals(Vortero.NJ_SUFIKSO);
 	};
+	public static final Vorto ĈU = new Vorto("ĉu");
 
 	/**
 	 * Iniciatas novan vorton, analizas ĝin por trovi {@code Analizaĵo}jn, kiuj
@@ -205,5 +206,35 @@ public class Vorto {
 		} else {
 			return "";
 		}
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((vorto == null) ? 0 : vorto.hashCode());
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true;
+		}
+		if(obj == null) {
+			return false;
+		}
+		if(getClass() != obj.getClass()) {
+			return false;
+		}
+		Vorto other = (Vorto)obj;
+		if(vorto == null) {
+			if(other.vorto != null) {
+				return false;
+			}
+		} else if(!vorto.equalsIgnoreCase(other.vorto)) {
+			return false;
+		}
+		return true;
 	}
 }

@@ -188,4 +188,31 @@ class FrazoTest {
 		
 		assertEquals("bonega ideo", predikativo.toString());
 	}
+	
+	@Test
+	public void kajWithinSubjekto() {
+		Frazo frazo = new Frazo("Mi kaj li paŝas.");
+		
+		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
+		
+		assertEquals("Mi kaj li", subjekto.toString());
+	}
+	
+	@Test
+	public void ĉuIsSeparate() {
+		Frazo frazo = new Frazo("Ĉu mi kaj li paŝas?");
+		
+		Frazero ĉu = frazo.findByString("Ĉu");
+		
+		assertNotNull(ĉu);
+	}
+	
+	@Test
+	public void ĉuIsNotSubjekto() {
+		Frazo frazo = new Frazo("Ĉu mi kaj li paŝas?");
+		
+		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
+		
+		assertEquals("mi kaj li", subjekto.toString());
+	}
 }

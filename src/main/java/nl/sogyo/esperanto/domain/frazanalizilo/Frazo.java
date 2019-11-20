@@ -85,6 +85,14 @@ public class Frazo {
 		
 		Vorto lastVorto = frazerVortoj.get(frazerVortoj.size() - 1);
 		
+		//Konjunkcioj ĉiam kuntenu frazeron, ĉar ni ne konsideras subfrazojn; sed ‘ĉu’ ĉiam estu aparta
+		if(lastVorto.checkTrajto(Trajto.KONJUNKCIO)) {
+			return lastVorto.equals(Vorto.ĈU);
+		}
+		if(currentVorto.checkTrajto(Trajto.KONJUNKCIO)) {
+			return currentVorto.equals(Vorto.ĈU);
+		}
+		
 		if(lastVorto.checkTrajto(Trajto.ADVERBO)) {
 			if(currentVorto.checkTrajto(Trajto.VERBO)) {
 				return true;
@@ -145,6 +153,9 @@ public class Frazo {
 		if(lastVorto.checkTrajto(Trajto.ADVERBO)) {
 			return Funkcio.ADVERBO;
 		}
+		if(lastVorto.checkTrajto(Trajto.KONJUNKCIO)) {
+			return Funkcio.KONJUNKCIO;
+		}
 		
 		if(Vorto.checkTrajtoForAny(frazerVortoj, Trajto.AKUZATIVO)) {
 			if(findByFunkcio(Funkcio.OBJEKTO) == null) {
@@ -154,7 +165,7 @@ public class Frazo {
 			}
 		} else if(findByFunkcio(Funkcio.SUBJEKTO) == null) {
 			return Funkcio.SUBJEKTO;
-		} else if(findByFunkcio(Funkcio.PREDIKATIVO )== null) {
+		} else if(findByFunkcio(Funkcio.PREDIKATIVO) == null) {
 			return Funkcio.PREDIKATIVO;
 		}
 		
@@ -194,6 +205,15 @@ public class Frazo {
 	
 	public Frazero[] findAllByFunkcio(Funkcio funkcio) {
 		return frazeroj.stream().filter(f -> f.getFunkcio() == funkcio).toArray(Frazero[]::new);
+	}
+	
+	public Frazero findByString(String string) {
+		for(Frazero frazero : frazeroj) {
+			if(string.equals(frazero.toString())) {
+				return frazero;
+			}
+		}
+		return null;
 	}
 	
 	@Override

@@ -11,16 +11,12 @@
     color: black;
 }
 
-.frazero.selected {
-    color: red;
-}
-
-.fraz-vorto {
-    text-decoration: none;
-}
-
-.fraz-vorto:hover {
+.frazero:hover {
     text-decoration: underline;
+}
+
+.frazero.selected {
+    color: var(--Esperanto-green);
 }
 
 .frazer-properties {
