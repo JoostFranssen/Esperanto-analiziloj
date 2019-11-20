@@ -37,21 +37,12 @@ class FrazoTest {
 	}
 	
 	@Test
-	public void perEstasPrepozicio() {
-		Frazo frazo = new Frazo("Mi veturas per aŭto.");
-		
-		Frazero prepozicio = frazo.findByFunkcio(Funkcio.PREPOZICIO);
-		
-		assertEquals("per", prepozicio.toString());
-	}
-	
-	@Test
-	public void miaAŭtoEstasPrepoziciaKomplemento() {
+	public void perMiaAŭtoEstasPrepoziciaĵo() {
 		Frazo frazo = new Frazo("Mi veturas per mia aŭto");
 		
-		Frazero komplemento = frazo.findByFunkcio(Funkcio.PREPOZICIA_KOMPLEMENTO);
+		Frazero komplemento = frazo.findByFunkcio(Funkcio.PREPOZICIAĴO);
 		
-		assertEquals("mia aŭto", komplemento.toString());
+		assertEquals("per mia aŭto", komplemento.toString());
 	}
 	
 	@Test
@@ -64,12 +55,12 @@ class FrazoTest {
 	}
 	
 	@Test
-	public void pronomoStandsOnItsOwn() {
+	public void pronomoBelongsToPrepoziciaĵo() {
 		Frazo frazo = new Frazo("Al mi homo paŝas.");
 		
-		Frazero prepociziaKomplemento = frazo.findByFunkcio(Funkcio.PREPOZICIA_KOMPLEMENTO);
+		Frazero prepoziciaĵo = frazo.findByFunkcio(Funkcio.PREPOZICIAĴO);
 		
-		assertEquals("mi", prepociziaKomplemento.toString());
+		assertEquals("Al mi", prepoziciaĵo.toString());
 	}
 	
 	@Test
@@ -145,12 +136,12 @@ class FrazoTest {
 	}
 	
 	@Test
-	public void laIsPartOfAPrepoziciaKomplemento() {
+	public void laIsPartOfAPrepoziciaĵo() {
 		Frazo frazo = new Frazo("Mi sendas literon al la homoj.");
 		
-		Frazero prepKompl = frazo.findByFunkcio(Funkcio.PREPOZICIA_KOMPLEMENTO);
+		Frazero prepoziciaĵo = frazo.findByFunkcio(Funkcio.PREPOZICIAĴO);
 		
-		assertEquals("la homoj", prepKompl.toString());
+		assertEquals("al la homoj", prepoziciaĵo.toString());
 	}
 	
 	@Test

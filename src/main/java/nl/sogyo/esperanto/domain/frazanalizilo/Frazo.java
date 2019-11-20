@@ -23,9 +23,7 @@ public class Frazo {
 		String[] vortoStrings = frazo.replaceAll("[,\\.!\\?]", "").split("\\s");
 		
 		vortoj = new Vorto[vortoStrings.length];
-		IntStream.range(0, vortoStrings.length).parallel().forEach(i -> {
-			vortoj[i] = new Vorto(vortoStrings[i]);
-		});
+		IntStream.range(0, vortoStrings.length).parallel().forEach(i -> vortoj[i] = new Vorto(vortoStrings[i]));
 		
 		analyze();
 		addRelatedFrazeroj();
@@ -94,6 +92,14 @@ public class Frazo {
 			return currentVorto.equals(Vorto.ĈU);
 		}
 		
+		if(currentVorto.checkTrajto(Trajto.PREPOZICIO)) { //prepozicio ĉiam komencas novan frazeron, krom ‘da’
+			return !currentVorto.equals(Vorto.DA);
+		}
+		
+		if(lastVorto.checkTrajto(Trajto.PREPOZICIO)) { //prepozicio ĉiam ligas al la sekva parto
+			return false;
+		}
+		
 		if(lastVorto.checkTrajto(Trajto.ADVERBO)) {
 			if(currentVorto.checkTrajto(Trajto.VERBO)) {
 				return true;
@@ -106,7 +112,7 @@ public class Frazo {
 		if(lastVorto.checkTrajto(Trajto.ARTIKOLO)) { //artikolo neniam povas stari sole
 			return false;
 		}
-		if(currentVorto.checkTrajto(Trajto.ARTIKOLO)) { //artikolo ĉiam staras ĉe la komenco de frazero
+		if(currentVorto.checkTrajto(Trajto.ARTIKOLO)) { //artikolo ĉiam staras ĉe la komenco de frazero (krom post prepozicio)
 			return true;
 		}
 		
@@ -114,10 +120,6 @@ public class Frazo {
 			if(currentVorto.checkTrajto(Trajto.ADVERBO)) {
 				return true;
 			}
-		}
-		
-		if(currentVorto.checkTrajto(Trajto.PREPOZICIO) || lastVorto.checkTrajto(Trajto.PREPOZICIO)) { //prepozicio ĉiam staras sola
-			return true;
 		}
 		
 		if(currentVorto.checkTrajto(Trajto.PRONOMO) || lastVorto.checkTrajto(Trajto.PRONOMO)) { //pronomo ĉiam komencas novan frazeron
@@ -145,11 +147,11 @@ public class Frazo {
 		
 		Vorto lastVorto = frazerVortoj.get(frazerVortoj.size() - 1);
 		
+		if(frazerVortoj.get(0).checkTrajto(Trajto.PREPOZICIO)) {
+			return Funkcio.PREPOZICIAĴO;
+		}
 		if(lastVorto.checkTrajto(Trajto.VERBO) && !lastVorto.checkTrajto(Trajto.VERBO_INFINITIVO)) {
 			return Funkcio.ĈEFVERBO;
-		}
-		if(lastVorto.checkTrajto(Trajto.PREPOZICIO)) {
-			return Funkcio.PREPOZICIO;
 		}
 		if(lastVorto.checkTrajto(Trajto.ADVERBO)) {
 			return Funkcio.ADVERBO;
@@ -183,8 +185,6 @@ public class Frazo {
 			return null;
 		}
 		switch(currentFunkcio) {
-			case PREPOZICIO:
-				return Funkcio.PREPOZICIA_KOMPLEMENTO;
 			default:
 				return null;
 		}

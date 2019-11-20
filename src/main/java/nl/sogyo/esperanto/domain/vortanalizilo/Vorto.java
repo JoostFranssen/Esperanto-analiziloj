@@ -27,6 +27,7 @@ public class Vorto {
 		return v.getVorterSpeco() != VorterSpeco.LITERO && !v.equals(Vortero.J_SUFIKSO) && !v.equals(Vortero.ĈJ_SUFIKSO) && !v.equals(Vortero.NJ_SUFIKSO);
 	};
 	public static final Vorto ĈU = new Vorto("ĉu");
+	public static final Vorto DA = new Vorto("da");
 
 	/**
 	 * Iniciatas novan vorton, analizas ĝin por trovi {@code Analizaĵo}jn, kiuj
