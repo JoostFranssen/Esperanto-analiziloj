@@ -1,5 +1,10 @@
 package nl.sogyo.esperanto.API;
 
+/**
+ * Reprezentas funkcion de frazero.
+ * @author jfranssen
+ *
+ */
 public enum Funkcio {
 	ADVERBO,
 	ĈEFVERBO,
@@ -10,5 +15,5 @@ public enum Funkcio {
 	PREPOZICIA_KOMPLEMENTO,
 	PREPOZICIO,
 	SUBJEKTO,
-	TEMPO
+	TEMPO;
 }
