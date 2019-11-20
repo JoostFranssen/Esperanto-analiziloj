@@ -14,8 +14,9 @@ class Frazero extends React.Component {
         }
         return (
             <span
-                className={["frazero", this.props.selected ? "selected" : ""].join(" ")}
+                className={["frazero", this.props.selected ? "selected" : "", this.props.related ? "related" : ""].join(" ")}
                 onClick={() => this.props.onClick(this.props.frazero)}
+                bracket={(this.props.lower ? "\n" : "") + snakeCaseToTitleCase(this.props.frazero.funkcio)}
             >
                 {componentList.slice(1)}
             </span>

@@ -9,18 +9,57 @@
 .frazero {
     font-size: 36px;
     color: black;
+    margin-bottom: 42px;
 }
 
 .frazero:hover {
-    text-decoration: underline;
+    cursor: pointer;
 }
 
 .frazero.selected {
     color: var(--Esperanto-green);
 }
 
+.frazero.related {
+    color: blue;
+}
+
 .frazer-properties {
     text-align: left;
     margin: 20px 0;
     font-size: 24px;
+}
+
+[bracket] {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+}
+
+[bracket]:after {
+    content: "";
+    display: block;
+    height: 6px;
+    border: 2px solid black;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+}
+
+[bracket]:before {
+    content: "";
+    position: absolute;
+    top: calc(100% + 2px);
+    white-space: pre;
+    font-size: 50%;
+    color:black;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.selected[bracket]:before {
+    content: attr(bracket);
+}
+
+.related[bracket]:before {
+    content: attr(bracket);
 }

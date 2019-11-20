@@ -3,6 +3,7 @@ class Frazo extends React.Component {
         super(props);
         this.state = {
             currentFrazero: null,
+            relatedFrazeroj: [],
         }
     }
 
@@ -10,27 +11,33 @@ class Frazo extends React.Component {
         if(this.props.frazo) {
             let frazeroj = this.props.frazo.frazeroj;
             let componentList = [];
+            let shouldLower = false;
+            let previousLabel = false;
             if(frazeroj) {
                 for(const frazero of frazeroj) {
+                    let shouldSelect = frazero === this.state.currentFrazero;
+                    let shouldRelate = (this.state.relatedFrazeroj.some(f => f.index === frazero.index));
+
+                    let hasSuccessiveLabels = previousLabel && (shouldSelect || shouldRelate);
+                    if(hasSuccessiveLabels) {
+                        shouldLower = !shouldLower;
+                    } else {
+                        shouldLower = false;
+                    }
+
+                    previousLabel = shouldSelect || shouldRelate;
+
                     componentList.push(<span>&nbsp;</span>);
                     componentList.push(
                         <Frazero
                             frazero={frazero}
                             onClick={this.handleFrazeroClick.bind(this)}
                             selected={frazero === this.state.currentFrazero}
+                            related={this.state.relatedFrazeroj.some(f => f.index === frazero.index) && frazeroj.includes(this.state.currentFrazero)}
+                            lower={shouldLower}
                         />
                     );
                 }
-            }
-
-            let propertiesComponent = null;
-            if(frazeroj.includes(this.state.currentFrazero)) {
-                propertiesComponent = <div
-                    className="frazer-properties"
-                    key={this.state.currentFrazero}
-                    >
-                        {snakeCaseToTitleCase(this.state.currentFrazero.funkcio)}
-                </div>
             }
 
             return (
@@ -38,7 +45,6 @@ class Frazo extends React.Component {
                     className="frazo"
                 >
                     {componentList.slice(1)}
-                    {propertiesComponent}
                 </div>
             );
         } else {
@@ -49,6 +55,7 @@ class Frazo extends React.Component {
     handleFrazeroClick(frazero) {
         this.setState({
             currentFrazero: frazero,
+            relatedFrazeroj: frazero.relatedFrazeroj,
         });
     }
 }
