@@ -203,10 +203,20 @@ public class Frazo {
 		return null;
 	}
 	
+	/**
+	 * Trovas ĉiujn frazerojn, kiuj havas la indikitan funkcion.
+	 * @param funkcio la dezirata funkcio
+	 * @return listo kun ĉiuj frazeroj kun la dezirata funkcio
+	 */
 	public Frazero[] findAllByFunkcio(Funkcio funkcio) {
 		return frazeroj.stream().filter(f -> f.getFunkcio() == funkcio).toArray(Frazero[]::new);
 	}
 	
+	/**
+	 * Trovas la unuan frazeron, kies teksto kongruas ekzakte kun la donita teksto
+	 * @param string teksto por serĉi tiun frazeron
+	 * @return la unuan frazeron kun la donita teksto
+	 */
 	public Frazero findByString(String string) {
 		for(Frazero frazero : frazeroj) {
 			if(string.equals(frazero.toString())) {
