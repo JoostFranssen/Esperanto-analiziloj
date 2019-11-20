@@ -15,6 +15,7 @@ import nl.sogyo.esperanto.domain.vortanalizilo.Vorto;
 public class Frazero {
 	private List<Vorto> vortoj;
 	private Funkcio funkcio;
+	private List<Frazero> relatedFrazeroj;
 	
 	public Frazero() {
 		this(null);
@@ -22,6 +23,7 @@ public class Frazero {
 	public Frazero(Funkcio funkcio, Vorto... vortoj) {
 		this.funkcio = funkcio;
 		this.vortoj = new ArrayList<>(Arrays.asList(vortoj));
+		relatedFrazeroj = new ArrayList<>();
 	}
 
 	public List<Vorto> getVortoj() {
@@ -36,8 +38,16 @@ public class Frazero {
 		this.funkcio = funkcio;
 	}
 	
-	public void addVorto(Vorto vorto) {
+	void addVorto(Vorto vorto) {
 		vortoj.add(vorto);
+	}
+	
+	public List<Frazero> getRelatedFrazeroj() {
+		return new ArrayList<>(relatedFrazeroj);
+	}
+	
+	void addRelatedFrazeroj(Frazero... frazeroj) {
+		relatedFrazeroj.addAll(Arrays.asList(frazeroj));
 	}
 	
 	@Override

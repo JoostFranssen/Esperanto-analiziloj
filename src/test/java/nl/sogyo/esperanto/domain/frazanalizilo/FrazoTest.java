@@ -215,4 +215,13 @@ class FrazoTest {
 		
 		assertEquals("mi kaj li", subjekto.toString());
 	}
+	
+	@Test
+	public void ĉefverboRefersToSubjekto() {
+		Frazo frazo = new Frazo("Mi iras.");
+		
+		Frazero ĉefverbo = frazo.findByFunkcio(Funkcio.ĈEFVERBO);
+		
+		assertTrue(ĉefverbo.getRelatedFrazeroj().stream().anyMatch(f -> f.getFunkcio() == Funkcio.SUBJEKTO));
+	}
 }

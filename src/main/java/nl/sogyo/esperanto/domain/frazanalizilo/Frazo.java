@@ -28,6 +28,7 @@ public class Frazo {
 		});
 		
 		analyze();
+		addRelatedFrazeroj();
 	}
 	
 	/**
@@ -186,6 +187,21 @@ public class Frazo {
 				return Funkcio.PREPOZICIA_KOMPLEMENTO;
 			default:
 				return null;
+		}
+	}
+	
+	private void addRelatedFrazeroj() {
+		for(Frazero frazero : frazeroj) {
+			Funkcio funkcio = frazero.getFunkcio();
+			
+			if(funkcio != null) {
+				for(Funkcio relatedFunkcio : funkcio.getRelatedFunkcioj()) {
+					Frazero[] frazerojWithRelatedFunkcio = findAllByFunkcio(relatedFunkcio);
+					if(frazerojWithRelatedFunkcio != null) {
+						frazero.addRelatedFrazeroj(frazerojWithRelatedFunkcio);
+					}
+				}
+			}
 		}
 	}
 	
