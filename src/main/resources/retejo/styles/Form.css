@@ -45,6 +45,9 @@
     border-color: darkgreen;
     border-radius: 0 5px 5px 0;
 }
+.analizilo-form .confirm-button:hover {
+    background-color: var(--Esperanto-green-hover);
+}
 
 .analizilo-form .error-message {
     font-size: 20px;

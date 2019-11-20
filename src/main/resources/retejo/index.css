@@ -1,5 +1,8 @@
 :root {
     --Esperanto-green: #009E00;
+    --Esperanto-green-selected-hover: #00C800;
+    --Esperanto-green-selected: #00B800;
+    --Esperanto-green-hover: #00AE00;
 }
 
 body {

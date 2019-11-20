@@ -28,9 +28,14 @@
     text-align: center;
     font-size: 24px;
     height: 100%;
-    color: white;
+    color: #003200;
     background-color: var(--Esperanto-green);
     border: 0;
+    cursor: pointer;
+}
+
+.navigation-button:hover {
+    background-color: var(--Esperanto-green-hover);
 }
 
 #navigation-button-vorto {
@@ -42,8 +47,12 @@
 }
 
 .navigation-button.selected {
-    color: #003200;
-    background-color: #00C800;
+    color: white;
+    background-color: var(--Esperanto-green-selected);
+}
+
+.navigation-button.selected:hover {
+    background-color: var(--Esperanto-green-selected-hover);
 }
 
 .banner-container {
