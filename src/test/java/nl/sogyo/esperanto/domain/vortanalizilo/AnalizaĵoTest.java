@@ -545,4 +545,40 @@ class AnalizaĵoTest {
 		
 		assertFalse(mi_a.checkTrajto(Trajto.PRONOMO));
 	}
+	
+	@Test
+	public void ĉieIsAnAdverbo() {
+		Vorto ĉie = new Vorto("ĉie");
+		
+		Analizaĵo ĉie_ = ĉie.getAnalizaĵoByString("ĉie");
+		
+		assertTrue(ĉie_.checkTrajto(Trajto.ADVERBO));
+	}
+	
+	@Test
+	public void tiuIsAnAdjektivo() {
+		Vorto tiu = new Vorto("tiu");
+		
+		Analizaĵo tiu_ = tiu.getAnalizaĵoByString("tiu");
+		
+		assertTrue(tiu_.checkTrajto(Trajto.ADJEKTIVO));
+	}
+	
+	@Test
+	public void kioIsASubstantivo() {
+		Vorto kio = new Vorto("kio");
+		
+		Analizaĵo kio_ = kio.getAnalizaĵoByString("kio");
+		
+		assertTrue(kio_.checkTrajto(Trajto.SUBSTANTIVO));
+	}
+	
+	@Test
+	public void nenioIsASubstantivo() {
+		Vorto nenio = new Vorto("nenio");
+		
+		Analizaĵo neni_o = nenio.getAnalizaĵoByString("neni|o");
+		
+		assertTrue(neni_o.checkTrajto(Trajto.SUBSTANTIVO));
+	}
 }

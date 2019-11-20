@@ -25,8 +25,6 @@ public class VortAnalizilAccessPoint {
 		try {
 			Vorto vorto = new Vorto(string);
 			
-			vorto.getPossibleAnalizaĵoj().forEach(System.out::println);
-			
 			if(vorto.getPossibleAnalizaĵoj().isEmpty()) {
 				return Response.status(HttpStatus.BAD_REQUEST_400).build();
 			}

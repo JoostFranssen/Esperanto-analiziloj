@@ -20,7 +20,10 @@ import nl.sogyo.esperanto.API.VorterSpeco;
  *
  */
 public class Analizaĵo {
-	private static final Pattern LAST_FINAĴOJ_PATTERN = Pattern.compile("^(i)|(is)|(as)|(os)|(us)|(u)|(oj?n?)|(aj?n?)|(en?)|(j?n?)"); //(j?n?) por permesi neniun finaĵon kaj nur j/n kun korelativoj: kio|n
+	private static final Pattern LAST_FINAĴOJ_PATTERN = Pattern.compile("^(i)|(is)|(as)|(os)|(us)|(u)|(oj?n?)|(aj?n?)|(en?)|(j?n?)", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE); //(j?n?) por permesi neniun finaĵon kaj nur j/n kun korelativoj: kio|n
+	private static final Pattern ADJEKTIVA_KORELATIVO_PATTERN = Pattern.compile(".*(a|u|es)$", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+	private static final Pattern SUBSTANTIVA_KORELATIVO_PATTERN = Pattern.compile(".*(om?)$", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
+	private static final Pattern ADVERBA_KORELATIVO_PATTERN = Pattern.compile(".*(al|am|el?)$", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 	
 	private List<Vortero> vorteroj;
 	
@@ -234,7 +237,7 @@ public class Analizaĵo {
 	 */
 	public boolean checkTrajto(Trajto trajto) {
 		switch(trajto) {
-			case ADJEKTIVO: return getLastFinaĵoj().contains(Vortero.A_FINAĴO);
+			case ADJEKTIVO: return isAdjektivo();
 			case ADVERBO: return isAdverbo();
 			case AKUZATIVO: return getLastVortero().equals(Vortero.N_FINAĴO);
 			case ARTIKOLO: return vorteroj.get(0).getVorterSpeco() == VorterSpeco.ARTIKOLO;
@@ -246,7 +249,7 @@ public class Analizaĵo {
 			case PREPOZICIO: return getLastVortero().getVorterSpeco() == VorterSpeco.PREPOZICIO;
 			case PRONOMO: return isPronomo();
 			case SONIMITO: return getLastVortero().getVorterSpeco() == VorterSpeco.SONIMITO;
-			case SUBSTANTIVO: return getLastFinaĵoj().contains(Vortero.O_FINAĴO);
+			case SUBSTANTIVO: return isSubstantivo();
 			case VERBO: return isVerbo();
 			case VERBO_FUTURO: return getLastVortero().equals(Vortero.OS_FINAĴO);
 			case VERBO_INFINITIVO: return getLastVortero().equals(Vortero.I_FINAĴO);
@@ -259,6 +262,32 @@ public class Analizaĵo {
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * Testas, ĉu vorto estas adjektivo, inkluzive de la korelativoj.
+	 * @return ĉu vorto estas adjektivo
+	 */
+	public boolean isAdjektivo() {
+		if(isKorelativo()) {
+			String vorteroString = vorteroj.get(0).getVortero();
+			return ADJEKTIVA_KORELATIVO_PATTERN.matcher(vorteroString).matches();
+		} else {
+			return getLastFinaĵoj().contains(Vortero.A_FINAĴO);
+		}
+	}
+	
+	/**
+	 * Testas, ĉu vorto estas substantivo, inkluzive de la korelativoj.
+	 * @return ĉu vorto estas substantivo
+	 */
+	public boolean isSubstantivo() {
+		String vorteroString = vorteroj.get(0).getVortero();
+		if(isKorelativo() && !vorteroString.equalsIgnoreCase("neni")) {
+			return SUBSTANTIVA_KORELATIVO_PATTERN.matcher(vorteroString).matches();
+		} else {
+			return getLastFinaĵoj().contains(Vortero.O_FINAĴO);
+		}
 	}
 	
 	/**
@@ -392,10 +421,14 @@ public class Analizaĵo {
 	 * @return ĉu ĝi estas adverbo
 	 */
 	public boolean isAdverbo() {
-		if(getLastVortero().getVorterSpeco() == VorterSpeco.ADVERBO) {
+		if(isKorelativo()) {
+			String vorteroString = vorteroj.get(0).getVortero();
+			return ADVERBA_KORELATIVO_PATTERN.matcher(vorteroString).matches();
+		} else if(getLastVortero().getVorterSpeco() == VorterSpeco.ADVERBO) {
 			return true;
+		} else {
+			return getLastFinaĵoj().contains(Vortero.E_FINAĴO);
 		}
-		return getLastFinaĵoj().contains(Vortero.E_FINAĴO);
 	}
 	
 	/**
