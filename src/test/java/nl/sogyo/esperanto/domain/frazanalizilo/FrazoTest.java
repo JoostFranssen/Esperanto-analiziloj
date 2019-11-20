@@ -212,7 +212,92 @@ class FrazoTest {
 		Frazo frazo = new Frazo("Mi iras.");
 		
 		Frazero ĉefverbo = frazo.findByFunkcio(Funkcio.ĈEFVERBO);
+		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
 		
-		assertTrue(ĉefverbo.getRelatedFrazeroj().stream().anyMatch(f -> f.getFunkcio() == Funkcio.SUBJEKTO));
+		assertTrue(ĉefverbo.getRelatedFrazeroj().stream().anyMatch(f -> f == subjekto));
+	}
+	
+	@Test
+	public void ĉefverboRefersToObjekto() {
+		Frazo frazo = new Frazo("Mi havas anason.");
+		
+		Frazero ĉefverbo = frazo.findByFunkcio(Funkcio.ĈEFVERBO);
+		Frazero objekto = frazo.findByFunkcio(Funkcio.OBJEKTO);
+		
+		assertTrue(ĉefverbo.getRelatedFrazeroj().stream().anyMatch(f -> f == objekto));
+	}
+	
+	@Test
+	public void subjektoRefersToĈefverbo() {
+		Frazo frazo = new Frazo("Mi iras.");
+		
+		Frazero ĉefverbo = frazo.findByFunkcio(Funkcio.ĈEFVERBO);
+		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
+		
+		assertTrue(subjekto.getRelatedFrazeroj().stream().anyMatch(f -> f == ĉefverbo));
+	}
+	
+	@Test
+	public void objektoRefersToĈefverbo() {
+		Frazo frazo = new Frazo("Mi havas anason.");
+		
+		Frazero ĉefverbo = frazo.findByFunkcio(Funkcio.ĈEFVERBO);
+		Frazero objekto = frazo.findByFunkcio(Funkcio.OBJEKTO);
+		
+		assertTrue(objekto.getRelatedFrazeroj().stream().anyMatch(f -> f == ĉefverbo));
+	}
+	
+	@Test
+	public void ĉiCombinesWithCorrelativeAfterĈefverbo() {
+		Frazo frazo = new Frazo("Mi ŝatas ĉi tion.");
+		
+		Frazero objekto = frazo.findByFunkcio(Funkcio.OBJEKTO);
+		
+		assertEquals("ĉi tion", objekto.toString());
+	}
+	
+	@Test
+	public void ĉiAfterKorelativoBelongsToObjekto() {
+		Frazo frazo = new Frazo("Mi ŝatas tion ĉi.");
+		
+		Frazero objekto = frazo.findByFunkcio(Funkcio.OBJEKTO);
+		
+		assertEquals("tion ĉi", objekto.toString());
+	}
+	
+	@Test
+	public void ajnAfterKorelativoBelongsToObject() {
+		Frazo frazo = new Frazo("Mi ŝatas ion ajn.");
+		
+		Frazero objekto = frazo.findByFunkcio(Funkcio.OBJEKTO);
+		
+		assertEquals("ion ajn", objekto.toString());
+	}
+	
+	@Test
+	public void ĉiBeforeKorelativoDoesNotInfluenceSubjektoCombination() {
+		Frazo frazo = new Frazo("Ĉi tiu homo paŝas.");
+		
+		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
+		
+		assertEquals("Ĉi tiu homo", subjekto.toString());
+	}
+	
+	@Test
+	public void ĉiAfterKorelativoDoesNotInfluenceSubjektoCombination() {
+		Frazo frazo = new Frazo("Tiu ĉi homo paŝas.");
+		
+		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
+		
+		assertEquals("Tiu ĉi homo", subjekto.toString());
+	}
+	
+	@Test
+	public void ajnAfterKorelativoDoesNotInfluenceSubjektoCombination() {
+		Frazo frazo = new Frazo("Ĉiu ajn homo paŝas.");
+		
+		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
+		
+		assertEquals("Ĉiu ajn homo", subjekto.toString());
 	}
 }

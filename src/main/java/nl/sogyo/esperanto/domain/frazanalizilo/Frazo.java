@@ -84,6 +84,14 @@ public class Frazo {
 		
 		Vorto lastVorto = frazerVortoj.get(frazerVortoj.size() - 1);
 		
+		//la vortoj ‘ajn’ kaj ‘ĉi’ modifas la korelativon, kiu staras antaŭ ĝi; ni vere volas rigardi ties funkcion
+		if(lastVorto.equals(Vorto.AJN) || lastVorto.equals(Vorto.ĈI)) {
+			if(frazerVortoj.size() >= 2) {
+				lastVorto = frazerVortoj.get(frazerVortoj.size() - 2);
+			}
+		}
+		
+		
 		//Konjunkcioj ĉiam kuntenu frazeron, ĉar ni ne konsideras subfrazojn; sed ‘ĉu’ ĉiam estu aparta
 		if(lastVorto.checkTrajto(Trajto.KONJUNKCIO)) {
 			return lastVorto.equals(Vorto.ĈU);
@@ -95,9 +103,15 @@ public class Frazo {
 		if(currentVorto.checkTrajto(Trajto.PREPOZICIO)) { //prepozicio ĉiam komencas novan frazeron, krom ‘da’
 			return !currentVorto.equals(Vorto.DA);
 		}
-		
 		if(lastVorto.checkTrajto(Trajto.PREPOZICIO)) { //prepozicio ĉiam ligas al la sekva parto
 			return false;
+		}
+		
+		if(currentVorto.equals(Vorto.AJN) || currentVorto.equals(Vorto.ĈI)) {
+			return !lastVorto.checkTrajto(Trajto.KORELATIVO);
+		}
+		if(lastVorto.equals(Vorto.ĈI)) {
+			return !currentVorto.checkTrajto(Trajto.KORELATIVO);
 		}
 		
 		if(lastVorto.checkTrajto(Trajto.ADVERBO)) {
@@ -146,6 +160,12 @@ public class Frazo {
 		}
 		
 		Vorto lastVorto = frazerVortoj.get(frazerVortoj.size() - 1);
+		
+		if(lastVorto.equals(Vorto.AJN) || lastVorto.equals(Vorto.ĈI)) {
+			if(frazerVortoj.size() >= 2) {
+				lastVorto = frazerVortoj.get(frazerVortoj.size() - 2);
+			}
+		}
 		
 		if(frazerVortoj.get(0).checkTrajto(Trajto.PREPOZICIO)) {
 			return Funkcio.PREPOZICIAĴO;
