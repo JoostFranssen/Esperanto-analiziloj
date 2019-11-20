@@ -25,7 +25,6 @@ public class VortAnalizilAccessPoint {
 		try {
 			Vorto vorto = new Vorto(string);
 			
-			System.out.println(vorto);
 			vorto.getPossibleAnalizaĵoj().forEach(System.out::println);
 			
 			if(vorto.getPossibleAnalizaĵoj().isEmpty()) {
