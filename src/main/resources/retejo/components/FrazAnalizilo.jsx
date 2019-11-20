@@ -24,13 +24,20 @@ class FrazAnalizilo extends React.Component {
 
     async handleConfirm(value) {
         let response = await fetch(`api/frazanalizo?frazo=${value}`);
-        let result = await response.json();
+        
+        if(response.ok) {
+            let result = await response.json();
 
-        this.setState({
-            frazo: result,
-        });
+            this.setState({
+                frazo: result,
+            });
+        } else {
+            this.setState({
+                frazo: null,
+            });
+        }
 
-        return result.frazeroj.length != 0;
+        return response.ok;
     }
 
     handleInvalidity(value) {

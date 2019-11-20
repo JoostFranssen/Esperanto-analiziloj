@@ -1,5 +1,7 @@
 package nl.sogyo.esperanto.servilo;
 
+import java.util.Arrays;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -22,10 +24,20 @@ public class FrazAnalizilAccessPoint {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getFrazAnalysis(@QueryParam("frazo") String string) {
-		Frazo frazo = new Frazo(string);
-		
-		JSONObject responseJSON = FrazoJSONProcessor.convertFrazoToJSON(frazo);
-		
-		return Response.status(HttpStatus.OK_200).entity(responseJSON.toString()).build();
+		try {
+			Frazo frazo = new Frazo(string);
+			
+			if(Arrays.asList(frazo.getVortoj()).stream().allMatch(v -> v.getPossibleAnalizaĵoj().isEmpty())) {
+				return Response.status(HttpStatus.BAD_REQUEST_400).build();
+			}
+			
+			JSONObject responseJSON = FrazoJSONProcessor.convertFrazoToJSON(frazo);
+			
+			return Response.status(HttpStatus.OK_200).entity(responseJSON.toString()).build();
+		} catch(Exception e) {
+			e.printStackTrace();
+			
+			return Response.status(HttpStatus.INTERNAL_SERVER_ERROR_500).build();
+		}
 	}
 }
