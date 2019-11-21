@@ -358,6 +358,38 @@ class FrazoTest {
 		Frazero ĉefverbo = frazo.findByFunkcio(Funkcio.ĈEFVERBO);
 		
 		assertEquals(objekto, infinitivo.getRelatedFrazero(Funkcio.OBJEKTO));
-//		assertFalse(ĉefverbo.hasRelatedFunkcio(Funkcio.OBJEKTO));
+		assertEquals(infinitivo, ĉefverbo.getRelatedFrazero(Funkcio.OBJEKTO));
+	}
+	
+	@Test
+	public void subjektoIsNotSubjektoOfInfinitivo() {
+		Frazo frazo = new Frazo("Mi igas voki ŝin.");
+		
+		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
+		Frazero infinitivo = frazo.findByFunkcio(Funkcio.I_KOMPLEMENTO);
+		
+		assertNotEquals(subjekto, infinitivo.getRelatedFrazero(Funkcio.SUBJEKTO));
+	}
+	
+	@Test
+	public void prepozicioBeforeInfinitivoRelatesToIt() {
+		Frazo frazo = new Frazo("Mi faras tion por trovi ŝin.");
+		
+		Frazero prepoziciaĵo = frazo.findByFunkcio(Funkcio.PREPOZICIAĴO);
+		Frazero infinitivo = frazo.findByFunkcio(Funkcio.I_KOMPLEMENTO);
+		
+		assertEquals(infinitivo, prepoziciaĵo.getRelatedFrazero(Funkcio.I_KOMPLEMENTO));
+	}
+	
+	@Test
+	public void predikativoWithInfinitive() {
+		Frazo frazo = new Frazo("Mi igas vin opinii tion bona.");
+		
+		Frazero ĉefverbo = frazo.findByFunkcio(Funkcio.ĈEFVERBO);
+		Frazero infinitivo = frazo.findByFunkcio(Funkcio.I_KOMPLEMENTO);
+		Frazero predikativo = frazo.findByFunkcio(Funkcio.PREDIKATIVO);
+		
+		assertFalse(ĉefverbo.hasRelatedFunkcio(Funkcio.PREDIKATIVO));
+		assertEquals(predikativo, infinitivo.getRelatedFrazero(Funkcio.PREDIKATIVO));
 	}
 }
