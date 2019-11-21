@@ -54,6 +54,7 @@ class InputForm extends React.Component {
                     type="submit"
                     value="Analizi"
                     className="confirm-button"
+                    disabled={this.state.loading}
                 />
                 <span className="error-message">{this.state.errorMessage}</span>
                 <span className="loading" style={{display: this.state.loading ? "block" : "none"}}></span>
@@ -63,6 +64,10 @@ class InputForm extends React.Component {
 
     async handleConfirm(event) {
         event.preventDefault();
+
+        if(this.state.loading) {
+            return;
+        }
 
         let input = document.getElementById(this.getInputID());
 

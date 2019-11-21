@@ -49,6 +49,12 @@
     background-color: var(--Esperanto-green-hover);
 }
 
+.analizilo-form .confirm-button:disabled {
+    background-color: darkgreen;
+    border-color: #003200;
+    color: lightgray;
+}
+
 .analizilo-form .error-message {
     font-size: 20px;
     color: crimson;
