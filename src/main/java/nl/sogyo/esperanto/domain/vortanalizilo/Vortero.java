@@ -40,6 +40,16 @@ public class Vortero implements IVortero {
 	public static final Vortero ĈJ_SUFIKSO = new Vortero("ĉj", VorterSpeco.SUFIKSO, Transitiveco.NEDIFINITA);
 	public static final Vortero NJ_SUFIKSO = new Vortero("nj", VorterSpeco.SUFIKSO, Transitiveco.NEDIFINITA);
 	
+	public static final Vortero RE_PREFIKSO = new Vortero("re", VorterSpeco.PREFIKSO, Transitiveco.NEDIFINITA);
+	public static final Vortero MAL_PREFIKSO = new Vortero("mal", VorterSpeco.PREFIKSO, Transitiveco.NEDIFINITA);
+	public static final Vortero EK_PREFIKSO = new Vortero("ek", VorterSpeco.PREFIKSO, Transitiveco.NETRANSITIVA);
+	public static final Vortero EKS_PREFIKSO = new Vortero("eks", VorterSpeco.PREFIKSO, Transitiveco.NEDIFINITA);
+	public static final Vortero GE_PREFIKSO = new Vortero("ge", VorterSpeco.PREFIKSO, Transitiveco.NEDIFINITA);
+	public static final Vortero DIS_PREFIKSO = new Vortero("dis", VorterSpeco.PREFIKSO, Transitiveco.NEDIFINITA);
+	
+	public static final Vortero SAM_RADIKO = new Vortero("sam", VorterSpeco.RADIKO, Transitiveco.NEDIFINITA);
+	public static final Vortero ĈI_RADIKO = new Vortero("ĉi", VorterSpeco.ADVERBO, Transitiveco.NEDIFINITA);
+	
 	private String vortero;
 	private VorterSpeco vorterSpeco;
 	private Transitiveco transitiveco;

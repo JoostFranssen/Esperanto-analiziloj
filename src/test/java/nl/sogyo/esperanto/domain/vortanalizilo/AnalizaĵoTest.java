@@ -581,4 +581,40 @@ class AnalizaĵoTest {
 		
 		assertTrue(neni_o.checkTrajto(Trajto.SUBSTANTIVO));
 	}
+	
+	@Test
+	public void malkielIsRecognized() {
+		Vorto malkiel = new Vorto("malkiel");
+		
+		Analizaĵo mal_kiel = malkiel.getAnalizaĵoByString("mal|kiel");
+		
+		assertNotNull(mal_kiel);
+	}
+	
+	@Test
+	public void samkielIsRecognized() {
+		Vorto samkiel = new Vorto("samkiel");
+		
+		Analizaĵo sam_kiel = samkiel.getAnalizaĵoByString("sam|kiel");
+		
+		assertNotNull(sam_kiel);
+	}
+	
+	@Test
+	public void bo_naIsNotValid() {
+		Vorto bona = new Vorto("bona");
+		
+		Analizaĵo bo_na = bona.getAnalizaĵoByString("bo|na");
+		
+		assertNull(bo_na);
+	}
+	
+	@Test
+	public void ĉi_tie_aIsRecognized() {
+		Vorto ĉitiea = new Vorto("ĉi-tiea");
+		
+		Analizaĵo ĉi_tie_a = ĉitiea.getAnalizaĵoByString("ĉi|tie|a");
+		
+		assertNotNull(ĉi_tie_a);
+	}
 }

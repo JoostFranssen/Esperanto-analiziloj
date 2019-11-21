@@ -53,8 +53,8 @@ public class Analizaĵo {
 			|| !vorterSpecoAppearsOnlyAlone(VorterSpeco.ARTIKOLO)
 			|| !vorterSpecoAppearsOnlyBeginning(VorterSpeco.KONJUNKCIO)
 			|| !vorterSpecoAppearsOnlyBeginning(VorterSpeco.ADVERBO)
-			|| !vorterSpecoAppearsOnlyBeginningWithExceptions(VorterSpeco.PREPOZICIO, VorterSpeco.PREFIKSO)
-			|| !vorterSpecoAppearsOnlyBeginningWithExceptions(VorterSpeco.KORELATIVO, VorterSpeco.PREFIKSO, VorterSpeco.PREPOZICIO)
+			|| !vorterSpecoAppearsOnlyBeginningWithVorterExceptions(VorterSpeco.PREPOZICIO, Vortero.RE_PREFIKSO, Vortero.MAL_PREFIKSO, Vortero.EK_PREFIKSO, Vortero.EKS_PREFIKSO, Vortero.GE_PREFIKSO, Vortero.DIS_PREFIKSO)
+			|| !(vorterSpecoAppearsOnlyBeginningWithSpecoExceptions(VorterSpeco.KORELATIVO, VorterSpeco.PREFIKSO, VorterSpeco.PREPOZICIO) || vorterSpecoAppearsOnlyBeginningWithVorterExceptions(VorterSpeco.KORELATIVO, Vortero.SAM_RADIKO, Vortero.ĈI_RADIKO))
 			|| !vorterSpecoAppearsOnlyBeginning(VorterSpeco.PRONOMO)
 			|| !verbaFinaĵoAppearsOnlyEnd()
 			|| sufiksoAppearsAfterFinaĵo()
@@ -143,11 +143,11 @@ public class Analizaĵo {
 	}
 	
 	/**
-	 * Kontrolas, ĉu vorteroj kun ĉi tiu {@code VorterSpeco} aperas nur en la komenco kun eventuale iuj prefiksoj antaŭ ĝi.
+	 * Kontrolas, ĉu vorteroj kun ĉi tiu {@code VorterSpeco} aperas nur en la komenco kun eventuale iuj vortoj kun la esceptitaj {@code VorterSpeco}j antaŭ si.
 	 * @param vorterSpeco {@code VorterSpeco}, kiu rajtas nur stari en la komenco de vorto kun iuj prefiksoj
 	 * @return ĉu ĉi tiaj vorteroj aperas nur en la komenco kun eventualaj prefiskoj antaŭ si
 	 */
-	private boolean vorterSpecoAppearsOnlyBeginningWithExceptions(VorterSpeco vorterSpeco, VorterSpeco... exceptions) {
+	private boolean vorterSpecoAppearsOnlyBeginningWithSpecoExceptions(VorterSpeco vorterSpeco, VorterSpeco... exceptions) {
 		List<VorterSpeco> exceptionsList = Arrays.asList(exceptions);
 		
 		boolean onlyExceptions = true;
@@ -158,6 +158,29 @@ public class Analizaĵo {
 				}
 			}
 			if(!exceptionsList.contains(vortero.getVorterSpeco())) {
+				onlyExceptions = false;
+			}
+		}
+		return true;
+	}
+	
+	/**
+	 * Kontrolas, ĉu vorteroj kun ĉi tiu {@code VorterSpeco} aperas nur en la komenco kun eventuale iuj vorteroj antaŭ si.
+	 * @param vorterSpeco {@code VorterSpeco}, kiu rajtas nur stari en la komenco de vorto kun iuj esceptoj
+	 * @param exceptions {@code Vortero}j esceptitaj
+	 * @return ĉu ĉi tiaj vorteroj aperas nur en la komenco kun eventualaj esceptoj antaŭ si
+	 */
+	private boolean vorterSpecoAppearsOnlyBeginningWithVorterExceptions(VorterSpeco vorterSpeco, Vortero... exceptions) {
+		List<Vortero> exceptionsList = Arrays.asList(exceptions);
+		
+		boolean onlyExceptions = true;
+		for(Vortero vortero : vorteroj) {
+			if(vortero.getVorterSpeco() == vorterSpeco) {
+				if(!onlyExceptions) {
+					return false;
+				}
+			}
+			if(!exceptionsList.contains(vortero)) {
 				onlyExceptions = false;
 			}
 		}
