@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import nl.sogyo.esperanto.API.Funkcio;
+import nl.sogyo.esperanto.API.Trajto;
 import nl.sogyo.esperanto.domain.vortanalizilo.Vorto;
 
 /**
@@ -48,6 +49,25 @@ public class Frazero {
 	
 	void addRelatedFrazeroj(Frazero... frazeroj) {
 		relatedFrazeroj.addAll(Arrays.asList(frazeroj));
+	}
+	
+	/**
+	 * Prenas la lastan vorton de la donita {@code Frazero} tiel, ke kelkaj vortoj estas ignorataj (specife: ĉi kaj ajn en kelkaj kazoj).
+	 * @return la lastan vorton de la donita frazero kun kelkaj transsaltoj, bezonataj por la ĝusta funkcio.
+	 */
+	public Vorto getLastVortoWithSkip() {
+		Vorto lastVorto = vortoj.get(vortoj.size() - 1);
+		
+		if(lastVorto.equals(Vorto.AJN) || lastVorto.equals(Vorto.ĈI)) {
+			if(vortoj.size() >= 2) {
+				lastVorto = vortoj.get(vortoj.size() - 2);
+			}
+		}
+		return lastVorto;
+	}
+	
+	public boolean hasAkuzativo() {
+		return getLastVortoWithSkip().checkTrajto(Trajto.AKUZATIVO);
 	}
 	
 	@Override

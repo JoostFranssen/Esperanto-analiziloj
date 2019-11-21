@@ -300,4 +300,31 @@ class FrazoTest {
 		
 		assertEquals("Ĉiu ajn homo", subjekto.toString());
 	}
+	
+	@Test
+	public void doublePrepozicioIsRecognized() {
+		Frazo frazo = new Frazo("Mi iras ĝis sur la monto.");
+		
+		Frazero prepoziciaĵo = frazo.findByFunkcio(Funkcio.PREPOZICIAĴO);
+		
+		assertEquals("ĝis sur la monto", prepoziciaĵo.toString());
+	}
+	
+	@Test
+	public void infinitivoIsSubjekto() {
+		Frazo frazo = new Frazo("Promeni estas bone.");
+		
+		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
+		
+		assertEquals("Promeni", subjekto.toString());
+	}
+	
+	@Test
+	public void infinitivoIsIKomplemento() {
+		Frazo frazo = new Frazo("Mi ŝatas promeni.");
+		
+		Frazero iKomplemento = frazo.findByFunkcio(Funkcio.I_KOMPLEMENTO);
+		
+		assertEquals("promeni", iKomplemento.toString());
+	}
 }
