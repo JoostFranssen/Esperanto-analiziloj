@@ -214,7 +214,7 @@ class FrazoTest {
 		Frazero ĉefverbo = frazo.findByFunkcio(Funkcio.ĈEFVERBO);
 		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
 		
-		assertTrue(ĉefverbo.getRelatedFrazeroj().stream().anyMatch(f -> f == subjekto));
+		assertTrue(ĉefverbo.getRelatedFrazero(Funkcio.SUBJEKTO) == subjekto);
 	}
 	
 	@Test
@@ -224,7 +224,7 @@ class FrazoTest {
 		Frazero ĉefverbo = frazo.findByFunkcio(Funkcio.ĈEFVERBO);
 		Frazero objekto = frazo.findByFunkcio(Funkcio.OBJEKTO);
 		
-		assertTrue(ĉefverbo.getRelatedFrazeroj().stream().anyMatch(f -> f == objekto));
+		assertTrue(ĉefverbo.getRelatedFrazero(Funkcio.OBJEKTO) == objekto);
 	}
 	
 	@Test
@@ -234,7 +234,7 @@ class FrazoTest {
 		Frazero ĉefverbo = frazo.findByFunkcio(Funkcio.ĈEFVERBO);
 		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
 		
-		assertTrue(subjekto.getRelatedFrazeroj().stream().anyMatch(f -> f == ĉefverbo));
+		assertTrue(subjekto.getRelatedFrazero(Funkcio.ĈEFVERBO) == ĉefverbo);
 	}
 	
 	@Test
@@ -244,7 +244,7 @@ class FrazoTest {
 		Frazero ĉefverbo = frazo.findByFunkcio(Funkcio.ĈEFVERBO);
 		Frazero objekto = frazo.findByFunkcio(Funkcio.OBJEKTO);
 		
-		assertTrue(objekto.getRelatedFrazeroj().stream().anyMatch(f -> f == ĉefverbo));
+		assertTrue(objekto.getRelatedFrazero(Funkcio.ĈEFVERBO) == ĉefverbo);
 	}
 	
 	@Test
@@ -326,5 +326,38 @@ class FrazoTest {
 		Frazero iKomplemento = frazo.findByFunkcio(Funkcio.I_KOMPLEMENTO);
 		
 		assertEquals("promeni", iKomplemento.toString());
+	}
+	
+	@Test
+	public void fariTionNotObjektoOfĈefverbo() {
+		Frazo frazo = new Frazo("Fari tion estas bone.");
+		
+		Frazero ĉefverbo = frazo.findByFunkcio(Funkcio.ĈEFVERBO);
+		
+		assertFalse(ĉefverbo.hasRelatedFunkcio(Funkcio.OBJEKTO));
+	}
+	
+	@Test
+	public void objektoOfĈefverboButSubjektoOfInfinitivo() {
+		Frazo frazo = new Frazo("Mi lasas vin iri.");
+		
+		Frazero vin = frazo.findByString("vin");
+		Frazero ĉefverbo = frazo.findByFunkcio(Funkcio.ĈEFVERBO);
+		Frazero iKomplemento = frazo.findByFunkcio(Funkcio.I_KOMPLEMENTO);
+		
+		assertEquals(vin, ĉefverbo.getRelatedFrazero(Funkcio.OBJEKTO));
+		assertEquals(vin, iKomplemento.getRelatedFrazero(Funkcio.SUBJEKTO));
+	}
+	
+	@Test
+	public void objektoOfInfinitivoAfterĈefverbo() {
+		Frazo frazo = new Frazo("Mi igas voki ŝin.");
+		
+		Frazero objekto = frazo.findByFunkcio(Funkcio.OBJEKTO);
+		Frazero infinitivo = frazo.findByFunkcio(Funkcio.I_KOMPLEMENTO);
+		Frazero ĉefverbo = frazo.findByFunkcio(Funkcio.ĈEFVERBO);
+		
+		assertEquals(objekto, infinitivo.getRelatedFrazero(Funkcio.OBJEKTO));
+//		assertFalse(ĉefverbo.hasRelatedFunkcio(Funkcio.OBJEKTO));
 	}
 }

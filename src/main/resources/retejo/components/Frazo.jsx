@@ -32,8 +32,9 @@ class Frazo extends React.Component {
                         <Frazero
                             frazero={frazero}
                             onClick={this.handleFrazeroClick.bind(this)}
-                            selected={frazero === this.state.currentFrazero}
-                            related={this.state.relatedFrazeroj.some(f => f.index === frazero.index) && frazeroj.includes(this.state.currentFrazero)}
+                            selected={shouldSelect}
+                            related={shouldRelate && frazeroj.includes(this.state.currentFrazero)}
+                            funkcio={shouldRelate ? this.state.relatedFrazeroj.find(f => f.index === frazero.index).funkcio : frazero.funkcio}
                             lower={shouldLower}
                         />
                     );

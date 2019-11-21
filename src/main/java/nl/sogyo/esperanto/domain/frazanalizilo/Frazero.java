@@ -2,7 +2,9 @@ package nl.sogyo.esperanto.domain.frazanalizilo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import nl.sogyo.esperanto.API.Funkcio;
 import nl.sogyo.esperanto.API.Trajto;
@@ -16,7 +18,7 @@ import nl.sogyo.esperanto.domain.vortanalizilo.Vorto;
 public class Frazero {
 	private List<Vorto> vortoj;
 	private Funkcio funkcio;
-	private List<Frazero> relatedFrazeroj;
+	private Map<Funkcio, Frazero> relatedFrazeroj;
 	
 	public Frazero() {
 		this(null);
@@ -24,7 +26,7 @@ public class Frazero {
 	public Frazero(Funkcio funkcio, Vorto... vortoj) {
 		this.funkcio = funkcio;
 		this.vortoj = new ArrayList<>(Arrays.asList(vortoj));
-		relatedFrazeroj = new ArrayList<>();
+		relatedFrazeroj = new HashMap<>();
 	}
 
 	public List<Vorto> getVortoj() {
@@ -43,12 +45,24 @@ public class Frazero {
 		vortoj.add(vorto);
 	}
 	
-	public List<Frazero> getRelatedFrazeroj() {
-		return new ArrayList<>(relatedFrazeroj);
+	public Map<Funkcio, Frazero> getRelatedFrazeroj() {
+		return new HashMap<>(relatedFrazeroj);
 	}
 	
-	void addRelatedFrazeroj(Frazero... frazeroj) {
-		relatedFrazeroj.addAll(Arrays.asList(frazeroj));
+	void setRelatedFrazeroWithFunkcio(Funkcio funkcio, Frazero frazero) {
+		relatedFrazeroj.put(funkcio, frazero);
+	}
+	
+	public Frazero getRelatedFrazero(Funkcio funkcio) {
+		return relatedFrazeroj.get(funkcio);
+	}
+	
+	public boolean hasRelatedFunkcio(Funkcio funkcio) {
+		return relatedFrazeroj.containsKey(funkcio);
+	}
+	
+	public boolean hasRelatedVerbaFunkcio() {
+		return relatedFrazeroj.containsKey(Funkcio.ĈEFVERBO) || relatedFrazeroj.containsKey(Funkcio.I_KOMPLEMENTO);
 	}
 	
 	/**

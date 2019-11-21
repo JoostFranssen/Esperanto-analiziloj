@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
+import nl.sogyo.esperanto.API.Funkcio;
 import nl.sogyo.esperanto.domain.frazanalizilo.Frazero;
 import nl.sogyo.esperanto.domain.frazanalizilo.Frazo;
 
@@ -48,9 +49,10 @@ public class FrazoJSONProcessor {
 		for(int i = 0; i < frazo.getFrazeroj().size(); i++) {
 			Frazero frazero = frazo.getFrazeroj().get(i);
 			List<JSONObject> jsonRelatedFrazeroj = new ArrayList<>();
-			for(Frazero relatedFrazero : frazero.getRelatedFrazeroj()) {
+			for(Funkcio relatedFunkcio : frazero.getRelatedFrazeroj().keySet()) {
+				Frazero relatedFrazero = frazero.getRelatedFrazero(relatedFunkcio);
 				JSONObject jsonRelatedFrazero = new JSONObject();
-				jsonRelatedFrazero.put("funkcio", relatedFrazero.getFunkcio().toString());
+				jsonRelatedFrazero.put("funkcio", relatedFunkcio);
 				jsonRelatedFrazero.put("index", map.get(relatedFrazero));
 				jsonRelatedFrazeroj.add(jsonRelatedFrazero);
 			}

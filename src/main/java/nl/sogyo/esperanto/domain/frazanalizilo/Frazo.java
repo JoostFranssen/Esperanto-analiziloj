@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import nl.sogyo.esperanto.API.Funkcio;
@@ -15,6 +13,7 @@ import nl.sogyo.esperanto.domain.vortanalizilo.Vorto;
 
 /**
  * Reprezentas frazon/
+ * 
  * @author jfranssen
  *
  */
@@ -55,8 +54,9 @@ public class Frazo {
 	private void determineFrazeroj() {
 		Iterator<Vorto> iterator = Arrays.asList(vortoj).iterator();
 		/*
-		 * Ni bezonas tian konstruon, ĉar ni bezonas la sekvan vorton por analizi la lastan grupon de vortoj.
-		 * Do post la lasta vorto el ‘vortoj’ ni devas fari kroman iteracion.
+		 * Ni bezonas tian konstruon, ĉar ni bezonas la sekvan vorton por analizi la
+		 * lastan grupon de vortoj. Do post la lasta vorto el ‘vortoj’ ni devas fari
+		 * kroman iteracion.
 		 */
 		Frazero frazero = new Frazero();
 		do {
@@ -77,10 +77,13 @@ public class Frazo {
 	}
 	
 	/**
-	 * Determinas de la lasta grupo de vortoj kaj la nuna vorto, ĉu ni kreu frazeron el la lasta grupo aŭ ne
-	 * @param frazero la kreata frazero
+	 * Determinas de la lasta grupo de vortoj kaj la nuna vorto, ĉu ni kreu frazeron
+	 * el la lasta grupo aŭ ne
+	 * 
+	 * @param frazero      la kreata frazero
 	 * @param currentVorto la nuna vorto, kiu tuj sekvas frazerVortojn
-	 * @return ĉu ni kreu frazeron el la frazerVortoj aŭ aldonu la nuna vorto al la frazerVortoj
+	 * @return ĉu ni kreu frazeron el la frazerVortoj aŭ aldonu la nuna vorto al la
+	 *         frazerVortoj
 	 */
 	private boolean shouldGoToNextFrazero(Frazero frazero, Vorto currentVorto) {
 		List<Vorto> frazerVortoj = frazero.getVortoj();
@@ -88,21 +91,22 @@ public class Frazo {
 			return false;
 		}
 		
-		if(currentVorto == null) { //se ni estas ĉe la fino de la frazo
+		if(currentVorto == null) { // se ni estas ĉe la fino de la frazo
 			return true;
 		}
 		
 		Vorto lastVorto = frazerVortoj.get(frazerVortoj.size() - 1);
 		
-		//la vortoj ‘ajn’ kaj ‘ĉi’ modifas la korelativon, kiu staras antaŭ ĝi; ni vere volas rigardi ties funkcion
+		// la vortoj ‘ajn’ kaj ‘ĉi’ modifas la korelativon, kiu staras antaŭ ĝi; ni vere
+		// volas rigardi ties funkcion
 		if(lastVorto.equals(Vorto.AJN) || lastVorto.equals(Vorto.ĈI)) {
 			if(frazerVortoj.size() >= 2) {
 				lastVorto = frazerVortoj.get(frazerVortoj.size() - 2);
 			}
 		}
 		
-		
-		//konjunkcio ĉiam kuntenu frazeron, ĉar ni ne konsideras subfrazojn; sed ‘ĉu’ ĉiam estu aparta
+		// konjunkcio ĉiam kuntenu frazeron, ĉar ni ne konsideras subfrazojn; sed ‘ĉu’
+		// ĉiam estu aparta
 		if(lastVorto.checkTrajto(Trajto.KONJUNKCIO)) {
 			return lastVorto.equals(Vorto.ĈU);
 		}
@@ -110,15 +114,17 @@ public class Frazo {
 			return currentVorto.equals(Vorto.ĈU);
 		}
 		
-		//infinitivo ĉiam estas tute aparta
+		// infinitivo ĉiam estas tute aparta
 		if(lastVorto.checkTrajto(Trajto.VERBO_INFINITIVO) || currentVorto.checkTrajto(Trajto.VERBO_INFINITIVO)) {
 			return true;
 		}
 		
-		if(currentVorto.checkTrajto(Trajto.PREPOZICIO)) { //prepozicio ĉiam komencas novan frazeron, krom post alia prepozicio kaj krom ‘da’
+		if(currentVorto.checkTrajto(Trajto.PREPOZICIO)) { // prepozicio ĉiam komencas novan frazeron, krom post alia
+															// prepozicio kaj krom ‘da’
 			return !lastVorto.checkTrajto(Trajto.PREPOZICIO) && !currentVorto.equals(Vorto.DA);
 		}
-		if(lastVorto.checkTrajto(Trajto.PREPOZICIO)) { //prepozicio ĉiam ligas al la sekva parto (escepte kun sekva infinitivo)
+		if(lastVorto.checkTrajto(Trajto.PREPOZICIO)) { // prepozicio ĉiam ligas al la sekva parto (escepte kun sekva
+														// infinitivo)
 			return false;
 		}
 		
@@ -138,10 +144,11 @@ public class Frazo {
 			}
 		}
 		
-		if(lastVorto.checkTrajto(Trajto.ARTIKOLO)) { //artikolo neniam povas stari sole
+		if(lastVorto.checkTrajto(Trajto.ARTIKOLO)) { // artikolo neniam povas stari sole
 			return false;
 		}
-		if(currentVorto.checkTrajto(Trajto.ARTIKOLO)) { //artikolo ĉiam staras ĉe la komenco de frazero (krom post prepozicio)
+		if(currentVorto.checkTrajto(Trajto.ARTIKOLO)) { // artikolo ĉiam staras ĉe la komenco de frazero (krom post
+														// prepozicio)
 			return true;
 		}
 		
@@ -151,7 +158,8 @@ public class Frazo {
 			}
 		}
 		
-		if(currentVorto.checkTrajto(Trajto.PRONOMO) || lastVorto.checkTrajto(Trajto.PRONOMO)) { //pronomo ĉiam komencas novan frazeron
+		if(currentVorto.checkTrajto(Trajto.PRONOMO) || lastVorto.checkTrajto(Trajto.PRONOMO)) { // pronomo ĉiam komencas
+																								// novan frazeron
 			return true;
 		}
 		
@@ -175,19 +183,21 @@ public class Frazo {
 	}
 	
 	/**
-	 * Determinas la funkcion laŭ la donita trajto de unu el la vortoj el la frazero.
-	 * @param getVortoToTest la funkcio, kiu ekstraktas la testotan vorton el la frazero
-	 * @param trajto la trajton, kiun tiu vorto havu
-	 * @param funkcio la funkcio, kiun la frazero havu
+	 * Determinas la funkcion laŭ la donita trajto de unu el la vortoj el la
+	 * frazero.
+	 * 
+	 * @param getVortoToTest la funkcio, kiu ekstraktas la testotan vorton el la
+	 *                       frazero
+	 * @param trajto         la trajton, kiun tiu vorto havu
+	 * @param funkcio        la funkcio, kiun la frazero havu
 	 */
 	private void setFunkcioFromTrajto(Function<Frazero, Vorto> getVortoToTest, Trajto trajto, Funkcio funkcio) {
-		frazeroj.stream()
-			.filter(f -> getVortoToTest.apply(f).checkTrajto(trajto))
-			.forEach(f -> f.setFunkcio(funkcio));
+		frazeroj.stream().filter(f -> getVortoToTest.apply(f).checkTrajto(trajto)).forEach(f -> f.setFunkcio(funkcio));
 	}
 	
 	/**
-	 * Determinas tion, kiu frazero estas la subjekto kaj kiu estas predikativo, se ekzistas.
+	 * Determinas tion, kiu frazero estas la subjekto kaj kiu estas predikativo, se
+	 * ekzistas.
 	 */
 	private void setSubjektoAndPredikativo() {
 		for(Frazero frazero : frazeroj) {
@@ -218,32 +228,138 @@ public class Frazo {
 	 * Determinas la i-komplementoj en la frazo.
 	 */
 	private void setInfinitivoj() {
-		frazeroj.stream()
-			.filter(f -> f.getFunkcio() == null)
-			.filter(f -> f.getVortoj().get(0).checkTrajto(Trajto.VERBO_INFINITIVO))
-			.forEach(f -> f.setFunkcio(Funkcio.I_KOMPLEMENTO));
+		frazeroj.stream().filter(f -> f.getFunkcio() == null)
+				.filter(f -> f.getVortoj().get(0).checkTrajto(Trajto.VERBO_INFINITIVO))
+				.forEach(f -> f.setFunkcio(Funkcio.I_KOMPLEMENTO));
 	}
 	
 	/**
-	 * Asignas al ĉiu frazeroj la rilatajn frazeroj laŭ la funkcio rilate al tiu unua frazero.
+	 * Asignas al ĉiu frazeroj la rilatajn frazeroj laŭ la funkcio rilate al tiu
+	 * unua frazero.
 	 */
 	private void addRelatedFrazeroj() {
-		for(Frazero frazero : frazeroj) {
-			Funkcio funkcio = frazero.getFunkcio();
+		setRelatedFrazerojForĈefverbo();
+		setRelatedFrazerojForInfinitivo();
+	}
+	
+	/**
+	 * Asignas al la ĉefverbo la rilatajn subjekton, objekton, kaj predikativon.
+	 * Reciproke, al tiuj frazeroj asigniĝas la ĉefverbo.
+	 */
+	private void setRelatedFrazerojForĈefverbo() {
+		Frazero ĉefverbo = findByFunkcio(Funkcio.ĈEFVERBO);
+		
+		// subjekto
+		Frazero subjekto = findByFunkcio(Funkcio.SUBJEKTO);
+		if(subjekto != null) {
+			ĉefverbo.setRelatedFrazeroWithFunkcio(Funkcio.SUBJEKTO, subjekto);
+			subjekto.setRelatedFrazeroWithFunkcio(Funkcio.ĈEFVERBO, ĉefverbo);
+		}
+		
+		// objekto
+		Frazero[] objektoj = findAllByFunkcio(Funkcio.OBJEKTO);
+		if(objektoj.length > 0) {
+			Frazero objekto = null;
 			
-			if(funkcio != null) {
-				for(Funkcio relatedFunkcio : funkcio.getRelatedFunkcioj()) {
-					Frazero[] frazerojWithRelatedFunkcio = findAllByFunkcio(relatedFunkcio);
-					if(frazerojWithRelatedFunkcio != null) {
-						frazero.addRelatedFrazeroj(frazerojWithRelatedFunkcio);
+			Vorto lastVorto = subjekto.getLastVortoWithSkip();
+			if(lastVorto.checkTrajto(Trajto.VERBO_INFINITIVO) && lastVorto.checkTrajto(Trajto.VERBO_TRANSITIVA)) {
+				boolean objektoBeforeĈefverbo = false; // supozeble tio estus la objekto de la subjekta i-verbo kaj ne
+														// de la ĉefverbo
+				for(Frazero frazero : frazeroj) {
+					if(frazero == ĉefverbo) {
+						break;
+					}
+					if(frazero == objektoj[0]) {
+						objektoBeforeĈefverbo = true;
+						break;
 					}
 				}
+				if(objektoBeforeĈefverbo) {
+					if(objektoj.length >= 2) {
+						objekto = objektoj[1];
+					}
+				} else {
+					objekto = objektoj[0];
+				}
+			} else {
+				objekto = objektoj[0];
 			}
+			
+			if(objekto != null) {
+				ĉefverbo.setRelatedFrazeroWithFunkcio(Funkcio.OBJEKTO, objekto);
+				objekto.setRelatedFrazeroWithFunkcio(Funkcio.ĈEFVERBO, ĉefverbo);
+			}
+		}
+		
+		// predikativo
+		Frazero predikativo = findByFunkcio(Funkcio.PREDIKATIVO);
+		if(predikativo != null) {
+			ĉefverbo.setRelatedFrazeroWithFunkcio(Funkcio.PREDIKATIVO, predikativo);
+			predikativo.setRelatedFrazeroWithFunkcio(Funkcio.ĈEFVERBO, ĉefverbo);
 		}
 	}
 	
 	/**
+	 * Asignas al ĉiuj infinitivo la rilatajn subjekton, objekton, kaj predikativon.
+	 * Reciproke, al tiuj frazeroj asigniĝas la ĉefverbo.
+	 * Supozas, ke la subjekto staras antaŭ ĝi.
+	 */
+	private void setRelatedFrazerojForInfinitivo() {
+		IntStream.range(0, frazeroj.size())
+			.filter(i -> frazeroj.get(i).getLastVortoWithSkip().checkTrajto(Trajto.VERBO_INFINITIVO))
+			.forEach(infinitivoIndex -> {
+				Frazero infinitivo = frazeroj.get(infinitivoIndex);
+				
+				//subjekto
+				for(int i = infinitivoIndex - 1; i >= 0; i--) {
+					Frazero subjektoCandidate = frazeroj.get(i);
+					if(subjektoCandidate.getFunkcio() == Funkcio.SUBJEKTO || subjektoCandidate.getFunkcio() == Funkcio.OBJEKTO) {
+						infinitivo.setRelatedFrazeroWithFunkcio(Funkcio.SUBJEKTO, subjektoCandidate);
+						break;
+					}
+				}
+				
+				//objekto
+				if(infinitivo.getLastVortoWithSkip().checkTrajto(Trajto.VERBO_TRANSITIVA)) {
+					Frazero objekto = null;
+					FIND_OBJEKTO:
+					{
+						//estas pli verŝajne, ke la objekto staras post la infinitivo
+						for(int i = infinitivoIndex + 1; i < frazeroj.size(); i++) {
+							Frazero objektoCandidate = frazeroj.get(i);
+							if(objektoCandidate.getFunkcio() == Funkcio.OBJEKTO && objektoCandidate != infinitivo.getRelatedFrazero(Funkcio.SUBJEKTO)) {
+								objekto = objektoCandidate;
+								break FIND_OBJEKTO;
+							}
+							//se ni trovas alian verbon, estas malverŝajne, ke la objekto staras post tiu
+							if(objektoCandidate.getLastVortoWithSkip().checkTrajto(Trajto.VERBO)) {
+								break;
+							}
+						}
+						
+						//se ĝi ne staras post la infinitivo, ni ankaŭ kontrolas la antaŭo
+						for(int i = infinitivoIndex - 1; i >= 0; i--) {
+							Frazero objektoCandidate = frazeroj.get(i);
+							if(objektoCandidate.getFunkcio() == Funkcio.OBJEKTO && objektoCandidate != infinitivo.getRelatedFrazero(Funkcio.SUBJEKTO)) {
+								objekto = objektoCandidate;
+								break FIND_OBJEKTO;
+							}
+							if(objektoCandidate.getLastVortoWithSkip().checkTrajto(Trajto.VERBO)) {
+								break;
+							}
+						}
+					}
+					
+					if(objekto != null) {
+						infinitivo.setRelatedFrazeroWithFunkcio(Funkcio.OBJEKTO, objekto);
+					}
+				}
+			});
+	}
+	
+	/**
 	 * Trovas la unuan frazeron, kiu havas la indikitan funkcion.
+	 * 
 	 * @param funkcio la dezirata funkcio
 	 * @return la unuan frazeron kun la dezirata funkcio
 	 */
@@ -258,6 +374,7 @@ public class Frazo {
 	
 	/**
 	 * Trovas ĉiujn frazerojn, kiuj havas la indikitan funkcion.
+	 * 
 	 * @param funkcio la dezirata funkcio
 	 * @return listo kun ĉiuj frazeroj kun la dezirata funkcio
 	 */
@@ -267,6 +384,7 @@ public class Frazo {
 	
 	/**
 	 * Trovas la unuan frazeron, kies teksto kongruas ekzakte kun la donita teksto
+	 * 
 	 * @param string teksto por serĉi tiun frazeron
 	 * @return la unuan frazeron kun la donita teksto
 	 */
