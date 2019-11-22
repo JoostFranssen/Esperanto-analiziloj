@@ -44,7 +44,7 @@ public class Database {
 	 * Testa metodo por havi aliron al la datumbazo post ĝia iniciatiĝo
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void startDatabaseInterface() {
 		org.hsqldb.util.DatabaseManagerSwing.main(new String[] {"--url",  String.format("jdbc:hsqldb:%s:%s", type, type.equals("mem") ? NAME : DATABASE_LOCATION)});
 	}
 	
