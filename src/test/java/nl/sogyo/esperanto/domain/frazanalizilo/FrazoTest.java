@@ -392,4 +392,35 @@ class FrazoTest {
 		assertFalse(ĉefverbo.hasRelatedFunkcio(Funkcio.PREDIKATIVO));
 		assertEquals(predikativo, infinitivo.getRelatedFrazero(Funkcio.PREDIKATIVO));
 	}
+	
+	@Test
+	public void tielKielPairHaveTheSameFunkcio() {
+		Frazo frazo = new Frazo("Ĝi estas tiel longa kiel larĝa");
+		
+		Frazero[] predikativoj = frazo.findAllByFunkcio(Funkcio.PREDIKATIVO);
+		
+		assertEquals(2, predikativoj.length);
+		assertEquals("tiel longa", predikativoj[0].toString());
+		assertEquals("kiel larĝa", predikativoj[1].toString());
+	}
+	
+	@Test
+	public void pliOlIsSplitSeveralFrazeroj() {
+		Frazo frazo = new Frazo("Ĝi estas pli longa ol larĝa.");
+		
+		Frazero[] predikativoj = frazo.findAllByFunkcio(Funkcio.PREDIKATIVO);
+		
+		assertEquals(2, predikativoj.length);
+		assertEquals("pli longa", predikativoj[0].toString());
+		assertEquals("larĝa", predikativoj[1].toString());
+	}
+	
+	@Test
+	public void olIsASeparateFrazero() {
+		Frazo frazo = new Frazo("Ĝi estas pli longa ol larĝa.");
+		
+		Frazero ol = frazo.findByString("ol");
+		
+		assertNotNull(ol);
+	}
 }
