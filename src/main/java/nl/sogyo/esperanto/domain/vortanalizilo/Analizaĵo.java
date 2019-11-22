@@ -426,11 +426,12 @@ public class Analizaĵo {
 	 * @return ĉu la vorto estas korelativo
 	 */
 	public boolean isKorelativo() {
-		Vortero firstVortero = vorteroj.get(0);
-		if(firstVortero.getVorterSpeco() == VorterSpeco.KORELATIVO || firstVortero.equals(Vortero.NENI_KORELATIVO)) {
-			for(int i = 1; i < vorteroj.size(); i++) {
+		int korelativoIndex = getFirstIndexOfVorteroSatisfying(f -> f.getVorterSpeco() == VorterSpeco.KORELATIVO || f.equals(Vortero.NENI_KORELATIVO));
+		if(korelativoIndex != -1) {
+			Vortero korelativaVortero = vorteroj.get(korelativoIndex);
+			for(int i = korelativoIndex + 1; i < vorteroj.size(); i++) {
 				Vortero vortero = vorteroj.get(i);
-				if(!vortero.equals(Vortero.J_FINAĴO) && !vortero.equals(Vortero.N_FINAĴO) && (firstVortero.equals(Vortero.NENI_KORELATIVO) ? !vortero.equals(Vortero.O_FINAĴO) : true)) {
+				if(!vortero.equals(Vortero.J_FINAĴO) && !vortero.equals(Vortero.N_FINAĴO) && (korelativaVortero.equals(Vortero.NENI_KORELATIVO) ? !vortero.equals(Vortero.O_FINAĴO) : true)) {
 					return false;
 				}
 			}
@@ -460,6 +461,20 @@ public class Analizaĵo {
 	 */
 	public Vortero getLastVortero() {
 		return vorteroj.get(vorteroj.size() - 1);
+	}
+	
+	/**
+	 * Trovas la indicon de la unua vortero, kiu plenumas la donitan kondiĉon.
+	 * @param condition la kondiĉon, kiun plenumu la dezirata vortero
+	 * @return la indico, kie troviĝas la unua vortero, kiu plenumas la kondiĉon. Redonas -1, se neniu estas trovita
+	 */
+	public int getFirstIndexOfVorteroSatisfying(Predicate<Vortero> condition) {
+		for(int i = 0; i < vorteroj.size(); i++) {
+			if(condition.test(vorteroj.get(i))) {
+				return i;
+			}
+		}
+		return -1;
 	}
 	
 	/**
@@ -554,7 +569,7 @@ public class Analizaĵo {
 	
 	/**
 	 * Rimarku, ke ĉi tiu {@code Comparator} ne estas konsekvenca, t.e., ne nepre estas du {@code Analizaĵo}j egalaj, se ĉi tiu {@code Comparator} redonas {@code 0}. 
-	 * @return {@code Comparater<Analizaĵo} por ordigi {@code Analizaĵo}jn
+	 * @return {@code Comparater<Analizaĵo>} por ordigi {@code Analizaĵo}jn
 	 */
 	public static Comparator<Analizaĵo> getComparator() {
 		return (a1, a2) -> {

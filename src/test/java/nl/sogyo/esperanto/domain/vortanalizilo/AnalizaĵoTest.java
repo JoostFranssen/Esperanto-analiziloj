@@ -617,4 +617,24 @@ class AnalizaĵoTest {
 		
 		assertNotNull(ĉi_tie_a);
 	}
+	
+	@Test
+	public void samkielIsRecognizedAsKorelativo() {
+		Vorto samkiel = new Vorto("samkiel");
+		
+		Analizaĵo sam_kiel = samkiel.getAnalizaĵoByString("sam|kiel");
+		
+		assertTrue(sam_kiel.checkTrajto(Trajto.KORELATIVO));
+		assertTrue(sam_kiel.checkTrajto(Trajto.ADVERBO));
+	}
+	
+	@Test
+	public void malkielIsRecognizedAsKorelativo() {
+		Vorto malkiel = new Vorto("malkiel");
+		
+		Analizaĵo mal_kiel = malkiel.getAnalizaĵoByString("mal|kiel");
+		
+		assertTrue(mal_kiel.checkTrajto(Trajto.KORELATIVO));
+		assertTrue(mal_kiel.checkTrajto(Trajto.ADVERBO));
+	}
 }
