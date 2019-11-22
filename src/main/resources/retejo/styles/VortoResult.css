@@ -7,6 +7,13 @@
     text-align: left;
 }
 
+@media screen and (max-width: 480px) {
+    .vort-analizaĵujo {
+        width: calc(100% - 10px);
+        margin: 0 5px;
+    }
+}
+
 .vort-analizaĵeringo {
     margin: 0 5px;
 }
@@ -18,6 +25,12 @@
 
 .selected.vort-analizaĵingo {
     font-size: 36px;
+}
+
+@media screen and (max-width: 480px) {
+    .selected.vort-analizaĵingo {
+        font-size: 32px;
+    }
 }
 
 .vort-analizaĵingo:not(.selected) {

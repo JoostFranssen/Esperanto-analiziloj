@@ -16,6 +16,7 @@ class NavigationBar extends React.Component {
             ],
         }
         props.passNewSelected(this.state.selectedIndex);
+        window.addEventListener("resize", this.updateIcon.bind(this))
     }
 
     render() {
@@ -55,6 +56,10 @@ class NavigationBar extends React.Component {
     }
 
     componentDidMount() {
+        this.updateIcon()
+    }
+
+    updateIcon() {
         let image = document.getElementById("icon");
         let newState = Object.assign({}, this.state);
         newState.imageWidth = image.offsetHeight;

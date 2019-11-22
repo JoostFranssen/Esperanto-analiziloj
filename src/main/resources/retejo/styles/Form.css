@@ -15,6 +15,13 @@
     margin: 2em 10%;
 }
 
+@media screen and (max-width: 480px) {
+    .analizilo-form {
+        width: calc(100% - 10px);
+        margin: 2em 5px;
+    }
+}
+
 .analizilo-form .input-label {
     text-align: left;
     font-size: 24px;
