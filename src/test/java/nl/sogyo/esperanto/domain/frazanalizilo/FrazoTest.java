@@ -395,7 +395,7 @@ class FrazoTest {
 	
 	@Test
 	public void tielKielPairHaveTheSameFunkcio() {
-		Frazo frazo = new Frazo("Ĝi estas tiel longa kiel larĝa");
+		Frazo frazo = new Frazo("Ĝi estas tiel longa kiel larĝa.");
 		
 		Frazero[] predikativoj = frazo.findAllByFunkcio(Funkcio.PREDIKATIVO);
 		

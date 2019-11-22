@@ -49,6 +49,7 @@ public class Vortero implements IVortero {
 	
 	public static final Vortero SAM_RADIKO = new Vortero("sam", VorterSpeco.RADIKO, Transitiveco.NEDIFINITA);
 	public static final Vortero ĈI_RADIKO = new Vortero("ĉi", VorterSpeco.ADVERBO, Transitiveco.NEDIFINITA);
+	public static final Vortero PLI_RADIKO = new Vortero("pli", VorterSpeco.ADVERBO, Transitiveco.NEDIFINITA);
 	
 	private String vortero;
 	private VorterSpeco vorterSpeco;

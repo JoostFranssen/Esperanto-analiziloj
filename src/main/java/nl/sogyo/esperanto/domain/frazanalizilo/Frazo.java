@@ -94,19 +94,19 @@ public class Frazo {
 		
 		Vorto lastVorto = frazerVortoj.get(frazerVortoj.size() - 1);
 		
-		// la vortoj ‘ajn’ kaj ‘ĉi’ modifas la korelativon, kiu staras antaŭ ĝi; ni vere volas rigardi ties funkcion
+		//la vortoj ‘ajn’ kaj ‘ĉi’ modifas la korelativon, kiu staras antaŭ ĝi; ni vere volas rigardi ties funkcion
 		if(lastVorto.equals(Vorto.AJN) || lastVorto.equals(Vorto.ĈI)) {
 			if(frazerVortoj.size() >= 2) {
 				lastVorto = frazerVortoj.get(frazerVortoj.size() - 2);
 			}
 		}
 		
-		// konjunkcio ĉiam kuntenu frazeron, ĉar ni ne konsideras subfrazojn; sed ‘ĉu’ ĉiam estu aparta
+		// konjunkcio ĉiam kuntenu frazeron, ĉar ni ne konsideras subfrazojn; sed ‘ĉu’ kaj ‘ol’ ĉiam estu aparta
 		if(lastVorto.checkTrajto(Trajto.KONJUNKCIO)) {
-			return lastVorto.equals(Vorto.ĈU);
+			return lastVorto.equals(Vorto.ĈU) || lastVorto.equals(Vorto.OL);
 		}
 		if(currentVorto.checkTrajto(Trajto.KONJUNKCIO)) {
-			return currentVorto.equals(Vorto.ĈU);
+			return currentVorto.equals(Vorto.ĈU) || currentVorto.equals(Vorto.OL);
 		}
 		
 		// infinitivo ĉiam estas tute aparta
@@ -121,11 +121,17 @@ public class Frazo {
 			return false;
 		}
 		
+		//ajn kaj ĉi estu ĉiam kunu kun korelativo
 		if(currentVorto.equals(Vorto.AJN) || currentVorto.equals(Vorto.ĈI)) {
 			return !lastVorto.checkTrajto(Trajto.KORELATIVO);
 		}
 		if(lastVorto.equals(Vorto.ĈI)) {
 			return !currentVorto.checkTrajto(Trajto.KORELATIVO);
+		}
+		
+		//korelativo en aliaj kazoj komencas novan frazeron
+		if(currentVorto.checkTrajto(Trajto.KORELATIVO)) {
+			return true;
 		}
 		
 		if(lastVorto.checkTrajto(Trajto.ADVERBO)) {
@@ -369,7 +375,7 @@ public class Frazo {
 					}
 				}
 				
-				// predikativo
+				//predikativo
 				//ni supozas, ke la predikativo staras post la infinitivo
 				Frazero predikativo = null;
 				

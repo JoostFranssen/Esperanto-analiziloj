@@ -30,6 +30,7 @@ public class Vorto {
 	public static final Vorto DA = new Vorto("da");
 	public static final Vorto AJN = new Vorto("ajn");
 	public static final Vorto ĈI = new Vorto("ĉi");
+	public static final Vorto OL = new Vorto("ol");
 
 	/**
 	 * Iniciatas novan vorton, analizas ĝin por trovi {@code Analizaĵo}jn, kiuj
