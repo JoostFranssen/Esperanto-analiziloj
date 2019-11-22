@@ -33,7 +33,6 @@ class InputForm extends React.Component {
                     autoCapitalize="off"
                     spellcheck="false"
                     pattern={this.props.pattern}
-                    autoFocus
                     novalidate
                     onInput={
                         (event) => {
@@ -60,6 +59,10 @@ class InputForm extends React.Component {
                 <span className="loading" style={{display: this.state.loading ? "block" : "none"}}></span>
             </form>
         );
+    }
+
+    componentDidUpdate() {
+        document.getElementById(this.getInputID()).focus();
     }
 
     async handleConfirm(event) {

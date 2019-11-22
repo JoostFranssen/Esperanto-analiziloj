@@ -26,6 +26,10 @@ class Main extends React.Component {
     }
 
     displayOnIndex(index) {
-        return {display: (this.state.selectedIndex === index ? "block" : "none")};
+        return {display: (this.shouldDisplayOnIndex(index))};
+    }
+
+    shouldDisplayOnIndex(index) {
+        return this.state.selectedIndex === index ? "block" : "none"
     }
 }
