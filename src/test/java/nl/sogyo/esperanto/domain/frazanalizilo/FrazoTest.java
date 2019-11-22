@@ -470,4 +470,44 @@ class FrazoTest {
 		assertEquals("dekojn", objekto.toString());
 		assertEquals("da libroj", da.toString());
 	}
+	
+	@Test
+	public void adverboRelatesToĈefverbo() {
+		Frazo frazo = new Frazo("Ni bone faris tion.");
+		
+		Frazero adverbo = frazo.findByFunkcio(Funkcio.ADVERBO);
+		Frazero ĉefverbo = frazo.findByFunkcio(Funkcio.ĈEFVERBO);
+		
+		assertEquals(ĉefverbo, adverbo.getRelatedFrazero(Funkcio.ĈEFVERBO));
+	}
+	
+	@Test
+	public void adverboRelatesToInfinitivo() {
+		Frazo frazo = new Frazo("La reĝo ŝatas bone regi.");
+		
+		Frazero adverbo = frazo.findByFunkcio(Funkcio.ADVERBO);
+		Frazero infinitivo = frazo.findByFunkcio(Funkcio.I_KOMPLEMENTO);
+		
+		assertEquals(infinitivo, adverbo.getRelatedFrazero(Funkcio.I_KOMPLEMENTO));
+	}
+	
+	@Test
+	public void adverboRelatesToĈefverboBeforeIt() {
+		Frazo frazo = new Frazo("Mi faris tion bone.");
+		
+		Frazero adverbo = frazo.findByFunkcio(Funkcio.ADVERBO);
+		Frazero ĉefverbo = frazo.findByFunkcio(Funkcio.ĈEFVERBO);
+		
+		assertEquals(ĉefverbo, adverbo.getRelatedFrazero(Funkcio.ĈEFVERBO));
+	}
+	
+	@Test
+	public void adverboRelatesToInfinitivoBeforeIt() {
+		Frazo frazo = new Frazo("La reĝo ŝatas regi la landon bone.");
+		
+		Frazero adverbo = frazo.findByFunkcio(Funkcio.ADVERBO);
+		Frazero infinitivo = frazo.findByFunkcio(Funkcio.I_KOMPLEMENTO);
+		
+		assertEquals(infinitivo, adverbo.getRelatedFrazero(Funkcio.I_KOMPLEMENTO));
+	}
 }

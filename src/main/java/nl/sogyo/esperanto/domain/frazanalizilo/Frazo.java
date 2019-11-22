@@ -249,6 +249,7 @@ public class Frazo {
 	private void addRelatedFrazeroj() {
 		setRelatedFrazerojForĈefverbo();
 		setRelatedFrazerojForInfinitivo();
+		setRelatedFrazerojForAdverbo();
 	}
 	
 	/**
@@ -396,6 +397,39 @@ public class Frazo {
 				if(predikativo != null) {
 					infinitivo.setRelatedFrazeroWithFunkcio(Funkcio.PREDIKATIVO, predikativo);
 					predikativo.setRelatedFrazeroWithFunkcio(Funkcio.I_KOMPLEMENTO, infinitivo);
+				}
+			});
+	}
+	
+	private void setRelatedFrazerojForAdverbo() {
+		IntStream.range(0, frazeroj.size())
+			.filter(i -> frazeroj.get(i).getFunkcio() == Funkcio.ADVERBO)
+			.filter(i -> !frazeroj.get(i).getLastVortoWithSkip().getVorto().endsWith("aŭ"))
+			.forEach(adverboIndex -> {
+				Frazero adverbo = frazeroj.get(adverboIndex);
+				
+				FIND_RELATION:
+				{
+					for(int i = adverboIndex + 1; i < frazeroj.size(); i++) {
+						Frazero frazero = frazeroj.get(i);
+						if(frazero.getFunkcio() == Funkcio.ĈEFVERBO) {
+							adverbo.setRelatedFrazeroWithFunkcio(Funkcio.ĈEFVERBO, frazero);
+							break FIND_RELATION;
+						} else if(frazero.getLastVortoWithSkip().checkTrajto(Trajto.VERBO_INFINITIVO)) {
+							adverbo.setRelatedFrazeroWithFunkcio(Funkcio.I_KOMPLEMENTO, frazero);
+							break FIND_RELATION;
+						}
+					}
+					for(int i = adverboIndex - 1; i >= 0; i--) {
+						Frazero frazero = frazeroj.get(i);
+						if(frazero.getFunkcio() == Funkcio.ĈEFVERBO) {
+							adverbo.setRelatedFrazeroWithFunkcio(Funkcio.ĈEFVERBO, frazero);
+							break FIND_RELATION;
+						} else if(frazero.getLastVortoWithSkip().checkTrajto(Trajto.VERBO_INFINITIVO)) {
+							adverbo.setRelatedFrazeroWithFunkcio(Funkcio.I_KOMPLEMENTO, frazero);
+							break FIND_RELATION;
+						}
+					}
 				}
 			});
 	}
