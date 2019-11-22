@@ -62,6 +62,7 @@ public class Analizaĵo {
 			|| finaĵoAppearsBeginning()
 			|| !akuzativoAppearsOnlyEndOrAfterEOrSi()
 			|| !lastFinaĵojAreInCorrectFormation()
+			|| korelativoIsPreceededByAPrepozicioAndHasNoChangingFinaĵo()
 		) {
 			return false;
 		}
@@ -69,7 +70,37 @@ public class Analizaĵo {
 	}
 	
 	/**
-	 * Kontras, ĉu finaĵo aperas kiel la unua vortero.
+	 * Kontrolas, ĉu, se io estas rekonita kiel korelativo, ĝin ne povas antaŭi prepozicio.
+	 * Ekzemple, ‘porĉiam’ estas malĝusta, sed ‘porĉiama’ estas en ordo.
+	 * Ĉi tio preventas, ke ekzemple ‘alio’ estas analizita kiel ‘al|io’.
+	 * @return ĉu analizaĵo, kiu estas korelativo antaŭhavas prepozicion
+	 */
+	private boolean korelativoIsPreceededByAPrepozicioAndHasNoChangingFinaĵo() {
+		boolean foundPrepozicio = false;
+		boolean afterKorelativo = false;
+		for(Vortero vortero : vorteroj) {
+			if(!afterKorelativo && vortero.getVorterSpeco() == VorterSpeco.PREPOZICIO) {
+				foundPrepozicio = true;
+				continue;
+			}
+			if(vortero.getVorterSpeco() == VorterSpeco.KORELATIVO) {
+				if(!foundPrepozicio) {
+					return false;
+				}
+				afterKorelativo = true;
+				continue;
+			}
+			if(afterKorelativo && foundPrepozicio) {
+				if(!vortero.equals(Vortero.J_FINAĴO) && !vortero.equals(Vortero.N_FINAĴO)) {
+					return false;
+				}
+			}
+		}
+		return foundPrepozicio && afterKorelativo;
+	}
+	
+	/**
+	 * Kontrolas, ĉu finaĵo aperas kiel la unua vortero.
 	 * @return ĉu la unua vortero estas finaĵo aŭ ne
 	 */
 	private boolean finaĵoAppearsBeginning() {

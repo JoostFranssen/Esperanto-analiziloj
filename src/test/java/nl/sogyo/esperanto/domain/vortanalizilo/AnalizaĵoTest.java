@@ -637,4 +637,13 @@ class AnalizaĵoTest {
 		assertTrue(mal_kiel.checkTrajto(Trajto.KORELATIVO));
 		assertTrue(mal_kiel.checkTrajto(Trajto.ADVERBO));
 	}
+	
+	@Test
+	public void alioCannotBeAnalyzedAsAl_io() {
+		Vorto alio = new Vorto("alio");
+		
+		Analizaĵo al_io = alio.getAnalizaĵoByString("al|io");
+		
+		assertNull(al_io);
+	}
 }
