@@ -423,4 +423,51 @@ class FrazoTest {
 		
 		assertNotNull(ol);
 	}
+	
+	@Test
+	public void numeralojGroupTogether() {
+		Frazo frazo = new Frazo("Tie dek tri homoj staras.");
+		
+		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
+		
+		assertEquals("dek tri homoj", subjekto.toString());
+	}
+	
+	@Test
+	public void numeraloSeparateFromVerbo() {
+		Frazo frazo = new Frazo("Cent mil ludas tiun ludon.");
+		
+		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
+		
+		assertEquals("Cent mil", subjekto.toString());
+	}
+	
+	@Test
+	public void numeraloSeparateFromPrepozicio() {
+		Frazo frazo = new Frazo("Ekzistas tri el tiaj homoj.");
+		
+		Frazero subjekto = frazo.findByFunkcio(Funkcio.SUBJEKTO);
+		
+		assertEquals("tri", subjekto.toString());
+	}
+	
+	@Test
+	public void numeraloIsObjekto() {
+		Frazo frazo = new Frazo("Mi havas tri el ili.");
+		
+		Frazero objekto = frazo.findByFunkcio(Funkcio.OBJEKTO);
+		
+		assertEquals("tri", objekto.toString());
+	}
+	
+	@Test
+	public void daExpressionIsSplit() {
+		Frazo frazo = new Frazo("Mi havas dekojn da libroj.");
+		
+		Frazero objekto = frazo.findByFunkcio(Funkcio.OBJEKTO);
+		Frazero da = frazo.findByFunkcio(Funkcio.PREPOZICIAĴO);
+		
+		assertEquals("dekojn", objekto.toString());
+		assertEquals("da libroj", da.toString());
+	}
 }

@@ -84,6 +84,10 @@ public class Frazero {
 		return getLastVortoWithSkip().checkTrajto(Trajto.AKUZATIVO);
 	}
 	
+	public boolean isNumeralo() {
+		return vortoj.stream().allMatch(v -> v.checkTrajto(Trajto.NUMERALO));
+	}
+	
 	@Override
 	public String toString() {
 		return String.join(" ", vortoj.stream().map(v -> v.getVorto()).toArray(String[]::new));

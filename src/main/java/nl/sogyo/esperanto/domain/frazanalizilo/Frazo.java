@@ -114,11 +114,19 @@ public class Frazo {
 			return true;
 		}
 		
-		if(currentVorto.checkTrajto(Trajto.PREPOZICIO)) { // prepozicio ĉiam komencas novan frazeron, krom post alia prepozicio kaj krom ‘da’
-			return !lastVorto.checkTrajto(Trajto.PREPOZICIO) && !currentVorto.equals(Vorto.DA);
+		if(currentVorto.checkTrajto(Trajto.PREPOZICIO)) { // prepozicio ĉiam komencas novan frazeron, krom post alia prepozicio
+			return !lastVorto.checkTrajto(Trajto.PREPOZICIO);
 		}
 		if(lastVorto.checkTrajto(Trajto.PREPOZICIO)) { // prepozicio ĉiam ligas al la sekva parto (escepte kun sekva infinitivo)
 			return false;
+		}
+		
+		//numeraloj grupiĝo kaj rolu kiel adjektivoj, sed disiĝu de verboj kaj prepozicioj
+		if(currentVorto.checkTrajto(Trajto.NUMERALO)) {
+			return !lastVorto.checkTrajto(Trajto.NUMERALO);
+		}
+		if(lastVorto.checkTrajto(Trajto.NUMERALO)) {
+			return currentVorto.checkTrajto(Trajto.VERBO) || currentVorto.checkTrajto(Trajto.PREPOZICIO);
 		}
 		
 		//ajn kaj ĉi estu ĉiam kunu kun korelativo
@@ -151,7 +159,7 @@ public class Frazo {
 		}
 		
 		if(lastVorto.checkTrajto(Trajto.SUBSTANTIVO)) {
-			if(currentVorto.checkTrajto(Trajto.ADVERBO)) {
+			if(currentVorto.checkTrajto(Trajto.ADVERBO) || currentVorto.checkTrajto(Trajto.SUBSTANTIVO)) {
 				return true;
 			}
 		}
@@ -207,7 +215,7 @@ public class Frazo {
 				if(findByFunkcio(Funkcio.SUBJEKTO) == null) {
 					frazero.setFunkcio(Funkcio.SUBJEKTO);
 				} else {
-					if(!frazero.getLastVortoWithSkip().checkTrajto(Trajto.VERBO_INFINITIVO)) {
+					if(!frazero.getLastVortoWithSkip().checkTrajto(Trajto.VERBO_INFINITIVO) && !frazero.isNumeralo()) {
 						frazero.setFunkcio(Funkcio.PREDIKATIVO);
 					}
 				}
@@ -220,7 +228,7 @@ public class Frazo {
 	 */
 	private void setObjektoj() {
 		for(Frazero frazero : frazeroj) {
-			if(frazero.getFunkcio() == null && frazero.hasAkuzativo()) {
+			if(frazero.getFunkcio() == null && (frazero.hasAkuzativo() || frazero.isNumeralo())) {
 				frazero.setFunkcio(Funkcio.OBJEKTO);
 			}
 		}
