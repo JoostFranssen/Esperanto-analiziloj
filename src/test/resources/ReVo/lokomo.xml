@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: lokomo.xml,v 1.13 2019/03/11 20:10:24 revo Exp $">
+<kap>
+  <ofc>1</ofc>
+  <rad>lokomobil</rad>/o
+</kap>
+<drv mrk="lokomo.0o">
+  <kap>
+    <tld/>o
+  </kap>
+  <snc>
+    <dif>
+      <ref tip="super" cel="motor.vapor0o">Vapormotoro</ref>
+      provizita per radoj por movi&gcirc;i sur vojoj:
+      <ekz>
+        <tld/>o <klr>[&#8230;]</klr> konsistas el hejtejo, vaporkaldrono, pi&scirc;ta vaporma&scirc;ino,
+        kranko&scirc;afto kaj inercirado
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url ref="https://eo.wikipedia.org/?curid=250247"
+              >Lokomobilo</url></lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        post la invento de vaporforto venis la portebla motoro, kaj poste la <tld/>o,
+        universala, movebla energifonto
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url ref="https://eo.wikipedia.org/?curid=415786"
+              >Agrikultura ma&scirc;inaro</url></lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_l;&c_ja;&c_k;&c_a;&c_m;&c_a;&c_b;&c_ib;&c_l;&c_mol;</trd>
+  <trdgrp lng="de">
+     <trd>Lokomobile</trd>,
+     <trd>Fahrdampfmaschine</trd>
+  </trdgrp>
+  <trd lng="en">traction engine</trd>
+  <trd lng="es">locom&oacute;vil</trd>
+  <trdgrp lng="hu">
+    <trd>&ouml;nj&aacute;r&oacute; <ind>g&odblac;zg&eacute;p</ind></trd>,
+    <trd>lokomobil</trd>
+  </trdgrp>
+  <trd lng="nl">locomobiel</trd>
+  <trd lng="pt">locom&oacute;vel</trd>
+  <trd lng="ru">&c_l;&c_o;&c_k;&c_o;&c_m;&c_o;&c_b;&c_i;&c_l;&c_mol;</trd>
+</drv>
+</art>
+<!--
+$Log: lokomo.xml,v $
+Revision 1.13  2019/03/11 20:10:24  revo
+Wolfram Diestel: +ekz-oj
+
+Revision 1.12  2006/09/16 16:30:50  revo
+Tulio Flores: +tr pt
+
+Revision 1.11  2004/05/27 16:32:32  revo
+Jozefo Horvath: +trd hu
+
+Revision 1.10  2003/05/13 16:33:16  revo
+Dmitri Gabinski: +trd be
+
+Revision 1.9  2002/10/25 16:33:59  revo
+Ulrich Fellmann: + 2 trd de
+
+Revision 1.8  2001/11/20 17:35:05  revo
+Yury Finkel: +trd ru
+
+Revision 1.7  2001/09/17 18:13:21  revo
+Karlo Freeman: +trd=en
+
+Revision 1.6  2001/04/22 17:43:14  revo
+-->
+</vortaro>

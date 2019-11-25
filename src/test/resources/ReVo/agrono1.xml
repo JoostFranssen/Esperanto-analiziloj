@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: agrono1.xml,v 1.21 2019/01/28 17:10:14 revo Exp $">
+<kap>
+  <ofc>1</ofc>
+  <rad>agronomi</rad>/o
+</kap>
+<drv mrk="agrono1.0o">
+  <kap><tld/>o</kap>
+  <uzo tip="fak">AGR</uzo>
+  <snc>
+    <dif>
+      <ref tip="lst" lst="voko:sciencoj" cel="scienc.0o.fako">Scienco</ref>
+      pri agrokulturo:
+      <ekz>
+        en la jaro 1887 oni malfermis <klr>[&#8230;]</klr> lernejon de <tld/>o
+        <fnt>
+          <bib>FK</bib>
+        </fnt>;
+      </ekz>
+      <ekz>
+        <tld/>aj kaj metiaj iloj
+        <fnt>
+          <bib>Far2</bib>
+          <lok>&Ccirc;apitro III</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_a;&c_g;&c_r;&c_a;&c_n;&c_o;&c_m;&c_ib;&c_ja;</trd>
+  <trd lng="cs">agronomie <klr>(v&ecaron;d.)</klr></trd>
+  <trdgrp lng="de">
+     <trd>Agronomie</trd>,
+     <trd>Landwirtschaft</trd>
+  </trdgrp>
+  <trd lng="en">agronomy</trd>
+  <trd lng="es">agronom&iacute;a</trd>
+  <trd lng="fr">agronomie</trd>
+  <trdgrp lng="hu">
+    <trd>mez&odblac;gazdas&aacute;gtan</trd>,
+    <trd>agron&oacute;mia</trd></trdgrp>
+  <trd lng="it">agronomia</trd>
+  <trd lng="nl">agronomie</trd>
+  <trd lng="pl">agronomia</trd>
+  <trd lng="pt">agronomia</trd>
+  <trd lng="ru">&c_a;&c_g;&c_r;&c_o;&c_n;&c_o;&c_m;&c_i;&c_ja;</trd>
+  <trdgrp lng="sk">
+    <trd>agron&oacute;mia</trd>,
+    <trd>agron&oacute;mia</trd>
+  </trdgrp>
+  <trdgrp lng="tr">
+    <trd>tar&inodot;m bilim</trd>,
+    <trd>agronomi</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="agrono1.0isto">
+  <kap><tld/>isto</kap>
+  <snc>
+    <dif>
+      Fakulo pri <ref tip="vid" cel="agrono1.0o"><tld/>o</ref>.
+    </dif>
+    <refgrp tip="sin">
+      <ref cel="agrono.0o">agronomo</ref>
+    </refgrp>
+  </snc>
+  <trd lng="be">&c_a;&c_g;&c_r;&c_a;&c_n;&c_o;&c_m;</trd>
+  <trd lng="cs">agronom</trd>
+  <trdgrp lng="de">
+     <trd>Agronom</trd>,
+     <trd>studierter <ind>Landwirt</ind></trd>
+  </trdgrp>
+  <trd lng="en">agronomist</trd>
+  <trd lng="fr">agronome</trd>
+  <trdgrp lng="hu">
+    <trd>mez&odblac;gazd&aacute;sz</trd>,
+    <trd>agron&oacute;mus</trd></trdgrp>
+  <trd lng="it">agronomo</trd>
+  <trd lng="nl">agronoom</trd>
+  <trd lng="pl">agronom</trd>
+  <trd lng="pt">agr&ocirc;nomo</trd>
+  <trd lng="ru">&c_a;&c_g;&c_r;&c_o;&c_n;&c_o;&c_m;</trd>
+  <trdgrp lng="sk">
+    <trd>agron&oacute;m</trd>,
+    <trd>agron&oacute;m</trd>
+  </trdgrp>
+  <trd lng="sv">agronom</trd>
+</drv>
+</art>
+<!--
+$Log: agrono1.xml,v $
+Revision 1.21  2019/01/28 17:10:14  revo
+Wolfram Diestel: +ekz-oj
+
+Revision 1.20  2015/07/04 08:37:29  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.19  2015/06/28 12:03:35  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.18  2013/04/16 08:10:13  revo
+Sebastian Cyprych: +trd pl
+
+Revision 1.17  2011/11/18 11:10:18  revo
+Antonio Codazzi: + trd it
+
+Revision 1.16  2009/08/25 16:32:47  revo
+Emmanuel Debanne: +trd tr
+
+Revision 1.15  2003/10/30 17:31:07  revo
+Dmitri Gabinski: +trd be
+
+Revision 1.14  2003/05/17 16:32:28  revo
+-->
+</vortaro>

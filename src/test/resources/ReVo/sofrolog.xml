@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: sofrolog.xml,v 1.2 2019/03/13 08:10:14 revo Exp $">
+<kap>
+  <rad>sofrolog</rad>/o <fnt><bib>SPIV</bib></fnt>
+</kap>
+<drv mrk="sofrolog.0o">
+  <kap><tld/>o</kap>
+  <snc mrk="sofrolog.0o.MED">
+    <uzo tip="fak">MED</uzo>
+    <dif>
+      <ref tip="dif" cel="sofrologi.0isto.MED">Sofrologiisto</ref>:
+      <ekz>
+        praktikejoj de <tld/>oj
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url ref="https://eo.wikipedia.org/?curid=606803">Sofrologio</url></lok>
+        </fnt>.
+      </ekz>
+    </dif>
+    <trd lng="de">Sophrologe</trd>
+  </snc>
+  <trd lng="fr">sophrologue</trd>
+</drv>
+</art>
+
+<!--
+$Log: sofrolog.xml,v $
+Revision 1.2  2019/03/13 08:10:14  revo
+Wolfram Diestel: +ekz, germ trd
+
+Revision 1.1  2006/10/31 17:30:31  revo
+Jeromo Vasxe: nova artikolo
+
+-->
+</vortaro>

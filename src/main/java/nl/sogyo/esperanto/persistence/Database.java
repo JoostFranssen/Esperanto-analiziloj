@@ -1,6 +1,7 @@
 package nl.sogyo.esperanto.persistence;
 
 import java.io.File;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,9 +23,15 @@ import nl.sogyo.esperanto.API.VorterSpeco;
  */
 public class Database {
 	public static final String NAME = "ReVo";
-	private static final String DATABASE_FOLDER_PATH = "src/main/resources/datumbazo/";
-	private static final File DATABASE_FOLDER = new File(DATABASE_FOLDER_PATH); 
-	private static final String DATABASE_LOCATION = DATABASE_FOLDER_PATH + NAME;
+	
+	private URL databaseFolderPath;
+	private String databaseFolderPathString;
+	private File databaseFolder;
+	private String databaseLocation;
+	
+	{
+		setFileNames();
+	}
 	
 	private Connection connection;
 	private static String type = "";
@@ -32,7 +39,7 @@ public class Database {
 	private static final String TABLE_TITLE = "vorteroj";
 	private static final String[] COLUMNS = new String[] {"vortero", "speco", "transitiveco"};
 	private static final String COLUMNS_STRING = Arrays.toString(COLUMNS).replaceAll("(\\[|\\])", "");
-	private static final File REVO_FOLDER = new File("src/main/resources/ReVo/");
+	private final File REVO_FOLDER = new File(getClass().getClassLoader().getResource("ReVo").getPath());
 	
 	private static final Database REVO_DATABASE = new Database();
 	
@@ -40,12 +47,21 @@ public class Database {
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> { if(connection != null) closeConnection(); }));
 	}
 	
+	private void setFileNames() {
+		databaseFolderPath = getClass().getClassLoader().getResource("datumbazo/");
+		databaseFolderPathString = (databaseFolderPath != null ? databaseFolderPath.getPath() : "");
+		databaseFolder = new File(databaseFolderPathString);
+		databaseLocation = databaseFolderPathString + NAME;
+		
+		System.out.println("!!!!!" + databaseFolderPathString);
+	}
+	
 	/**
 	 * Testa metodo por havi aliron al la datumbazo post ĝia iniciatiĝo
 	 * @param args
 	 */
-	public static void startDatabaseInterface() {
-		org.hsqldb.util.DatabaseManagerSwing.main(new String[] {"--url",  String.format("jdbc:hsqldb:%s:%s", type, type.equals("mem") ? NAME : DATABASE_LOCATION)});
+	public void startDatabaseInterface() {
+		org.hsqldb.util.DatabaseManagerSwing.main(new String[] {"--url",  String.format("jdbc:hsqldb:%s:%s", type, type.equals("mem") ? NAME : databaseLocation)});
 	}
 	
 	/**
@@ -53,10 +69,12 @@ public class Database {
 	 */
 	private Database() {
 		try {
-			if(DATABASE_FOLDER.exists()) {
-				connection = DriverManager.getConnection("jdbc:hsqldb:file:" + DATABASE_LOCATION + ";files_readonly=true;sql.ignore_case=true", "SA", "");
+			if(databaseFolderPath != null) {
+				System.out.println("!!!!! FOUND DATABASE FOLDER");
+				connection = DriverManager.getConnection("jdbc:hsqldb:file:" + databaseLocation + ";files_readonly=true;sql.ignore_case=true", "SA", "");
 				type = "file";
 			} else {
+				System.out.println("!!!!! DID NOT FIND DATABASE FOLDER");
 				connection = DriverManager.getConnection("jdbc:hsqldb:mem:" + NAME + ";sql.ignore_case=true", "SA", "");
 				type = "mem";
 				createDatabaseFromReVoFiles();
@@ -153,10 +171,11 @@ public class Database {
 	}
 
 	private void persistDatabaseToFile() throws SQLException {
-		if(!DATABASE_FOLDER.exists()) {
-			DATABASE_FOLDER.mkdirs();
+		if(databaseFolderPath == null || !databaseFolder.exists()) {
+			(new File(getClass().getClassLoader().getResource(".").getPath() + "/datumbazo/")).mkdirs();
+			setFileNames();
 			Statement statement = connection.createStatement();
-			statement.execute(String.format("SCRIPT '%s';", DATABASE_LOCATION + ".script"));
+			statement.execute(String.format("SCRIPT '%s';", databaseLocation + ".script"));
 		}
 	}
 	

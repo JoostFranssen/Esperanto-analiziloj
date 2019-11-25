@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: cxarla.xml,v 1.18 2019/06/30 09:58:52 revo Exp $">
+<kap>
+  <ofc>*</ofc>
+  <rad>&ccirc;arlatan</rad>/o
+</kap>
+<drv mrk="cxarla.0o">
+  <kap><ofc>*</ofc><tld/>o</kap>
+  <snc>
+    <dif>
+      Migranta foira vendisto de kuraciloj:
+      <ekz>
+        mi &scirc;miros per veneno mian glavon / &ccirc;ar unu <tld/>o al mi vendis / rimedon tian
+        <klr>[&#8230;]</klr>
+        <fnt>
+          <bib>Hamlet</bib>
+        </fnt>.
+      </ekz>      
+    </dif>
+  </snc>
+  <snc>
+    <dif>
+      Trompisto tro uzanta la publikan kredemon, brue ser&ccirc;anta la
+      popularecon:
+      <ekz>
+        lin, kiu oferis sian tutan vivon al granda afero, lin oni malhonoris per la nomo
+        <tld/>o
+        <fnt>
+          <bib>FK</bib>
+        </fnt>!
+      </ekz>
+      <ekz>
+        en mia kapo nun estas a&ubreve;kcio: pietistoj, <tld/>oj, recenzantoj kaj friponoj, &mdash;
+        kiu plej multe proponos, tiu min havos
+        <fnt>
+          <bib>Rabistoj</bib>
+          <lok>Akto Unua</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        li estas aminda <tld/>o: li amas trompi, kaj &gcirc;enerale, liaj trompoj estas ne tre
+        gravaj, efektive ridigaj
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Boris Kolker</aut>
+          <vrk><url ref="http://steloj.de/esperanto/monato2/007057.html"
+              >&Gcirc;uiga enhavo, ne&gcirc;uiga traduko</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_sh;&c_a;&c_r;&c_l;&c_ja;&c_t;&c_a;&c_n;</trd>
+  <trd lng="de">Scharlatan</trd>
+  <trd lng="en">charlatan</trd>
+  <trd lng="es">charlat&aacute;n</trd>
+  <trd lng="fr">charlatan</trd>
+  <trd lng="hu">sarlat&aacute;n</trd>
+  <trd lng="it">ciarlatano</trd>
+  <trdgrp lng="pl">
+    <trd>szarlatan</trd>,
+    <trd>szalbierz</trd>
+  </trdgrp>
+  <trd lng="pt">charlat&atilde;o</trd>
+  <trd lng="ru">&c_sh;&c_a;&c_r;&c_l;&c_a;&c_t;&c_a;&c_n;</trd>
+  <trd lng="sk">&scaron;arlat&aacute;n</trd>
+</drv>
+
+<drv mrk="cxarla.0i">
+  <kap><tld/>i</kap>
+  <gra><vspec>ntr</vspec></gra>
+  <snc>
+    <dif>
+      <tld lit="&Ccirc;"/>e agi:
+            <ekz>
+        la scienco <klr>[&#8230;]</klr> <tld/>as por povi vivi
+        <fnt>
+          <vrk><url ref="http://verkoj.com/lauteme/klasika/kalman-kalocsay/la-tragedio-de-lhomo/"
+              >La tragedio de l'homo - Verkoj</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trdgrp lng="de">
+    <trd>quacksalbern</trd>,
+    <trd>schwindeln</trd>
+  </trdgrp>
+  <trd lng="hu">sarlat&aacute;nkodik</trd>
+  <trdgrp lng="it">
+    <trd>truffare</trd>,
+    <trd>dire<klr> fandonie</klr></trd>
+  </trdgrp>
+  <trd lng="ru">&c_sh;&c_a;&c_r;&c_l;&c_a;&c_t;&c_a;&c_n;&c_s;&c_t;&c_v;&c_o;&c_v;&c_a;&c_t;&c_mol;</trd>
+</drv>
+
+<drv mrk="cxarla.0ajxo">
+  <kap>
+    <tld/>a&jcirc;o
+  </kap>
+  <snc>
+    <dif>
+      Trompa misgvido de kredemuloj, <ref tip="dif" cel="fripon.0ajxo">fripona&jcirc;o</ref>:
+      <ekz>
+        kiu trompas: &ccirc;u la pastoro a&ubreve; la adeptoj? &leftquot;iom da <tld/>a&jcirc;o kaj iom da dia&jcirc;o&#8221;,
+        diras multaj
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Gbeglo Koffi</aut>
+          <vrk><url ref="&Monato;/2010/009910.php"
+              >Ventreligio, dua r aldoni&gcirc;u</url></vrk>
+        </fnt>;
+      </ekz>      
+      <ekz>
+        la&ubreve; verdikto ne temas pri trompo, sed oni rajtas paroli pri
+        &leftquot;esotera sensenca&jcirc;o&#8221; a&ubreve; &leftquot;<tld/>a&jcirc;o&#8221;
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Walter Klag</aut>
+          <vrk><url ref="&Monato;/2012/010583.php"
+              >Grander-akvo mirakla</url></vrk>
+        </fnt>.
+      </ekz>      
+    </dif>
+  </snc>
+  <trd lng="de">Scharlatanerie</trd>
+</drv>
+
+
+</art>
+<!--
+$Log: cxarla.xml,v $
+Revision 1.18  2019/06/30 09:58:52  revo
+adaptis URL de Monato
+
+Revision 1.17  2019/03/09 17:10:18  revo
+Wolfram Diestel: +ekz-oj, +~ajxo
+
+Revision 1.16  2009/04/27 16:31:17  revo
+Sebastian Cyprych: +trd pl
+
+Revision 1.15  2009/04/17 19:48:31  revo
+Antonio Codazzi: +trd it
+
+Revision 1.14  2006/03/04 17:31:53  revo
+Wieland Pusch: +trd de
+
+Revision 1.13  2003/08/20 16:31:42  revo
+Yury Finkel: +trd ru
+
+Revision 1.12 2002/12/20 17:33:34 revo
+Jozefo Horvath: +trd hu
+
+Revision 1.11 2002/09/12 16:36:45 revo
+Viliam Bur: +trd sk
+
+Revision 1.10 2002/09/01 19:09:35 revo
+-->
+</vortaro>

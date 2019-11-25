@@ -1,5 +1,7 @@
 package nl.sogyo.esperanto.servilo;
 
+import java.net.URL;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -14,6 +16,10 @@ import org.glassfish.jersey.servlet.ServletContainer;
 public class AnalizilServer {
 
 	public static void main(String[] args) {
+		new AnalizilServer();
+	}
+		
+	private AnalizilServer() {
 		Server server = new Server(8090);
 		
 		ServletContextHandler contextHandler = new ServletContextHandler(ServletContextHandler.NO_SESSIONS);
@@ -26,7 +32,9 @@ public class AnalizilServer {
 		dynamicServletHolder.setInitParameter("jersey.config.server.provider.packages", "nl.sogyo.esperanto.servilo");
 		
 		ServletHolder staticServletHolder = contextHandler.addServlet(DefaultServlet.class, "/*");
-		staticServletHolder.setInitParameter("resourceBase", "./src/main/resources/retejo/");
+		
+		URL website = getClass().getClassLoader().getResource("retejo");
+		staticServletHolder.setInitParameter("resourceBase", website.toExternalForm());
 		
 		try {
 			server.start();
