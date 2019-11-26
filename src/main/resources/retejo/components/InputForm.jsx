@@ -51,8 +51,8 @@ class InputForm extends React.Component {
                                 let i = e.target.selectionStart;
                                 let c = e.target.value.charAt(i - 1);
                                 if(c.search(/[cghjsu]/i) !== -1) {
-                                    console.log(c);
                                     e.target.value = e.target.value.substring(0, i - 1) + map[c] + e.target.value.substring(i);
+                                    e.target.setSelectionRange(i, i);
                                     e.preventDefault();
                                 }
                             }
