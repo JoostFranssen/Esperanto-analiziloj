@@ -65,7 +65,7 @@ public class Database {
 	}
 	
 	/**
-	 * Iniciatas la datumbazon el la persistigita dosiero en DATUMBAZEJO aŭ, se tiu dosiero ne ekzistas, kreas la datumbazon el la dosieroj de ReVo (ĉi tio estas malrapida)
+	 * Iniciatas la datumbazon el la persistigita dosiero en DATABASE_LOCATION aŭ, se tiu dosiero ne ekzistas, kreas la datumbazon el la dosieroj de ReVo (ĉi tio estas malrapida)
 	 */
 	private Database() {
 		try {
@@ -159,7 +159,7 @@ public class Database {
 	}
 	
 	/**
-	 * Fermas la konekton al la datumbazo kaj, se necesas, persistigas ĝin al dosiero
+	 * Fermas la konekton al la datumbazo kaj persistigas ĝin al dosiero
 	 */
 	public void closeConnection() {
 		try {

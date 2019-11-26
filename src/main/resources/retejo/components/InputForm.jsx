@@ -36,8 +36,6 @@ class InputForm extends React.Component {
                     novalidate
                     onInput={
                         (event) => {
-                            event.target.value = convertXSystem(event.target.value);
-
                             let newState = Object.assign({}, this.state);
                             if(!event.target.validity.valid) {
                                 newState.errorMessage = this.props.handleInvalidity(event.target.value);
@@ -45,6 +43,19 @@ class InputForm extends React.Component {
                                 newState.errorMessage = "";
                             }
                             this.setState(newState);
+                        }
+                    }
+                    onKeyDown={
+                        (e) => {
+                            if(e.key === "x" || e.key === "X") {
+                                let i = e.target.selectionStart;
+                                let c = e.target.value.charAt(i - 1);
+                                if(c.search(/[cghjsu]/i) !== -1) {
+                                    e.target.value = e.target.value.substring(0, i - 1) + map[c] + e.target.value.substring(i);
+                                    e.target.setSelectionRange(i, i);
+                                    e.preventDefault();
+                                }
+                            }
                         }
                     }
                     onInvalid={(event) => event.preventDefault()}
