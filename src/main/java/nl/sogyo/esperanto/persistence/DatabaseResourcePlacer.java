@@ -47,6 +47,9 @@ public class DatabaseResourcePlacer {
 		
 	}
 	
+	/**
+	 * Kreas la datumbazon el la ReVo-dosieroj
+	 */
 	private static void createDatabaseFromReVoFiles() throws SQLException {
 		Statement statement = connection.createStatement();
 		statement.execute(String.format("CREATE TABLE %s (%s, %s, %s, %s);", TABLE_TITLE, "id INTEGER IDENTITY PRIMARY KEY", COLUMNS[0] + " VARCHAR(32)", COLUMNS[1] + " VARCHAR(32)", COLUMNS[2] + " VARCHAR(32)"));
@@ -68,6 +71,10 @@ public class DatabaseResourcePlacer {
 		}
 	}
 	
+	/**
+	 * Enmetas novan enigon en la tabelon
+	 * @param entry konkreta objekto de {@code IVortero}
+	 */
 	private static void putIntoTable(IVortero entry) throws SQLException {
 		PreparedStatement statement = connection.prepareStatement(String.format("INSERT INTO %s (%s) VALUES (?, ?, ?);", TABLE_TITLE, COLUMNS_STRING));
 		statement.setString(1, entry.getVortero());
@@ -76,6 +83,12 @@ public class DatabaseResourcePlacer {
 		statement.execute();
 	}
 	
+	/**
+	 * Persistigas la datumbazon per dosiero en la indikita dosierujo.
+	 * Notu, ke ĉi tiu funkcio forigis ĉiujn dosierojn, kies nomo komenciĝas per la nomo de la datumbazo.
+	 * @param path la pado, kie la datumbazdosiero estu kreata
+	 * @throws SQLException se la datumbazo ne povas esti persistigita
+	 */
 	private static void persistDatabaseToFile(File path) throws SQLException {
 		if(!path.exists()) {
 			path.mkdirs();
