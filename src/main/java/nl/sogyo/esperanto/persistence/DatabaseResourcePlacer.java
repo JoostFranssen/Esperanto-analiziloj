@@ -62,9 +62,8 @@ public class DatabaseResourcePlacer {
 				}
 			}
 			current++;
-//			if(100 * current/total != 100 * (current - 1)/total) {
-				System.out.print(String.format("\r%.2f%%", 100 * (float)current/total));
-//			}
+			float percentage = 100 * (float)current/total;
+			System.out.print(String.format("Creating database \r%5.1f%% █%s%s█ %" + String.valueOf(total).length() + "d/%d", percentage, "█".repeat((int)percentage / 2), " ".repeat(50 - (int)percentage / 2), current, total));
 		}
 	}
 	
