@@ -26,7 +26,7 @@ Nun vi povas ordinare paki per la jena komando:
 mvn package
 ```
 
-## Funkciigi
+## Startigo
 Pakinte la projekton, vi funkciigu ĝin per la startigo de la `Esperanto-analiziloj-#.##.jar`-dosiero de la komandilo:
 ```
 java -jar Esperanto-analiziloj-#.##.jar
@@ -46,7 +46,7 @@ If no result is found, Jetty is not bound to the port. Any result will have a PI
 ```
 taskkill /pid <PID> /f
 ```
-kie <PID> estu anstataŭigita per la trovita PID.
+kie `<PID>` estu anstataŭigita per la trovita PID.
 
-##Pri ĉi tiu projekto
-Ĉi tiu projekto estas rezulto de traniĝado ĉe [Sogyo Information Engineering B.V.](https://www.sogyo.nl/) en Nederlando.
+## Pri ĉi tiu projekto
+Ĉi tiu projekto estas rezulto de trejniĝado ĉe [Sogyo Information Engineering B.V.](https://www.sogyo.nl/) en Nederlando.
