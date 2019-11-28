@@ -71,7 +71,7 @@ public class Database {
 		try {
 			if(databaseFolderPath != null) {
 				System.out.println("!!!!! FOUND DATABASE FOLDER");
-				connection = DriverManager.getConnection("jdbc:hsqldb:file:" + databaseLocation + ";files_readonly=true;sql.ignore_case=true", "SA", "");
+				connection = DriverManager.getConnection("jdbc:hsqldb:res:" + "datumbazo/" + NAME + ";sql.ignore_case=true", "SA", "");
 				type = "file";
 			} else {
 				System.out.println("!!!!! DID NOT FIND DATABASE FOLDER");

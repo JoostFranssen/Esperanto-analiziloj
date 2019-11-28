@@ -4,7 +4,7 @@
   <groupId>nl.sogyo.esperanto.analiziloj</groupId>
   <artifactId>Esperanto-analiziloj</artifactId>
   <name>Esperanto-Analiziloj</name>
-  <version>0.14</version>
+  <version>0.16</version>
   <build>
     <plugins>
       <plugin>
