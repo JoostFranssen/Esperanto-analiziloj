@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>nl.sogyo.esperanto.analiziloj</groupId>
 	<artifactId>Esperanto-analiziloj</artifactId>
-	<version>0.19</version>
+	<version>0.20</version>
 	<name>Esperanto-Analiziloj</name>
 
 	<build>
