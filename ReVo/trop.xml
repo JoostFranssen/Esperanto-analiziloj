@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: trop.xml,v 1.19 2019/06/30 18:21:50 revo Exp $">
+<kap>
+  <ofc>2</ofc>
+  <rad>trop</rad>/o
+</kap>
+<drv mrk="trop.0o">
+  <kap><tld/>o</kap>
+  <uzo tip="fak">BELE</uzo>
+  <uzo tip="fak">LIN</uzo>
+  <snc>
+    <dif>
+      <ref tip="dif" cel="figur.stil0o">Stilfiguro</ref>:
+      <ekz>
+        la verko konsistas precipe el ne plu uzataj vortoj kaj <tld/>oj, kune kun gaelaj esprimoj enirintaj la hibernoanglan
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Garbhan Macaoidh</aut>
+          <vrk><url ref="https://www.monato.be/2004/008202.html">Kaj je pa&gcirc;o 747 de aviadilega enciklopedio ...</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        li ofte uzis dialektajn vortojn kaj <tld/>ojn, kiuj ne estis kutimaj krom en malgranda regiono en okcidenta Irlando
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Garbhan MacAoidh</aut>
+          <vrk><url ref="&Monato;/2007/009181.php">Nekonata genio</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        jen 43 artikoloj diverse longaj <klr>[&#8230;]</klr> kiuj parolas i.a. pri etimologio,
+        leksiko, homonimeco, interpunkcio, verbo-tensoj, <tld/>oj, supersignoj, landnomoj, neologismoj, <klr>[&#8230;]</klr>
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Antonio Val&eacute;n</aut>
+          <vrk><url ref="&Monato;/2005/008625.php">Klero kaj klaro delektos la leganton</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        liaj <tld/>oj foje forlasas la limojn de la prudento
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Geraldo Mattos</aut>
+          <vrk><url ref="&Monato;/2008/009422.php">Rezulto de preseraro</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        solvi dubojn pri subtila&jcirc;oj de la <tld/>oj kaj idioma&jcirc;oj de la itala
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Garvan Makaj'</aut>
+          <vrk><url ref="&Monato;/2014/011154.php">Kerno de la itala lingvo</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_t;&c_r;&c_o;&c_p;</trd>
+  <trd lng="ca">trop</trd>
+  <trdgrp lng="cs">
+    <trd>tropus</trd>,
+    <trd>z&aacute;stupka</trd>
+  </trdgrp>
+  <trdgrp lng="de">
+    <trd>Trope</trd>,
+    <trd>bildlicher Ausdruck</trd>
+  </trdgrp>
+  <trdgrp lng="en">
+    <trd>trope</trd>,
+    <trd>figure of speech</trd>
+  </trdgrp>
+  <trdgrp lng="fr">
+    <trd>figure de style</trd>,
+    <trd>trope</trd>
+  </trdgrp>
+  <trdgrp lng="hu">
+    <trd>sz&oacute;k&eacute;p</trd>,
+    <trd>k&eacute;pes kifejez&eacute;s</trd>,
+    <trd>tr&oacute;pus</trd>
+  </trdgrp>
+  <trdgrp lng="nl">
+    <trd>troop</trd>,
+    <trd>stijlfiguur</trd>
+  </trdgrp>
+  <trdgrp lng="pl">
+    <trd>trop<klr tip="amb"> (literacki)</klr></trd>,
+    <trd>przeno&sacute;nia</trd>
+  </trdgrp>
+  <trd lng="pt">tropo</trd>
+  <trdgrp lng="ru">
+    <trd>&c_t;&c_r;&c_o;&c_p;</trd>,
+    <trd>&c_p;&c_je;&c_r;&c_je;&c_n;&c_o;&c_s;&c_n;&c_o;&c_je;
+    &c_z;&c_n;&c_a;&c_ch;&c_je;&c_n;&c_i;&c_je;</trd>
+  </trdgrp>
+  <trdgrp lng="sk">
+    <trd>metafora</trd>,
+    <trd>tr&oacute;p</trd>
+  </trdgrp>
+</drv>
+</art>
+<!--
+$Log: trop.xml,v $
+Revision 1.19  2019/06/30 18:21:50  revo
+adaptis URL de Monato
+
+Revision 1.18  2019/06/30 07:43:30  revo
+adaptis URL de Monato
+
+Revision 1.17  2018/11/02 11:10:17  revo
+Wolfram Diestel: +ekz-oj
+
+Revision 1.16  2015/07/04 08:37:45  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.15  2015/06/29 16:40:20  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.14  2011/12/05 15:10:10  revo
+Marc Rausell: kataluna traduko
+
+Revision 1.13  2009/08/18 19:20:06  revo
+Russ Williams: +trd en
+
+Revision 1.12  2009/02/06 17:59:36  revo
+Sebastian Cyprych: +trd pl
+
+Revision 1.11  2006/02/16 17:35:37  revo
+Tulio Flores: +trd pt
+
+Revision 1.10  2003/10/01 16:32:55  revo
+-->
+</vortaro>

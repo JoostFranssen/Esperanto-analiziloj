@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: asfalt.xml,v 1.26 2019/06/30 07:47:08 revo Exp $">
+<kap>
+  <ofc>1</ofc>
+  <rad>asfalt</rad>/o <fnt><bib>MT</bib></fnt>
+</kap>
+
+<drv mrk="asfalt.0o">
+  <kap><tld/>o</kap>
+
+  <snc mrk="asfalt.0o.MIN">
+    <uzo tip="fak">MIN</uzo>
+    <dif>
+      Nigreca, neflua miksa&jcirc;o esti&gcirc;inta el kerogeno apena&ubreve;
+      enhavanta mineralecan substancon:
+      <ekz>
+        &scirc;i prenis por li keston el kanoj kaj &ccirc;irka&ubreve;&scirc;miris &gcirc;in per <tld/>o kaj pe&ccirc;o, kaj
+        metis tien la infanon kaj metis &gcirc;in inter la kanojn sur la bordo de la Rivero
+        <fnt>
+          <bib>MT</bib>
+          <lok>Eliro 2:3</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+    <refgrp tip="vid">
+      <ref cel="naft.0o">nafto</ref>,
+      <ref cel="skist.0o.karbona">skisto<sncref/></ref>
+    </refgrp>
+  </snc>
+
+  <snc mrk="asfalt.0o.KON">
+    <uzo tip="fak">KON</uzo>
+    <uzo tip="fak">TRA</uzo>
+    <dif>
+      <ref tip="vid" cel="bitum.0o">Bitumo</ref> uzata por tegi stratojn:
+      <ekz>
+        &scirc;iaj kalkanumetoj frapetis la asfalton
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Geraldo Mattos</aut>
+          <vrk><url ref="http://steloj.de/esperanto/monato2/006805.html"
+              >Kota Akvo: Konstanten Krysakov</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        dum la rikolta sezono oni sur&scirc;utas grenon sur la varmegan
+        <tld/>on por sekigi &gcirc;in
+        <fnt>
+          <aut>E. Georgiev</aut>,
+          <vrk>Nova ponto sur Danubo</vrk>,
+          <bib>Monato</bib>,
+          <lok>jaro 2001a, numero 1a, p. 11a</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_a;&c_s;&c_f;&c_a;&c_l;&c_mol;&c_t;</trd>
+  <trdgrp lng="cs">
+    <trd>asfalt</trd>,
+    <trd>bitumen</trd>
+  </trdgrp>
+  <trd lng="de">Asphalt</trd>
+  <trd lng="en">asphalt</trd>
+  <trd lng="es">asfalto</trd>
+  <trd lng="fr">asphalte</trd>
+  <trd lng="hu">aszfalt</trd>
+  <trd lng="id">aspal</trd>
+  <trd lng="it">asfalto</trd>
+  <trd lng="nl">asfalt</trd>
+  <trd lng="pl">asfalt</trd>
+  <trd lng="ru">&c_a;&c_s;&c_f;&c_a;&c_l;&c_mol;&c_t;</trd>
+  <trd lng="sk">asfalt</trd>
+  <trd lng="sv">asfalt</trd>
+</drv>
+
+<drv mrk="asfalt.0i">
+  <kap><tld/>i</kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc mrk="asfalt.0i.KON">
+    <uzo tip="fak">KON</uzo>
+    <dif>
+      Surkovri per <ref cel="asfalt.0o.KON"><tld/>o<sncref/></ref>:
+      <ekz>
+        la vojoj estis jam relative bone <tld/>itaj sen la sen&ccirc;esaj kavoj kaj
+        malglata&jcirc;oj ordinare kutimaj en nia lando
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Dmitrij Cibulevskij</aut>
+          <vrk><url ref="https://www.monato.be/2007/009112.php"
+              >Busvoja&gcirc;o</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        sur la <tld/>ita sena&ubreve;ta parkejo dancas kvino da nigraha&ubreve;taj altaj viroj
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Saliko</aut>
+          <vrk><url ref="https://www.monato.be/2006/008760.php"
+              >En fremda lando</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">
+  &c_a;&c_s;&c_f;&c_a;&c_l;&c_mol;&c_t;&c_a;&c_v;&c_a;&c_c;&c_mol;</trd>
+  <trd lng="cs">asfaltovat</trd>
+  <trd lng="de">asphaltieren</trd>
+  <trd lng="en">lay <ind>asphalt</ind></trd>
+  <trd lng="es">asfaltar</trd>
+  <trd lng="fr">asphalter</trd>
+  <trd lng="hu">aszfaltoz</trd>
+  <trd lng="id">[<ind>aspal</ind>] mengaspal</trd>
+  <trd lng="it">asfaltare</trd>
+  <trd lng="nl">asfalteren</trd>
+  <trd lng="pl">asfaltowa&cacute;</trd>
+  <trd
+  lng="ru">&c_a;&c_s;&c_f;&c_a;&c_l;&c_mol;&c_t;&c_i;&c_r;&c_o;&c_v;&c_a;&c_t;&c_mol;</trd>
+  <trd lng="sk">asfaltova&tcaron;</trd>
+  <trd lng="sv">asfaltera</trd>
+</drv>
+</art>
+<!--
+$Log: asfalt.xml,v $
+Revision 1.26  2019/06/30 07:47:08  revo
+adaptis URL de Monato
+
+Revision 1.25  2019/01/19 11:10:15  revo
+Wolfram Diestel: +snc MIN, +ekz-oj, fnt MT
+
+Revision 1.24  2015/07/04 08:37:30  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.23  2014/10/28 04:10:59  revo
+Eko Nur Syah Hidayat: +trd id
+
+Revision 1.22  2012/02/01 01:10:33  revo
+Antonio Codazzi: +trd it
+
+Revision 1.21  2009/09/10 16:32:07  revo
+Jeromo Vasxe: + fak kon, + vid
+
+Revision 1.20  2009/03/12 17:31:58  revo
+Sebastian Cyprych: +trd pl
+
+Revision 1.19  2009/02/04 19:20:05  revo
+Sergej Chlutchin: forigis malbezonajn linirompojn en la rusa
+
+Revision 1.18  2008/05/09 19:11:44  revo
+-->
+</vortaro>

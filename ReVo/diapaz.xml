@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: diapaz.xml,v 1.16 2019/01/26 21:10:14 revo Exp $">
+<kap>
+  <ofc>2</ofc>
+  <rad>diapazon</rad>/o
+</kap>
+<drv mrk="diapaz.0o">
+  <kap><tld/>o</kap>
+  <uzo tip="fak">MUZ</uzo>
+  <snc>
+    <dif>
+      <ref tip="super" cel="agord.0ilo.MUZ">Agordilo</ref>, en formo de metala dubraka forko:
+      <ekz>
+        la klasika metodo por a&ubreve;digi la &ccirc;ambrotonon estas la <tld/>o, alternative
+        ekzistas anka&ubreve; agordofajfiloj, nuntempe elektronikaj agordiloj estas pli kaj
+        pli disvastigitaj
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url ref="https://eo.wikipedia.org/?curid=251732"
+              >&Ccirc;ambrotono</url></lok>
+        </fnt>.
+      </ekz>
+    </dif>
+    <bld
+      lok="&WCU;/thumb/e/e0/Stimmgabel90degree.jpg/320px-Stimmgabel90degree.jpg"
+      prm="CC-BY-SA-3.0"
+      ><tld/>o por &ccirc;ambrotono &leftquot;a&rightquot;
+        <fnt>
+          <aut>Wollschaf</aut>
+          <lok><url ref="&WCW;/File:Stimmgabel90degree.jpg"
+              >https://commons.wikimedia.org/wiki/File:Stimmgabel90degree.jpg</url></lok>
+        </fnt>
+    </bld>
+    <trd lng="be">&c_k;&c_a;&c_m;&c_e;&c_r;&c_t;&c_o;&c_n;</trd>
+    <trd lng="de">Stimmgabel</trd>
+    <trd lng="es">diapas&oacute;n</trd>
+    <trd lng="fr">diapason</trd>
+    <trd lng="hu">hangvilla</trd>
+    <trd lng="it">diapason</trd>
+    <trdgrp lng="pl">
+      <trd>kamerton</trd>,
+      <trd>stroik</trd>
+    </trdgrp>
+    <trd lng="pt">diapas&atilde;o</trd>
+    <trd lng="ru">&c_k;&c_a;&c_m;&c_je;&c_r;&c_t;&c_o;&c_n;</trd>
+  </snc>
+  <trdgrp lng="cs">
+    <trd>diapazon</trd>,
+    <trd>hlasov&eacute; rozp&ecaron;t&iacute;</trd>,
+    <trd>t&oacute;nov&eacute; rozp&ecaron;t&iacute;</trd>
+  </trdgrp>
+  <trdgrp lng="sk">
+    <trd>p&aacute;smo</trd>,
+    <trd>rozp&auml;tie</trd>
+  </trdgrp>
+</drv>
+</art>
+<!--
+$Log: diapaz.xml,v $
+Revision 1.16  2019/01/26 21:10:14  revo
+Wolfram Diestel: +ekz, revortigis dif kiel specialigo de agordilo, +bld
+
+Revision 1.15  2015/07/04 08:37:32  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.14  2015/06/29 16:29:36  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.13  2010/05/28 16:30:34  revo
+Antonio Codazzi: +trd it
+
+Revision 1.12  2009/06/09 16:31:29  revo
+Sebastian Cyprych: +trd pl
+
+Revision 1.11  2007/07/24 19:11:51  revo
+Tulio Flores: +tr pt
+
+Revision 1.10  2003/12/13 17:32:46  revo
+Dmitri Gabinski: +trd be
+
+Revision 1.9  2003/05/06 16:32:32  revo
+-->
+</vortaro>

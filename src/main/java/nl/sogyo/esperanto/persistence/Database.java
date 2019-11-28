@@ -36,9 +36,9 @@ public class Database {
 	private Connection connection;
 	private static String type = "";
 	
-	private static final String TABLE_TITLE = "vorteroj";
-	private static final String[] COLUMNS = new String[] {"vortero", "speco", "transitiveco"};
-	private static final String COLUMNS_STRING = Arrays.toString(COLUMNS).replaceAll("(\\[|\\])", "");
+	static final String TABLE_TITLE = "vorteroj";
+	static final String[] COLUMNS = new String[] {"vortero", "speco", "transitiveco"};
+	static final String COLUMNS_STRING = Arrays.toString(COLUMNS).replaceAll("(\\[|\\])", "");
 	private final File REVO_FOLDER = new File(getClass().getClassLoader().getResource("ReVo").getPath());
 	
 	private static final Database REVO_DATABASE = new Database();
