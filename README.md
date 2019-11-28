@@ -30,4 +30,7 @@ After having build the project, you can run it by executing the `Esperanto-anali
 ```
 java -jar Esperanto-analiziloj-#.##.jar
 ```
-Here `#.##` should be replaced by the version number.
+Here `#.##` should be replaced by the version number. Then the application is available at
+```
+http://localhost:8090
+```
