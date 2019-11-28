@@ -28,4 +28,4 @@ local.properties
 *.war
 *.ear
 /target/
-datumbazo/
+dependency-reduced-pom.xml

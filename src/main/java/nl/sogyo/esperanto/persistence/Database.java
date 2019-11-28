@@ -52,8 +52,6 @@ public class Database {
 		databaseFolderPathString = (databaseFolderPath != null ? databaseFolderPath.getPath() : "");
 		databaseFolder = new File(databaseFolderPathString);
 		databaseLocation = databaseFolderPathString + NAME;
-		
-		System.out.println("!!!!!" + databaseFolderPathString);
 	}
 	
 	/**
@@ -61,7 +59,7 @@ public class Database {
 	 * @param args
 	 */
 	public void startDatabaseInterface() {
-		org.hsqldb.util.DatabaseManagerSwing.main(new String[] {"--url",  String.format("jdbc:hsqldb:%s:%s", type, type.equals("mem") ? NAME : databaseLocation)});
+		org.hsqldb.util.DatabaseManagerSwing.main(new String[] {"--url",  String.format("jdbc:hsqldb:%s:%s", type, type.equals("mem") ? NAME : "datumbazo/" + NAME)});
 	}
 	
 	/**
@@ -70,11 +68,9 @@ public class Database {
 	private Database() {
 		try {
 			if(databaseFolderPath != null) {
-				System.out.println("!!!!! FOUND DATABASE FOLDER");
-				connection = DriverManager.getConnection("jdbc:hsqldb:res:" + "datumbazo/" + NAME + ";sql.ignore_case=true", "SA", "");
-				type = "file";
+				connection = DriverManager.getConnection("jdbc:hsqldb:res:datumbazo/" + NAME + ";sql.ignore_case=true", "SA", "");
+				type = "res";
 			} else {
-				System.out.println("!!!!! DID NOT FIND DATABASE FOLDER");
 				connection = DriverManager.getConnection("jdbc:hsqldb:mem:" + NAME + ";sql.ignore_case=true", "SA", "");
 				type = "mem";
 				createDatabaseFromReVoFiles();
