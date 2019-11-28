@@ -5,3 +5,29 @@ Esperanto-Analiziloj consists of two analyzation tools for the language Esperant
 Esperanto uses the word-building grammar from germanic languages. That means that words can be made by sticking other words together, by attaching prefixes and suffixes, and adding endings. The word analyzer tries to find all plausible ways as what individual components constitute a given word. Moreover, it will determine some properties of the word, for instance whether it is a substantive, has the accusative case, is plural, or in case of a verb determine the transitivity.
 
 The sentence analyzer makes an effort to parse a typed sentence and provide a basic grammatical analysis. It is currently limited to sentences that have only one clause (so one predicate or main verb). It does not support any kind of subordinate clauses.
+
+## Packaging
+To package the project use Maven by running the following command from the root directory of the project:
+```
+mvn package
+```
+If you for some reason need to reinitialize the entire database from the provided XML files from Reta-Vortaro you should run the following commands from the root directory.
+```
+mvn compile
+mvn dependency:copy-dependencies
+```
+Finally execute the `place-database-in-resources.bat` file, or directly run the command it contains:
+```
+java -cp target/dependency/*;target/classes nl.sogyo.esperanto.persistence.DatabaseResourcePlacer
+```
+Finally, you can now package as normal by executing
+```
+mvn package
+```
+
+## Running the project
+After having build the project, you can run it by executing the `Esperanto-analiziloj-#.##.jar` file from the command line:
+```
+java -jar Esperanto-analiziloj-#.##.jar
+```
+Here `#.##` should be replaced by the version number.

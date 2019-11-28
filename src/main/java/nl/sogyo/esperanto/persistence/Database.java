@@ -39,7 +39,7 @@ public class Database {
 	static final String TABLE_TITLE = "vorteroj";
 	static final String[] COLUMNS = new String[] {"vortero", "speco", "transitiveco"};
 	static final String COLUMNS_STRING = Arrays.toString(COLUMNS).replaceAll("(\\[|\\])", "");
-	private final File REVO_FOLDER = new File(getClass().getClassLoader().getResource("ReVo").getPath());
+//	private final File REVO_FOLDER = new File(getClass().getClassLoader().getResource("ReVo").getPath());
 	
 	private static final Database REVO_DATABASE = new Database();
 	
@@ -120,22 +120,22 @@ public class Database {
 	 * Kreas la datumbazon el la ReVo-dosieroj
 	 */
 	private void createDatabaseFromReVoFiles() {
-		try {
-			Statement statement = connection.createStatement();
-			statement.execute(String.format("CREATE TABLE %s (%s, %s, %s, %s);", TABLE_TITLE, "id INTEGER IDENTITY PRIMARY KEY", COLUMNS[0] + " VARCHAR(32)", COLUMNS [1] + " VARCHAR(32)", COLUMNS[2] + " VARCHAR(32)"));
-			
-			for(File file : REVO_FOLDER.listFiles()) {
-				if(file.isFile()) {
-					ReVoEntry entry = (new ReVoReader(file)).getEnigo();
-					if(!entry.getVortero().isEmpty() && entry.getVorterSpeco() != null && entry.getTransitiveco() != null) {
-						putIntoTable(entry);
-					}
-				}
-			}
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			Statement statement = connection.createStatement();
+//			statement.execute(String.format("CREATE TABLE %s (%s, %s, %s, %s);", TABLE_TITLE, "id INTEGER IDENTITY PRIMARY KEY", COLUMNS[0] + " VARCHAR(32)", COLUMNS [1] + " VARCHAR(32)", COLUMNS[2] + " VARCHAR(32)"));
+//			
+//			for(File file : REVO_FOLDER.listFiles()) {
+//				if(file.isFile()) {
+//					ReVoEntry entry = (new ReVoReader(file)).getEnigo();
+//					if(!entry.getVortero().isEmpty() && entry.getVorterSpeco() != null && entry.getTransitiveco() != null) {
+//						putIntoTable(entry);
+//					}
+//				}
+//			}
+//			
+//		} catch(Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 	
 	/**

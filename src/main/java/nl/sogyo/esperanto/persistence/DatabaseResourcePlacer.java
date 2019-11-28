@@ -28,6 +28,7 @@ public class DatabaseResourcePlacer {
 	public static void main(String[] args) throws ClassNotFoundException {
 		
 		try {
+			Class.forName("org.hsqldb.jdbc.JDBCDriver");
 			connection = DriverManager.getConnection("jdbc:hsqldb:mem:" + NAME + ";sql.ignore_case=true", "SA", "");
 			createDatabaseFromReVoFiles();
 			persistDatabaseToFile(resourceMainDatabaseFolder);

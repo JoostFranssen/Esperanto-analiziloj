@@ -1,1 +1,1 @@
-java -cp target/*;target/classes nl.sogyo.esperanto.persistence.DatabaseResourcePlacer
+java -cp target/dependency/*;target/classes nl.sogyo.esperanto.persistence.DatabaseResourcePlacer
