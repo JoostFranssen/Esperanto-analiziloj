@@ -106,17 +106,17 @@
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-server</artifactId>
-			<version>9.4.22.v20191022</version>
+			<version>9.4.24.v20191120</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-servlet</artifactId>
-			<version>9.4.22.v20191022</version>
+			<version>9.4.24.v20191120</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-util</artifactId>
-			<version>9.4.22.v20191022</version>
+			<version>9.4.24.v20191120</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
@@ -146,7 +146,7 @@
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-continuation</artifactId>
-			<version>9.4.22.v20191022</version>
+			<version>9.4.24.v20191120</version>
 		</dependency>
 	</dependencies>
 
